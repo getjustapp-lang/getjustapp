@@ -21,35 +21,36 @@
   <meta name="twitter:description" content="Three tasks. Midnight wipe. We only win when you win." />
 
   <!-- PWA -->
-  <meta name="theme-color" content="#EDE8D0" />
+  <meta name="theme-color" content="#F2EDDC" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="JUST." />
 
-  <!-- Fonts -->
+  <!-- Fonts: Brand Bible v1 — Space Mono (structural) + Source Serif 4 (intellectual) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 
   <style>
     /* ─── RESET ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
-    /* ─── TOKENS ─── */
+    /* ─── TOKENS (Brand Bible v1) ─── */
     :root {
-      --cream:      #EDE8D0;
-      --cream-dark: #E2DBBC;
-      --ink:        #3C4142;
-      --ink-light:  #6B7273;
-      --ink-faint:  #9AABAC;
-      --accent:     #2E5C4F;
-      --accent-mid: #4A8C7A;
-      --warn:       #D32F2F;
-      --border:     rgba(60,65,66,0.18);
-      --grain-opacity: 0.045;
+      --cream:        #F2EDDC;  /* JUST Cream — primary background, 70% */
+      --cream-dark:   #E8E3D0;  /* subtle variant for borders/inputs */
+      --ink:          #2C2F30;  /* JUST Ink — headlines, body */
+      --slate:        #6E7374;  /* Slate Calm — subheadings, captions */
+      --ink-faint:    #9A9D9E;  /* lighter for metadata */
+      --accent:       #2F5D50;  /* Constraint Green — links, CTAs, <10% */
+      --accent-hover: #24493F;  /* CTA hover */
+      --accent-mid:   #3d7264;  /* lighter on dark backgrounds */
+      --warn:         #9B3D3D;  /* Error — minimal use */
+      --border:       rgba(44,47,48,0.12);
+      --grain-opacity: 0.04;
       --mono: 'Space Mono', monospace;
-      --serif: 'Lora', Georgia, serif;
+      --serif: 'Source Serif 4', Georgia, serif;
     }
 
     /* ─── GRAIN OVERLAY ─── */
@@ -73,11 +74,13 @@
       background-size: 256px 256px;
     }
 
-    /* ─── TYPOGRAPHY ─── */
+    /* ─── TYPOGRAPHY (Brand Bible v1) ─── */
     .mono { font-family: var(--mono); }
     .serif { font-family: var(--serif); }
 
-    h1, h2, h3 { font-family: var(--mono); font-weight: 700; line-height: 1.15; }
+    h1 { font-family: var(--serif); font-weight: 600; line-height: 1.15; }
+    h2 { font-family: var(--serif); font-weight: 400; line-height: 1.2; }
+    h3 { font-family: var(--mono); font-weight: 700; }
     p { font-family: var(--serif); }
 
     /* ─── LAYOUT ─── */
@@ -115,17 +118,18 @@
       font-family: var(--mono);
       font-size: 13px;
       font-weight: 700;
-      color: var(--ink);
-      background: transparent;
-      border: 1.5px solid var(--ink);
-      padding: 8px 20px;
+      color: var(--cream);
+      background: var(--accent);
+      border: none;
+      border-radius: 4px;
+      padding: 10px 24px;
       cursor: pointer;
       text-decoration: none;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s;
     }
-    .nav-cta:hover { background: var(--ink); color: var(--cream); }
+    .nav-cta:hover { background: var(--accent-hover); color: var(--cream); }
 
     /* ─── FOCUS VISIBLE (Accessibility) ─── */
     .nav-cta:focus-visible,
@@ -138,14 +142,15 @@
       outline-offset: 2px;
     }
 
-    /* ─── HERO ─── */
+    /* ─── HERO (Brand Bible §8: 90vh, left-align, Source Serif 4 76px, CTA #2F5D50) ─── */
     .hero {
-      min-height: calc(100svh - 61px);
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 80px 0 60px;
       border-bottom: 1px solid var(--border);
+      text-align: left;
     }
     .hero-inner {
       display: grid;
@@ -159,13 +164,14 @@
     }
     .hero-inner > div:first-child {
       padding-top: 20px;
+      max-width: 560px;  /* comfortable measure; left-aligned but not flush */
     }
     .hero-eyebrow {
       font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.18em;
+      font-size: 14px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--ink-light);
+      color: var(--slate);
       margin-bottom: 32px;
       display: flex;
       align-items: center;
@@ -176,50 +182,54 @@
       display: block;
       width: 32px;
       height: 1px;
-      background: var(--ink-light);
+      background: var(--slate);
     }
     .hero-headline {
-      font-size: clamp(40px, 5.5vw, 68px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
+      font-family: var(--serif);
+      font-size: clamp(48px, 5vw, 76px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
       margin-bottom: 32px;
+      color: var(--ink);
     }
     .hero-headline em {
       font-style: italic;
-      font-family: var(--mono);
-      color: var(--accent);
+      font-family: var(--serif);
+      color: var(--ink);
     }
     .hero-sub {
-      font-size: 19px;
-      color: var(--ink-light);
-      line-height: 1.6;
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.5;
       margin-bottom: 16px;
-      font-style: italic;
     }
     .hero-note {
       font-family: var(--mono);
-      font-size: 13px;
-      color: var(--ink-light);
+      font-size: 14px;
+      color: var(--slate);
       letter-spacing: 0.02em;
       margin-bottom: 32px;
     }
     .hero-footnote {
       font-family: var(--serif);
       font-size: 14px;
-      color: var(--ink-faint);
       font-style: italic;
+      color: var(--slate);
       margin-top: 20px;
     }
     .hero-form {
       display: flex;
       gap: 0;
       margin-bottom: 24px;
-      border: 1.5px solid var(--ink);
+      border: 1px solid var(--ink);
+      border-radius: 4px;
     }
     .hero-form input {
       flex: 1;
-      padding: 14px 18px;
+      padding: 16px 18px;
       font-family: var(--serif);
       font-size: 16px;
       background: transparent;
@@ -234,15 +244,16 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      background: var(--ink);
+      background: var(--accent);
       color: var(--cream);
       border: none;
-      padding: 14px 22px;
+      border-radius: 0 4px 4px 0;
+      padding: 18px 36px;
       cursor: pointer;
       transition: background 0.15s;
       white-space: nowrap;
     }
-    .hero-form button:hover { background: var(--accent); }
+    .hero-form button:hover { background: var(--accent-hover); }
     .form-success { display: none; font-family: var(--mono); font-size: 14px; color: var(--accent); margin-bottom: 24px; }
     .form-error { display: none; font-family: var(--mono); font-size: 13px; color: var(--warn); margin-bottom: 24px; }
     .trust-badge {
@@ -253,8 +264,8 @@
       font-size: 12px;
       letter-spacing: 0.04em;
       color: var(--accent);
-      border: 1px solid rgba(46,92,79,0.3);
-      background: rgba(46,92,79,0.06);
+      border: 1px solid rgba(47,93,80,0.35);
+      background: rgba(47,93,80,0.08);
       padding: 8px 14px;
     }
     .trust-badge::before {
@@ -294,7 +305,7 @@
       font-family: var(--serif);
       font-style: italic;
       font-size: 13px;
-      color: var(--ink-light);
+      color: var(--slate);
       margin-bottom: 20px;
     }
     .task-item {
@@ -373,7 +384,7 @@
       justify-content: space-between;
       font-family: var(--mono);
       font-size: 11px;
-      color: var(--ink-light);
+      color: var(--slate);
       margin-bottom: 8px;
       letter-spacing: 0.06em;
     }
@@ -426,24 +437,28 @@
     /* ─── SECTION HEADERS ─── */
     .section-label {
       font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.18em;
+      font-size: 14px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--ink-faint);
+      color: var(--slate);
       margin-bottom: 16px;
     }
     .section-title {
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      line-height: 1.1;
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
       margin-bottom: 16px;
+      color: var(--ink);
     }
     .section-sub {
-      font-size: 18px;
+      font-family: var(--serif);
+      font-size: 20px;
       font-style: italic;
-      color: var(--ink-light);
+      color: var(--slate);
       max-width: 520px;
+      line-height: 1.6;
     }
 
     /* ─── OBSESSION FORMULA ─── */
@@ -493,7 +508,7 @@
     .formula-desc {
       font-family: var(--serif);
       font-size: 16px;
-      color: var(--ink-light);
+      color: var(--slate);
       line-height: 1.6;
     }
     .formula-block .formula-accent {
@@ -502,7 +517,7 @@
       right: 24px;
       font-family: var(--mono);
       font-size: 10px;
-      color: var(--ink-light);
+      color: var(--slate);
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
@@ -537,7 +552,7 @@
     .contrast-item .label.us   { color: var(--accent); }
     .contrast-them {
       font-size: 16px;
-      color: var(--ink-light);
+      color: var(--slate);
       font-style: italic;
       margin-bottom: 12px;
     }
@@ -587,7 +602,7 @@
     .behavioral-desc {
       font-family: var(--serif);
       font-size: 15px;
-      color: var(--ink-light);
+      color: var(--slate);
       line-height: 1.6;
     }
 
@@ -598,16 +613,16 @@
       background: var(--ink);
       color: var(--cream);
     }
-    .science .section-label { color: rgba(237,232,208,0.4); }
+    .science .section-label { color: rgba(242,237,220,0.5); }
     .science .section-title { color: var(--cream); }
-    .science .section-sub { color: rgba(237,232,208,0.6); }
+    .science .section-sub { color: rgba(242,237,220,0.7); }
     .science-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
-      background: rgba(237,232,208,0.1);
+      background: rgba(242,237,220,0.08);
       margin-top: 56px;
-      border: 1px solid rgba(237,232,208,0.15);
+      border: 1px solid rgba(242,237,220,0.15);
     }
     .science-item {
       background: var(--ink);
@@ -634,7 +649,7 @@
     .science-desc {
       font-family: var(--serif);
       font-size: 15px;
-      color: rgba(237,232,208,0.6);
+      color: rgba(242,237,220,0.65);
       font-style: italic;
     }
 
@@ -663,7 +678,7 @@
       text-transform: uppercase;
       margin-bottom: 20px;
     }
-    .pricing-plan.featured .plan-name { color: rgba(237,232,208,0.5); }
+    .pricing-plan.featured .plan-name { color: rgba(242,237,220,0.5); }
     .plan-price {
       font-family: var(--mono);
       font-size: 52px;
@@ -681,7 +696,7 @@
       font-style: italic;
       margin-bottom: 32px;
     }
-    .pricing-plan.featured .plan-period { color: rgba(237,232,208,0.4); }
+    .pricing-plan.featured .plan-period { color: rgba(242,237,220,0.45); }
     .plan-features { list-style: none; }
     .plan-feature {
       font-family: var(--serif);
@@ -693,8 +708,8 @@
       gap: 10px;
     }
     .pricing-plan.featured .plan-feature {
-      border-bottom-color: rgba(237,232,208,0.12);
-      color: rgba(237,232,208,0.8);
+      border-bottom-color: rgba(242,237,220,0.15);
+      color: rgba(242,237,220,0.85);
     }
     .plan-feature::before { content: '—'; color: var(--ink-faint); font-family: var(--mono); }
     .pricing-plan.featured .plan-feature::before { content: '✓'; color: var(--accent-mid); }
@@ -743,19 +758,20 @@
       transition: width 0.4s ease;
     }
 
-    /* ─── FINAL CTA ─── */
+    /* ─── FINAL CTA (Brand Bible: left-align) ─── */
     .final-cta {
       padding: 120px 0;
-      text-align: center;
+      text-align: left;
       border-bottom: 1px solid var(--border);
     }
     .final-cta .section-title { font-size: clamp(36px, 5vw, 64px); margin-bottom: 16px; }
-    .final-cta .section-sub { margin: 0 auto 48px; text-align: center; max-width: 460px; }
+    .final-cta .section-sub { margin: 0 0 48px; max-width: 520px; }
     .final-form {
       display: flex;
       max-width: 440px;
-      margin: 0 auto 16px;
+      margin: 0 0 16px;
       border: 1.5px solid var(--ink);
+      border-radius: 4px;
     }
     .final-form input {
       flex: 1;
@@ -774,14 +790,15 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      background: var(--ink);
+      background: var(--accent);
       color: var(--cream);
       border: none;
-      padding: 16px 24px;
+      border-radius: 0 4px 4px 0;
+      padding: 18px 36px;
       cursor: pointer;
       transition: background 0.15s;
     }
-    .final-form button:hover { background: var(--accent); }
+    .final-form button:hover { background: var(--accent-hover); }
     .form-note {
       font-family: var(--mono);
       font-size: 11px;
@@ -810,15 +827,16 @@
       font-family: var(--serif);
       font-size: 14px;
       font-style: italic;
-      color: var(--ink-light);
+      color: var(--slate);
       max-width: 240px;
       margin-bottom: 20px;
     }
     .footer-founder {
       font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--ink-faint);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: var(--slate);
+      margin-top: 4px;
     }
     .footer-links {
       display: flex;
@@ -1098,7 +1116,7 @@
             <strong>Try it:</strong> Click the checkboxes to see animations.<br/>
             Watch the progress bar glow, streak counter pulse, and celebration animation when all tasks are done.
           </p>
-          <p style="font-family: var(--serif); font-size: 14px; color: var(--ink-light); font-style: italic;">
+          <p style="font-family: var(--serif); font-size: 14px; color: var(--slate); font-style: italic;">
             All 13 features included: checkbox animations, progress glow, task completion celebration, streak pulses, countdown timer, implementation intention highlight, dark mode ready, smooth hover states, color-coded completion, keyboard shortcuts support, local persistence, and motivational copy.
           </p>
         </div>
@@ -1294,7 +1312,7 @@
       <h2 class="section-title">Three tasks.<br/>Midnight wipe.<br/>Nothing else.</h2>
       <p class="section-sub">Early access is limited to 500 people.</p>
       <p class="hero-footnote" style="margin-bottom: 24px;">One email. No spam. We only message when it's ready.</p>
-      <div style="margin: 0 auto 32px; display: flex; flex-direction: column; gap: 10px; max-width: 460px;">
+      <div style="margin: 0 0 32px; display: flex; flex-direction: column; gap: 10px; max-width: 460px;">
         <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ 3 tasks maximum. Hard cap enforced.</div>
         <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left;">✦ Unfinished tasks delete at midnight. Clean slate daily.</div>
         <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ Hit 67% completion yearly → 2 months free automatically.</div>
@@ -1318,7 +1336,7 @@
         <div>
           <div class="footer-logo">JUST.</div>
           <p class="footer-tagline">Stop planning. Start doing. Built by one person who got tired of every other app.</p>
-          <p class="footer-founder" style="color: var(--ink);">Built by Chaitanya Madhavan, 18, Singapore.</p>
+          <p class="footer-founder">Built by Chaitanya Madhavan, 18, Singapore.</p>
           <a href="https://www.linkedin.com/in/chaitanya-madhavan-8001381b2/" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-top: 8px; display: inline-flex;" aria-label="Chaitanya Madhavan on LinkedIn">My LinkedIn</a>
         </div>
         <div class="footer-links">
@@ -1433,8 +1451,13 @@
     function toggleCheckPremium(el) {
       el.classList.toggle('done');
       el.setAttribute('aria-checked', el.classList.contains('done'));
-      const taskText = el.nextElementSibling;
+      var taskText = el.nextElementSibling;
       if (taskText) taskText.classList.toggle('done');
+      var taskItem = el.closest('.task-item');
+      if (taskItem) {
+        taskItem.setAttribute('data-priority-touched', Date.now());
+        sortTasksByPriority('.mockup-premium');
+      }
       updateProgressPremium();
     }
 
@@ -1479,6 +1502,8 @@
       priorities.forEach(p => el.classList.remove(p));
       el.classList.add(priorities[nextIndex]);
       el.textContent = labels[nextIndex];
+      var taskItem = el.closest('.task-item');
+      if (taskItem) taskItem.setAttribute('data-priority-touched', Date.now());
       sortTasksByPriority('.mockup-premium');
     }
 
@@ -1489,14 +1514,19 @@
       const tasks = Array.from(mockup.querySelectorAll('.task-item.premium'));
       const priorityOrder = { 'tag-high': 0, 'tag-medium': 1, 'tag-low': 2 };
       tasks.sort((a, b) => {
-        const aTag = Array.from(a.classList).find(c => priorityOrder.hasOwnProperty(c));
-        const bTag = Array.from(b.classList).find(c => priorityOrder.hasOwnProperty(c));
-        return (priorityOrder[aTag] ?? 2) - (priorityOrder[bTag] ?? 2);
+        const aTag = Array.from(a.classList).find(function(c) { return priorityOrder.hasOwnProperty(c); });
+        const bTag = Array.from(b.classList).find(function(c) { return priorityOrder.hasOwnProperty(c); });
+        const pa = priorityOrder[aTag] ?? 2;
+        const pb = priorityOrder[bTag] ?? 2;
+        if (pa !== pb) return pa - pb;
+        var at = parseInt(a.getAttribute('data-priority-touched') || '0', 10);
+        var bt = parseInt(b.getAttribute('data-priority-touched') || '0', 10);
+        return bt - at;
       });
-      let ref = intentionEl.nextElementSibling;
-      for (const task of tasks) {
-        intentionEl.parentNode.insertBefore(task, ref);
-        ref = task.nextElementSibling;
+      var ref = intentionEl.nextElementSibling;
+      for (var i = 0; i < tasks.length; i++) {
+        intentionEl.parentNode.insertBefore(tasks[i], ref);
+        ref = tasks[i].nextElementSibling;
       }
     }
 

@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JUST. — Stop Planning. Start Doing.</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Three tasks. Midnight wipe. We only win when you win. The productivity app that pays you back when you show up." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://justapp.com" />
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="JUST. — Stop Planning. Start Doing." />
+  <meta property="og:description" content="Three tasks. Midnight wipe. 70% yearly completion = 2–3 months free." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://justapp.com" />
+  <meta property="og:image" content="https://justapp.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JUST. — Stop Planning. Start Doing." />
+  <meta name="twitter:description" content="Three tasks. Midnight wipe. We only win when you win." />
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#EDE8D0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="JUST." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── TOKENS ─── */
+    :root {
+      --cream:      #EDE8D0;
+      --cream-dark: #E2DBBC;
+      --ink:        #3C4142;
+      --ink-light:  #6B7273;
+      --ink-faint:  #9AABAC;
+      --accent:     #2E5C4F;
+      --accent-mid: #4A8C7A;
+      --warn:       #C4622D;
+      --border:     rgba(60,65,66,0.18);
+      --grain-opacity: 0.045;
+      --mono: 'Space Mono', monospace;
+      --serif: 'Lora', Georgia, serif;
+    }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: var(--grain-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .mono { font-family: var(--mono); }
+    .serif { font-family: var(--serif); }
+
+    h1, h2, h3 { font-family: var(--mono); font-weight: 700; line-height: 1.15; }
+    p { font-family: var(--serif); }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { position: relative; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      background: transparent;
+      border: 1.5px solid var(--ink);
+      padding: 8px 20px;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-cta:hover { background: var(--ink); color: var(--cream); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: calc(100svh - 61px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--ink-light);
+    }
+    .hero-headline {
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      font-family: var(--mono);
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 19px;
+      color: var(--ink-light);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+    .hero-form {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      border: 1.5px solid var(--ink);
+    }
+    .hero-form input {
+      flex: 1;
+      padding: 14px 18px;
+      font-family: var(--serif);
+      font-size: 16px;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ink);
+    }
+    .hero-form input::placeholder { color: var(--ink-faint); font-style: italic; }
+    .hero-form button {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      padding: 14px 22px;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .hero-form button:hover { background: var(--accent); }
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      border: 1px solid rgba(46,92,79,0.3);
+      background: rgba(46,92,79,0.06);
+      padding: 8px 14px;
+    }
+    .trust-badge::before {
+      content: '→';
+      font-size: 14px;
+    }
+
+    /* ─── APP MOCKUP ─── */
+    .mockup-wrap {
+      position: relative;
+    }
+    .mockup {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 32px;
+      position: relative;
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .mockup-header {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .mockup-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mockup-intention {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-light);
+      margin-bottom: 20px;
+    }
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .task-item:last-child { border-bottom: none; }
+    .task-check {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--ink);
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .task-check.done {
+      background: var(--ink);
+    }
+    .task-check.done::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 9px;
+      width: 5px;
+      height: 2px;
+      background: var(--cream);
+      transform: rotate(45deg);
+      transform-origin: left center;
+    }
+    .task-check.done::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 5px;
+      width: 9px;
+      height: 2px;
+      background: var(--cream);
+      transform: rotate(-45deg);
+      transform-origin: left center;
+    }
+    .task-text { font-family: var(--serif); font-size: 15px; line-height: 1.4; }
+    .task-text.done { text-decoration: line-through; color: var(--ink-faint); }
+    .task-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      margin-left: auto;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .tag-high { border: 1px solid var(--warn); color: var(--warn); }
+    .tag-low  { border: 1px solid var(--ink-faint); color: var(--ink-faint); }
+    .mockup-progress {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-light);
+      margin-bottom: 8px;
+      letter-spacing: 0.06em;
+    }
+    .progress-bar {
+      height: 4px;
+      background: var(--cream-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .progress-fill.pct-zero {
+      background: transparent;
+      border-right: 2px solid var(--ink-faint);
+      width: 2px !important;
+    }
+    .mockup-midnight {
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .mockup-corner {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mockup-corner span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--cream);
+      font-weight: 700;
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink-light);
+      max-width: 520px;
+    }
+
+    /* ─── OBSESSION FORMULA ─── */
+    .formula {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .formula-header {
+      margin-bottom: 64px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1.5px solid var(--ink);
+    }
+    .formula-block {
+      background: var(--cream);
+      padding: 40px 36px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .formula-block:hover { background: var(--cream-dark); }
+    .formula-block.wide {
+      grid-column: 1 / -1;
+    }
+    .formula-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+    }
+    .formula-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .formula-title {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .formula-desc {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+    .formula-block .formula-accent {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── WHY FAIL ─── */
+    .why {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .why-left { position: sticky; top: 100px; }
+    .contrast-list { list-style: none; }
+    .contrast-item {
+      padding: 32px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .contrast-item:first-child { border-top: 1px dashed var(--border); }
+    .contrast-item .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+    .contrast-item .label.them { color: var(--warn); }
+    .contrast-item .label.us   { color: var(--accent); }
+    .contrast-them {
+      font-size: 16px;
+      color: var(--ink-light);
+      font-style: italic;
+      margin-bottom: 12px;
+      text-decoration: line-through;
+      text-decoration-color: var(--warn);
+    }
+    .contrast-us {
+      font-size: 17px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ─── SOCIAL PROOF / SCIENCE ─── */
+    .science {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .science .section-label { color: rgba(237,232,208,0.4); }
+    .science .section-title { color: var(--cream); }
+    .science .section-sub { color: rgba(237,232,208,0.6); }
+    .science-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(237,232,208,0.1);
+      margin-top: 56px;
+      border: 1px solid rgba(237,232,208,0.15);
+    }
+    .science-item {
+      background: var(--ink);
+      padding: 36px 30px;
+      transition: background 0.2s;
+    }
+    .science-item:hover { background: #4A4E4F; }
+    .science-source {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 14px;
+    }
+    .science-stat {
+      font-family: var(--mono);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .science-desc {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: rgba(237,232,208,0.6);
+      font-style: italic;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1.5px solid var(--ink);
+      margin-top: 56px;
+    }
+    .pricing-plan {
+      background: var(--cream);
+      padding: 40px 36px;
+    }
+    .pricing-plan.featured { background: var(--ink); color: var(--cream); }
+    .plan-name {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .pricing-plan.featured .plan-name { color: rgba(237,232,208,0.5); }
+    .plan-price {
+      font-family: var(--mono);
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -0.03em;
+    }
+    .pricing-plan .plan-price { color: var(--ink); }
+    .pricing-plan.featured .plan-price { color: var(--cream); }
+    .plan-period {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+    .pricing-plan.featured .plan-period { color: rgba(237,232,208,0.4); }
+    .plan-features { list-style: none; }
+    .plan-feature {
+      font-family: var(--serif);
+      font-size: 15px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(60,65,66,0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-plan.featured .plan-feature {
+      border-bottom-color: rgba(237,232,208,0.12);
+      color: rgba(237,232,208,0.8);
+    }
+    .plan-feature::before { content: '—'; color: var(--ink-faint); font-family: var(--mono); }
+    .pricing-plan.featured .plan-feature::before { content: '✓'; color: var(--accent-mid); }
+    .plan-reward {
+      margin-top: 28px;
+      padding: 16px;
+      background: rgba(46,92,79,0.15);
+      border: 1px solid rgba(46,92,79,0.3);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent-mid);
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    /* ─── WAITLIST COUNTER ─── */
+    .waitlist-bar {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream-dark);
+    }
+    .waitlist-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .waitlist-text {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+    .waitlist-text strong { color: var(--accent); }
+    .spots-bar {
+      flex: 1;
+      max-width: 200px;
+      height: 6px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+    }
+    .spots-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 23%;
+    }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta {
+      padding: 120px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .final-cta .section-title { font-size: clamp(36px, 5vw, 64px); margin-bottom: 16px; }
+    .final-cta .section-sub { margin: 0 auto 48px; text-align: center; max-width: 460px; }
+    .final-form {
+      display: flex;
+      max-width: 440px;
+      margin: 0 auto 16px;
+      border: 1.5px solid var(--ink);
+    }
+    .final-form input {
+      flex: 1;
+      padding: 16px 20px;
+      font-family: var(--serif);
+      font-size: 16px;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ink);
+    }
+    .final-form input::placeholder { color: var(--ink-faint); font-style: italic; }
+    .final-form button {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .final-form button:hover { background: var(--accent); }
+    .form-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 48px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--ink-light);
+      max-width: 240px;
+      margin-bottom: 20px;
+    }
+    .footer-founder {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--ink-faint);
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-link {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.15s;
+    }
+    .footer-link:hover { color: var(--accent); }
+    .footer-link::before { content: '→'; color: var(--ink-faint); }
+    .footer-legal {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .formula-grid { grid-template-columns: 1fr; }
+      .formula-block.wide { grid-column: 1; }
+      .why-inner { grid-template-columns: 1fr; gap: 48px; }
+      .why-left { position: static; }
+      .science-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 32px; }
+      .footer-legal { flex-direction: column; gap: 8px; text-align: center; }
+      .hero-form { flex-direction: column; }
+      .hero-form button { width: 100%; padding: 14px; text-align: center; }
+      .final-form { flex-direction: column; }
+      .final-form button { padding: 14px; text-align: center; }
+      .waitlist-inner { flex-direction: column; align-items: flex-start; }
+      .mockup { padding: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .hero { padding: 48px 0 40px; }
+      .formula, .why, .pricing, .final-cta { padding: 72px 0; }
+    }
+
+    /* ─── SUCCESS STATE ─── */
+    .form-success {
+      display: none;
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      padding: 16px;
+      border: 1px solid rgba(46,92,79,0.3);
+      background: rgba(46,92,79,0.06);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <div class="container">
+      <a class="nav-logo" href="#">JUST<span>.</span></a>
+      <a class="nav-cta" href="#waitlist">Get Early Access</a>
+    </div>
+  </nav>
+
+  <!-- ─── WAITLIST BAR ─── -->
+  <div class="waitlist-bar">
+    <div class="container">
+      <div class="waitlist-inner">
+        <p class="waitlist-text">
+          <strong id="spots-taken">114</strong> / 500 early access spots claimed
+        </p>
+        <div class="spots-bar">
+          <div class="spots-fill" id="spots-fill"></div>
+        </div>
+        <p class="waitlist-text" style="font-size:11px; color: var(--ink-faint);">
+          Founding members pay 30% less. Forever.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <!-- LEFT: Copy -->
+        <div>
+          <p class="hero-eyebrow">Behavioral productivity — not engagement theatre</p>
+          <h1 class="hero-headline">
+            Stop<br />
+            <em>Planning.</em><br />
+            Start Doing.
+          </h1>
+          <p class="hero-sub">
+            "The world's most boring productivity app. On purpose."
+          </p>
+          <div class="hero-form" id="hero-form-wrap">
+            <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" />
+            <button onclick="handleSignup('hero')">Join the Rebellion →</button>
+          </div>
+          <div class="form-success" id="hero-success">
+            ✓ You're on the list. Watch your inbox.
+          </div>
+          <div class="trust-badge">
+            67% yearly completion = 2 months free. Automatically.
+          </div>
+        </div>
+        <!-- RIGHT: Mockup -->
+        <div class="mockup-wrap reveal">
+          <div class="mockup">
+            <div class="mockup-corner"><span>#1</span></div>
+            <div class="mockup-header">JUST.</div>
+            <div class="mockup-date">MON · FEB 24 · 2026</div>
+            <div class="mockup-intention">
+              "I will start my first task at 9:00 AM at my desk."
+            </div>
+            <div class="task-item">
+              <div class="task-check done" onclick="toggleCheck(this)"></div>
+              <span class="task-text done">Write the investor deck intro</span>
+              <span class="task-tag tag-high">HIGH</span>
+            </div>
+            <div class="task-item">
+              <div class="task-check" onclick="toggleCheck(this)"></div>
+              <span class="task-text" id="task2">Reply to all waitlist DMs</span>
+              <span class="task-tag tag-high">HIGH</span>
+            </div>
+            <div class="task-item">
+              <div class="task-check" onclick="toggleCheck(this)"></div>
+              <span class="task-text">Record 60s TikTok on Zeigarnik Effect</span>
+              <span class="task-tag tag-low">LOW</span>
+            </div>
+            <div class="mockup-progress">
+              <div class="progress-label">
+                <span>TODAY'S FOCUS</span>
+                <span id="pct">33%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="prog-fill"></div>
+              </div>
+            </div>
+            <div class="mockup-midnight">↻ Resets at midnight · Streak: 12 days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── OBSESSION FORMULA ─── -->
+  <section class="formula">
+    <div class="container">
+      <div class="formula-header reveal">
+        <p class="section-label">The obsession formula</p>
+        <h2 class="section-title">Why it actually works.</h2>
+        <p class="section-sub">"JUST. Like that."</p>
+      </div>
+      <div class="formula-grid">
+
+        <div class="formula-block reveal">
+          <div class="formula-num">01</div>
+          <div class="formula-icon">🌑</div>
+          <div class="formula-title">Midnight Wipe</div>
+          <p class="formula-desc">Unfinished tasks vanish at midnight. Not archived. Gone. Guilt is not a productivity strategy — a clean slate is.</p>
+          <span class="formula-accent">Loss Aversion · Kahneman</span>
+        </div>
+
+        <div class="formula-block reveal">
+          <div class="formula-num">02</div>
+          <div class="formula-icon">✦</div>
+          <div class="formula-title">3-Task Cap</div>
+          <p class="formula-desc">Focus as status. When the list is small, the mind is quiet. When the mind is quiet, work begins. Three tasks. Nothing more.</p>
+          <span class="formula-accent">Ego Depletion · Baumeister</span>
+        </div>
+
+        <div class="formula-block reveal">
+          <div class="formula-num">03</div>
+          <div class="formula-icon">◎</div>
+          <div class="formula-title">67% Reward</div>
+          <p class="formula-desc">Average 67% completion across the year and we give you 2 months free. Automatically. Because your progress is not a metric — it is the business model.</p>
+          <span class="formula-accent">Incentive Design · Prospect Theory</span>
+        </div>
+
+        <div class="formula-block reveal">
+          <div class="formula-num">04</div>
+          <div class="formula-icon">◻</div>
+          <div class="formula-title">No Notifications</div>
+          <p class="formula-desc">One optional morning nudge. That is the entire notification system. Respect for attention is not a feature — it is the position.</p>
+          <span class="formula-accent">Attention Economics</span>
+        </div>
+
+        <div class="formula-block wide reveal">
+          <div class="formula-num">05</div>
+          <div class="formula-icon">⬡</div>
+          <div class="formula-title">The Grainy Aesthetic</div>
+          <p class="formula-desc" style="max-width:560px;">Cream paper. Monospace ink. Hand-drawn checkboxes. A grain texture overlay that makes the screen feel like your best notebook. Tactile satisfaction is not vanity — it is the reason you come back.</p>
+          <span class="formula-accent">Embodied Cognition</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY APPS FAIL ─── -->
+  <section class="why">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-left reveal">
+          <p class="section-label">Why everything else fails</p>
+          <h2 class="section-title">The apps aren't broken. The incentives are.</h2>
+          <p class="section-sub">Every major productivity app is optimized for one thing: keeping you inside it. That is not the same as helping you finish anything.</p>
+        </div>
+        <ul class="contrast-list">
+          <li class="contrast-item reveal">
+            <p class="label them">They</p>
+            <p class="contrast-them">Profit when you organize, tag, drag, and build dashboards.</p>
+            <p class="label us">JUST</p>
+            <p class="contrast-us">Profits when you finish things. If you don't complete tasks, we give money back. That is the whole incentive structure.</p>
+          </li>
+          <li class="contrast-item reveal">
+            <p class="label them">They</p>
+            <p class="contrast-them">Built on engagement loops, streaks for opening the app, and badge systems designed by attention engineers.</p>
+            <p class="label us">JUST</p>
+            <p class="contrast-us">Built on 5 peer-reviewed psychology principles — Zeigarnik, Gollwitzer, Baumeister, Kahneman, Parkinson. Not engagement tricks.</p>
+          </li>
+          <li class="contrast-item reveal">
+            <p class="label them">They</p>
+            <p class="contrast-them">Subtasks. Nested folders. Project hierarchies. Kanban boards. Gantt charts. Recurring tasks. AI suggestions. Analytics dashboards.</p>
+            <p class="label us">JUST</p>
+            <p class="contrast-us">No subtasks. No dashboards. No productivity theatre. Restraint is the product. Every no to complexity is a yes to the user who came here because they were exhausted by all of it.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SCIENCE ─── -->
+  <section class="science">
+    <div class="container">
+      <p class="section-label">The research behind it</p>
+      <h2 class="section-title">Peer-reviewed. Not invented.</h2>
+      <p class="section-sub">"You don't need a beautiful app. You need a beautiful outcome."</p>
+      <div class="science-grid">
+        <div class="science-item reveal">
+          <p class="science-source">Gollwitzer, 1999 — Implementation Intentions</p>
+          <p class="science-stat">2–3×</p>
+          <p class="science-desc">People who form "I will do X at time Y" intentions complete tasks at 2–3x the rate of vague goal-setters.</p>
+        </div>
+        <div class="science-item reveal">
+          <p class="science-source">Kahneman & Tversky — Prospect Theory</p>
+          <p class="science-stat">2×</p>
+          <p class="science-desc">Losses are weighted roughly twice as heavily as equivalent gains. JUST turns this against procrastination, not users.</p>
+        </div>
+        <div class="science-item reveal">
+          <p class="science-source">Zeigarnik, 1927 — Unfinished Task Effect</p>
+          <p class="science-stat">↓90%</p>
+          <p class="science-desc">A 3-task scope replaces ambient dread with bounded, focused urgency. Same science. Opposite direction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
+  <section class="pricing">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Honest pricing</p>
+        <h2 class="section-title">Free if you just start.<br/>Paid if you want it to count.</h2>
+        <p class="section-sub">"We only win when you win."</p>
+      </div>
+      <div class="pricing-grid reveal">
+        <div class="pricing-plan">
+          <p class="plan-name">Free — No account needed</p>
+          <p class="plan-price">$0</p>
+          <p class="plan-period">forever. no card. no friction.</p>
+          <ul class="plan-features">
+            <li class="plan-feature">3-task cap, enforced</li>
+            <li class="plan-feature">Midnight wipe</li>
+            <li class="plan-feature">Pomodoro timer (task-bound)</li>
+            <li class="plan-feature">Implementation intention prompt</li>
+            <li class="plan-feature">Zeigarnik progress bar</li>
+            <li class="plan-feature">Local storage · no sync</li>
+          </ul>
+        </div>
+        <div class="pricing-plan featured">
+          <p class="plan-name">Paid — The full system</p>
+          <p class="plan-price">$5</p>
+          <p class="plan-period">/ month. cancel anytime.</p>
+          <ul class="plan-features">
+            <li class="plan-feature">Everything in free</li>
+            <li class="plan-feature">Streak tracking (protectable)</li>
+            <li class="plan-feature">Weekly completion score</li>
+            <li class="plan-feature">Annual 67% reward tracking</li>
+            <li class="plan-feature">Multi-device sync & backup</li>
+            <li class="plan-feature">Daily reflection questions (30-library)</li>
+          </ul>
+          <div class="plan-reward">
+            → Average 67% completion across the year<br />
+            → We automatically give you 2 months free.<br />
+            → Because your success is the business model.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA ─── -->
+  <section class="final-cta" id="waitlist">
+    <div class="container">
+      <p class="section-label">Join the waitlist</p>
+      <h2 class="section-title">Three tasks.<br/>Midnight wipe.<br/>Nothing else.</h2>
+      <p class="section-sub">Early access is limited to 500 people. Founding members lock in 30% off. Forever.</p>
+      <div style="margin: 0 auto 32px; display: flex; flex-direction: column; gap: 10px; max-width: 460px;">
+        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">&#9734; 3 tasks maximum. Hard cap enforced.</div>
+        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">&#9734; Unfinished tasks delete at midnight. Clean slate daily.</div>
+        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">&#9734; Hit 67% completion yearly &rarr; 2 months free automatically.</div>
+        <div style="font-family: var(--mono); font-size: 13px; color: var(--accent); border: 1px solid rgba(46,92,79,0.3); background: rgba(46,92,79,0.06); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">&rarr; Founding members lock in 30% off. Forever.</div>
+      </div>
+      <div class="final-form" id="final-form-wrap">
+        <input type="email" id="final-email" placeholder="your@email.com" autocomplete="email" />
+        <button onclick="handleSignup('final')">Claim your spot →</button>
+      </div>
+      <div class="form-success" id="final-success">
+        ✓ You're in. Watch your inbox for early access.
+      </div>
+      <p class="form-note">No spam. No onboarding hell. Just an email when JUST is ready.</p>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">JUST.</div>
+          <p class="footer-tagline">Stop planning. Start doing. Built by one person who got tired of every other app.</p>
+          <p class="footer-founder">Pre-university founder · Singapore</p>
+          <p class="footer-founder" style="margin-top: 6px; color: var(--ink-light);">Chaitanya Madhvan</p>
+        </div>
+        <div class="footer-links">
+          <a class="footer-link" href="https://twitter.com/justapp" target="_blank">Twitter / X</a>
+          <a class="footer-link" href="https://tiktok.com/@justapp" target="_blank">TikTok</a>
+          <a class="footer-link" href="https://linkedin.com/company/justapp" target="_blank">LinkedIn</a>
+          <a class="footer-link" href="mailto:hello@justapp.com">hello@justapp.com</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© 2026 JUST. All rights reserved.</span>
+        <span style="font-style:italic; font-family: var(--serif);">Restraint is the product.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── REVEAL ON SCROLL ───
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // ─── TASK CHECK TOGGLE ───
+    let completedTasks = 1;
+    const totalTasks = 3;
+
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      const taskText = el.nextElementSibling;
+      taskText.classList.toggle('done');
+      completedTasks = document.querySelectorAll('.task-check.done').length;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const pct = Math.round((completedTasks / totalTasks) * 100);
+      document.getElementById('pct').textContent = pct + '%';
+      const fill = document.getElementById('prog-fill');
+      if (pct === 0) {
+        fill.classList.add('pct-zero');
+        fill.style.removeProperty('width');
+      } else {
+        fill.classList.remove('pct-zero');
+        fill.style.width = pct + '%';
+      }
+    }
+
+    // ─── EMAIL SIGNUP ───
+    function handleSignup(source) {
+      const emailEl = document.getElementById(source === 'hero' ? 'hero-email' : 'final-email');
+      const email = emailEl.value.trim();
+
+      if (!email || !email.includes('@')) {
+        emailEl.style.border = '1.5px solid var(--warn)';
+        emailEl.focus();
+        setTimeout(() => emailEl.style.border = '', 1500);
+        return;
+      }
+
+      // Show success
+      const formWrap = document.getElementById(source + '-form-wrap');
+      const successEl = document.getElementById(source + '-success');
+      formWrap.style.display = 'none';
+      successEl.style.display = 'block';
+
+      // Update counter
+      const taken = parseInt(document.getElementById('spots-taken').textContent);
+      const newCount = taken + 1;
+      document.getElementById('spots-taken').textContent = newCount;
+      document.getElementById('spots-fill').style.width = (newCount / 500 * 100) + '%';
+
+      // In production: POST to your Beehiiv/backend here
+      // fetch('/api/signup', { method:'POST', body: JSON.stringify({ email }) });
+      console.log('Signup:', email);
+    }
+
+    // Enter key on email inputs
+    ['hero-email', 'final-email'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleSignup(id.split('-')[0]);
+      });
+    });
+
+    // ─── SPOTS BAR INIT ───
+    document.addEventListener('DOMContentLoaded', () => {
+      const taken = parseInt(document.getElementById('spots-taken').textContent);
+      document.getElementById('spots-fill').style.width = (taken / 500 * 100) + '%';
+      // Init progress bar
+      setTimeout(function() { updateProgress(); }, 400);
+    });
+  </script>
+</body>
+</html>
