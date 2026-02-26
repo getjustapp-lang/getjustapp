@@ -16,7 +16,10 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://justapp.com" />
   <meta property="og:image" content="https://justapp.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://justapp.com/og-image.png" />
   <meta name="twitter:title" content="JUST. — Stop Planning. Start Doing." />
   <meta name="twitter:description" content="Three tasks. Midnight wipe. We only win when you win." />
 
@@ -160,11 +163,41 @@
       padding: 60px 0;
     }
     @media (min-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr 1fr; gap: 120px; }
+      .hero-inner { grid-template-columns: 0.8fr 1.2fr; gap: 80px; }
     }
     .hero-inner > div:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+    }
+    .hero-inner > div:last-child {
       padding-top: 20px;
-      max-width: 560px;  /* comfortable measure; left-aligned but not flush */
+      max-width: 560px;
+    }
+    .hero-logo-section {
+      text-align: center;
+      padding: 40px;
+    }
+    .hero-logo-large {
+      font-family: var(--mono);
+      font-size: 120px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .hero-logo-large span {
+      color: var(--accent);
+    }
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--slate);
+      max-width: 280px;
+      line-height: 1.6;
     }
     .hero-eyebrow {
       font-family: var(--mono);
@@ -256,6 +289,54 @@
     .hero-form button:hover { background: var(--accent-hover); }
     .form-success { display: none; font-family: var(--mono); font-size: 14px; color: var(--accent); margin-bottom: 24px; }
     .form-error { display: none; font-family: var(--mono); font-size: 13px; color: var(--warn); margin-bottom: 24px; }
+
+    /* ─── BUTTON LOADING STATE ─── */
+    .hero-form button:disabled,
+    .final-form button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      background: var(--accent);
+    }
+    @keyframes btnDots {
+      0%, 20%  { content: 'SENDING'; }
+      40%      { content: 'SENDING.'; }
+      60%      { content: 'SENDING..'; }
+      80%, 100%{ content: 'SENDING...'; }
+    }
+
+    /* ─── COMING SOON SOCIAL LINKS ─── */
+    .footer-link[data-coming-soon] {
+      position: relative;
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: auto;
+    }
+    .footer-link[data-coming-soon]::after {
+      content: 'coming soon';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      white-space: nowrap;
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      background: var(--cream);
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .footer-link[data-coming-soon]:hover::after {
+      opacity: 1;
+    }
+    .footer-link[data-coming-soon]:hover {
+      color: var(--ink);
+    }
     .trust-badge {
       display: inline-flex;
       align-items: center;
@@ -316,6 +397,13 @@
       border-bottom: 1px dashed var(--border);
     }
     .task-item:last-child { border-bottom: none; }
+    .task-item.premium {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .task-item.premium.reorder-moving {
+      opacity: 0.4;
+      transform: translateY(-4px);
+    }
     .task-check {
       width: 20px;
       height: 20px;
@@ -766,6 +854,9 @@
     }
     .final-cta .section-title { font-size: clamp(36px, 5vw, 64px); margin-bottom: 16px; }
     .final-cta .section-sub { margin: 0 0 48px; max-width: 520px; }
+    @media (max-width: 900px) {
+      .final-cta-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    }
     .final-form {
       display: flex;
       max-width: 440px;
@@ -1032,7 +1123,13 @@
   <!-- ─── HERO ─── -->
   <section class="hero">
     <div class="container">
-      <div class="hero-inner">
+                        <div class="hero-inner">
+        <div>
+          <div class="hero-logo-section">
+            <div class="hero-logo-large">JUST<span>.</span></div>
+            <p class="hero-tagline" style="font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--slate); margin-top: 32px; line-height: 1.6; max-width: 400px;">"You don't need a beautiful app.<br>You need a beautiful outcome"</p>
+          </div>
+        </div>
         <div>
           <p class="hero-eyebrow">Behavioral productivity — not engagement theatre</p>
           <h1 class="hero-headline">
@@ -1064,11 +1161,11 @@
   <!-- ─── PREMIUM MOCKUP DEMO ─── -->
   <section style="padding: 100px 0; border-top: 2px solid var(--border); background: rgba(46,92,79,0.02);">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 60px;">
+      <div style="text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center;">
         <div class="premium-label">Interactive Demo</div>
         <h2 class="section-title">Experience the Full Potential</h2>
-        <p class="section-sub">All 13 micro-interactions, animations, and behavioral features</p>
-        <p class="hero-footnote" style="margin-top: 12px; margin-bottom: 0;">Try the checkboxes and priority tags below.</p>
+        <p class="section-sub" style="margin: 0 auto;">All 13 micro-interactions, animations, and behavioral features</p>
+        <p class="hero-footnote" style="margin-top: 12px; margin-bottom: 0; margin-left: auto; margin-right: auto;">Try the checkboxes and priority tags below.</p>
       </div>
 
       <div style="display: grid; grid-template-columns: 1fr; gap: 60px; max-width: 600px; margin: 0 auto;">
@@ -1080,20 +1177,20 @@
             <div class="mockup-intention premium">
               "I will start my first task at 9:00 AM at my desk."
             </div>
-            <div class="task-item premium">
+            <div class="task-item premium" data-priority-touched="0">
               <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Write the investor deck intro" onclick="toggleCheckPremium(this)"></button>
               <span class="task-text premium">Write the investor deck intro</span>
-              <button type="button" class="task-tag tag-high" aria-label="Priority: high. Click to change." onclick="togglePriorityPremium(this)">HIGH</button>
+              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
             </div>
-            <div class="task-item premium">
+            <div class="task-item premium" data-priority-touched="0">
               <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Reply to all waitlist DMs" onclick="toggleCheckPremium(this)"></button>
               <span class="task-text premium">Reply to all waitlist DMs</span>
-              <button type="button" class="task-tag tag-high" aria-label="Priority: high. Click to change." onclick="togglePriorityPremium(this)">HIGH</button>
+              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
             </div>
-            <div class="task-item premium">
+            <div class="task-item premium" data-priority-touched="0">
               <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Record 60s TikTok on Zeigarnik Effect" onclick="toggleCheckPremium(this)"></button>
               <span class="task-text premium">Record 60s TikTok on Zeigarnik Effect</span>
-              <button type="button" class="task-tag tag-low" aria-label="Priority: low. Click to change." onclick="togglePriorityPremium(this)">LOW</button>
+              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
             </div>
             <div class="mockup-progress">
               <div class="progress-label">
@@ -1200,39 +1297,6 @@
     </div>
   </section>
 
-  <!-- ─── WHY FAIL ─── -->
-  <section class="why">
-    <div class="container">
-      <div class="why-inner">
-        <div class="why-left reveal">
-          <p class="section-label">Why everything else fails</p>
-          <h2 class="section-title">The apps aren't broken. The incentives are.</h2>
-          <p class="section-sub">"You don't need a beautiful app. You need a beautiful outcome."</p>
-        </div>
-        <ul class="contrast-list">
-          <li class="contrast-item reveal">
-            <p class="label them">Them</p>
-            <p class="contrast-them">"Add everything. Tag it. Categorize it. Archive it."</p>
-            <p class="label us">Us</p>
-            <p class="contrast-us">"If it's not one of your top 3, it doesn't exist today."</p>
-          </li>
-          <li class="contrast-item reveal">
-            <p class="label them">Them</p>
-            <p class="contrast-them">"Streaks based on opening the app."</p>
-            <p class="label us">Us</p>
-            <p class="contrast-us">"Streaks based on finishing what you started."</p>
-          </li>
-          <li class="contrast-item reveal">
-            <p class="label them">Them</p>
-            <p class="contrast-them">"Infinite scroll of yesterday's failures."</p>
-            <p class="label us">Us</p>
-            <p class="contrast-us">"Midnight wipe. Every day is Day 1."</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <!-- ─── SOCIAL PROOF / SCIENCE ─── -->
   <section class="science">
     <div class="container">
@@ -1257,6 +1321,39 @@
           <p class="science-stat">2.5x</p>
           <p class="science-desc">People are 2.5x more likely to finish a task if they state when and where.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY FAIL ─── -->
+  <section class="why">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-left reveal">
+          <p class="section-label">Why everything else fails</p>
+          <h2 class="section-title">The apps aren't broken. The incentives are.</h2>
+          <p class="section-sub">"They grow when you procrastinate.<br>JUST grows when you don't."</p>
+        </div>
+        <ul class="contrast-list">
+          <li class="contrast-item reveal">
+            <p class="label them">Them</p>
+            <p class="contrast-them">"Add everything. Tag it. Categorize it. Archive it."</p>
+            <p class="label us">Us</p>
+            <p class="contrast-us">"If it's not one of your top 3, it doesn't exist today."</p>
+          </li>
+          <li class="contrast-item reveal">
+            <p class="label them">Them</p>
+            <p class="contrast-them">"Streaks based on opening the app."</p>
+            <p class="label us">Us</p>
+            <p class="contrast-us">"Streaks based on finishing what you started."</p>
+          </li>
+          <li class="contrast-item reveal">
+            <p class="label them">Them</p>
+            <p class="contrast-them">"Infinite scroll of yesterday's failures."</p>
+            <p class="label us">Us</p>
+            <p class="contrast-us">"Midnight wipe. Every day is Day 1."</p>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -1308,24 +1405,30 @@
   <!-- ─── FINAL CTA ─── -->
   <section class="final-cta" id="waitlist">
     <div class="container">
-      <p class="section-label">Join the waitlist</p>
-      <h2 class="section-title">Three tasks.<br/>Midnight wipe.<br/>Nothing else.</h2>
-      <p class="section-sub">Early access is limited to 500 people.</p>
-      <p class="hero-footnote" style="margin-bottom: 24px;">One email. No spam. We only message when it's ready.</p>
-      <div style="margin: 0 0 32px; display: flex; flex-direction: column; gap: 10px; max-width: 460px;">
-        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ 3 tasks maximum. Hard cap enforced.</div>
-        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left;">✦ Unfinished tasks delete at midnight. Clean slate daily.</div>
-        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ Hit 67% completion yearly → 2 months free automatically.</div>
+      <div class="final-cta-grid" style="text-align: center; max-width: 700px; margin: 0 auto;">
+        <p class="section-label">Join the waitlist</p>
+        <h2 class="section-title">Three tasks.<br/>Midnight wipe.<br/>Nothing else.</h2>
+        <p class="section-sub" style="margin: 0 auto 24px; text-align: center;">Early access is limited to 500 people.</p>
+        <p class="hero-footnote" style="margin-bottom: 24px; text-align: center;">One email. No spam. We only message when it's ready.</p>
+        <p class="form-note" style="margin-bottom: 32px;">No spam. No onboarding hell. Just an email when JUST is ready.</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin: 0 auto 48px; max-width: 460px;">
+          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ 3 tasks maximum. Hard cap enforced.</div>
+          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left;">✦ Unfinished tasks delete at midnight. Clean slate daily.</div>
+          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ Hit 67% completion yearly → 2 months free automatically.</div>
+  
+          
+          
+          
       </div>
-      <div class="final-form" id="final-form-wrap">
-        <input type="email" id="final-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for waitlist" />
-        <button type="button" onclick="handleSignup('final')" aria-label="Claim your early access spot">Claim your spot →</button>
+        <div class="final-form" id="final-form-wrap" style="margin: 0 auto 16px; max-width: 440px;">
+          <input type="email" id="final-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for waitlist" />
+          <button type="button" onclick="handleSignup('final')" aria-label="Claim your early access spot">Claim your spot →</button>
+        </div>
+        <div class="form-success" id="final-success">
+          ✓ You're in. Watch your inbox for early access.
+        </div>
+        <div class="form-error" id="final-error" role="alert"></div>
       </div>
-      <div class="form-success" id="final-success">
-        ✓ You're in. Watch your inbox for early access.
-      </div>
-      <div class="form-error" id="final-error" role="alert"></div>
-      <p class="form-note">No spam. No onboarding hell. Just an email when JUST is ready.</p>
     </div>
   </section>
 
@@ -1336,14 +1439,14 @@
         <div>
           <div class="footer-logo">JUST.</div>
           <p class="footer-tagline">Stop planning. Start doing. Built by one person who got tired of every other app.</p>
-          <p class="footer-founder">Built by Chaitanya Madhavan, 18, Singapore.</p>
+          <p class="footer-founder">Built by Chaitanya Madhavan, 19, Singapore.</p>
           <a href="https://www.linkedin.com/in/chaitanya-madhavan-8001381b2/" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-top: 8px; display: inline-flex;" aria-label="Chaitanya Madhavan on LinkedIn">My LinkedIn</a>
         </div>
         <div class="footer-links">
-          <a class="footer-link" href="https://youtube.com/@justapp" target="_blank" rel="noopener noreferrer">YouTube</a>
-          <a class="footer-link" href="https://tiktok.com/@justapp" target="_blank" rel="noopener noreferrer">TikTok</a>
-          <a class="footer-link" href="https://linkedin.com/company/justapp" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="footer-link" href="mailto:hello@justapp.com">hello@justapp.com</a>
+          <a class="footer-link" href="#" data-coming-soon aria-label="YouTube — coming soon" onclick="return false;">YouTube</a>
+          <a class="footer-link" href="#" data-coming-soon aria-label="TikTok — coming soon" onclick="return false;">TikTok</a>
+          <a class="footer-link" href="#" data-coming-soon aria-label="LinkedIn — coming soon" onclick="return false;">LinkedIn</a>
+          <a class="footer-link" href="mailto:getjustapp@gmail.com">getjustapp@gmail.com</a>
         </div>
       </div>
       <div class="footer-legal">
@@ -1400,12 +1503,33 @@
       fillEl.style.backgroundColor = pct > 0 ? 'var(--accent)' : 'transparent';
     }
 
+    // ─── FIX #3: Loading state helpers ───────────────────────────────────────
+    function setButtonLoading(btn, isLoading) {
+      if (isLoading) {
+        btn.dataset.originalText = btn.textContent;
+        btn.textContent = 'SENDING...';
+        btn.disabled = true;
+      } else {
+        btn.textContent = btn.dataset.originalText || 'Get Early Access';
+        btn.disabled = false;
+      }
+    }
+
+    // ─── FIX #1 + #2: Real counter from Beehiiv via Netlify function ──────────
+    function updateWaitlistUI(count) {
+      if (typeof count !== 'number' || isNaN(count)) return;
+      const capped = Math.min(count, 500);
+      document.getElementById('spots-taken').textContent = capped;
+      document.getElementById('spots-fill').style.width = (capped / 500 * 100) + '%';
+    }
+
     async function handleSignup(source) {
       const emailEl = document.getElementById(source === 'hero' ? 'hero-email' : 'final-email');
       const email = emailEl.value.trim();
       const successEl = document.getElementById(source + '-success');
       const errorEl = document.getElementById(source + '-error');
       const formWrap = document.getElementById(source === 'hero' ? 'hero-form-wrap' : 'final-form-wrap');
+      const btn = formWrap ? formWrap.querySelector('button') : null;
 
       if (!email || !email.includes('@')) {
         emailEl.style.border = '1.5px solid var(--warn)';
@@ -1416,6 +1540,10 @@
       }
 
       if (errorEl) errorEl.style.display = 'none';
+
+      // FIX #3: Show loading state immediately
+      if (btn) setButtonLoading(btn, true);
+
       try {
         const res = await fetch('/.netlify/functions/signup', {
           method: 'POST',
@@ -1423,22 +1551,26 @@
           body: JSON.stringify({ email }),
         });
         const data = await res.json().catch(() => ({}));
+
         if (!res.ok) {
+          if (btn) setButtonLoading(btn, false);
           if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = data.error || 'Something went wrong. Try again.'; }
           return;
         }
+
+        // FIX #1 + #2: Read the REAL count back from the server response
+        if (data.count !== null && data.count !== undefined) {
+          updateWaitlistUI(data.count);
+        }
+
       } catch (err) {
+        if (btn) setButtonLoading(btn, false);
         if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Network error. Check connection and try again.'; }
         return;
       }
 
       formWrap.style.display = 'none';
       successEl.style.display = 'block';
-      var currentCount = parseInt(localStorage.getItem('just_signup_count') || '0');
-      currentCount++;
-      localStorage.setItem('just_signup_count', currentCount);
-      document.getElementById('spots-taken').textContent = currentCount;
-      document.getElementById('spots-fill').style.width = (currentCount / 500 * 100) + '%';
     }
 
     ['hero-email', 'final-email'].forEach(id => {
@@ -1449,13 +1581,20 @@
     });
 
     function toggleCheckPremium(el) {
+      var wasDone = el.classList.contains('done');
       el.classList.toggle('done');
       el.setAttribute('aria-checked', el.classList.contains('done'));
       var taskText = el.nextElementSibling;
       if (taskText) taskText.classList.toggle('done');
       var taskItem = el.closest('.task-item');
       if (taskItem) {
-        taskItem.setAttribute('data-priority-touched', Date.now());
+        if (!wasDone) {
+          // Being checked — record when it was completed so it sorts to bottom
+          taskItem.setAttribute('data-completed-at', Date.now());
+        } else {
+          // Being unchecked — clear completed timestamp so priority sort takes over
+          taskItem.removeAttribute('data-completed-at');
+        }
         sortTasksByPriority('.mockup-premium');
       }
       updateProgressPremium();
@@ -1502,32 +1641,62 @@
       priorities.forEach(p => el.classList.remove(p));
       el.classList.add(priorities[nextIndex]);
       el.textContent = labels[nextIndex];
+      el.setAttribute('aria-label', 'Priority: ' + labels[nextIndex].toLowerCase() + '. Click to change.');
       var taskItem = el.closest('.task-item');
-      if (taskItem) taskItem.setAttribute('data-priority-touched', Date.now());
+      if (taskItem) {
+        taskItem.setAttribute('data-priority-touched', Date.now());
+      }
       sortTasksByPriority('.mockup-premium');
     }
 
     function sortTasksByPriority(mockupSelector) {
-      const mockup = document.querySelector(mockupSelector);
+      var mockup = document.querySelector(mockupSelector);
       if (!mockup) return;
-      const intentionEl = mockup.querySelector('.mockup-intention');
-      const tasks = Array.from(mockup.querySelectorAll('.task-item.premium'));
-      const priorityOrder = { 'tag-high': 0, 'tag-medium': 1, 'tag-low': 2 };
-      tasks.sort((a, b) => {
-        const aTag = Array.from(a.classList).find(function(c) { return priorityOrder.hasOwnProperty(c); });
-        const bTag = Array.from(b.classList).find(function(c) { return priorityOrder.hasOwnProperty(c); });
-        const pa = priorityOrder[aTag] ?? 2;
-        const pb = priorityOrder[bTag] ?? 2;
+      var intentionEl = mockup.querySelector('.mockup-intention');
+      var progressEl = mockup.querySelector('.mockup-progress');
+      var tasks = Array.from(mockup.querySelectorAll('.task-item.premium'));
+
+      // Priority weight: high=0, medium=1, low=2
+      var priorityOrder = { 'tag-high': 0, 'tag-medium': 1, 'tag-low': 2 };
+
+      tasks.sort(function(a, b) {
+        var aDone = a.querySelector('.task-check.done') !== null;
+        var bDone = b.querySelector('.task-check.done') !== null;
+
+        // Completed tasks always go below active tasks
+        if (aDone !== bDone) return aDone ? 1 : -1;
+
+        if (aDone && bDone) {
+          // Both done: most recently completed goes to bottom (highest timestamp last)
+          var aComp = parseInt(a.getAttribute('data-completed-at') || '0', 10);
+          var bComp = parseInt(b.getAttribute('data-completed-at') || '0', 10);
+          return aComp - bComp; // earlier completion = higher up among done
+        }
+
+        // Both active: sort by priority, then by recency of priority change
+        var aTagClass = ['tag-high','tag-medium','tag-low'].find(function(c){ return a.querySelector('.task-tag.' + c); });
+        var bTagClass = ['tag-high','tag-medium','tag-low'].find(function(c){ return b.querySelector('.task-tag.' + c); });
+        var pa = priorityOrder[aTagClass] !== undefined ? priorityOrder[aTagClass] : 1;
+        var pb = priorityOrder[bTagClass] !== undefined ? priorityOrder[bTagClass] : 1;
+
         if (pa !== pb) return pa - pb;
+
+        // Same priority: most recently changed goes to the top of that priority group
         var at = parseInt(a.getAttribute('data-priority-touched') || '0', 10);
         var bt = parseInt(b.getAttribute('data-priority-touched') || '0', 10);
-        return bt - at;
+        return bt - at; // higher timestamp = more recent = goes first
       });
-      var ref = intentionEl.nextElementSibling;
-      for (var i = 0; i < tasks.length; i++) {
-        intentionEl.parentNode.insertBefore(tasks[i], ref);
-        ref = tasks[i].nextElementSibling;
-      }
+
+      // Animate: flash items that are about to move
+      tasks.forEach(function(t) { t.classList.add('reorder-moving'); });
+
+      setTimeout(function() {
+        // Re-insert in sorted order before the progress bar
+        tasks.forEach(function(t) {
+          t.classList.remove('reorder-moving');
+          mockup.insertBefore(t, progressEl);
+        });
+      }, 200);
     }
 
     function startCountdownTimer() {
@@ -1559,11 +1728,23 @@
       updateProgressPremium();
     }
 
+    // ─── FIX #1: Fetch real subscriber count on page load ──────────────────
+    async function fetchWaitlistCount() {
+      try {
+        const res = await fetch('/.netlify/functions/signup-count');
+        if (res.ok) {
+          const data = await res.json();
+          updateWaitlistUI(data.count);
+        }
+      } catch (e) {
+        // Silently fail — counter stays at 0 if function is unavailable
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       resetAllPremiumTasks();
-      var savedCount = parseInt(localStorage.getItem('just_signup_count') || '0');
-      document.getElementById('spots-taken').textContent = savedCount;
-      document.getElementById('spots-fill').style.width = (savedCount / 500 * 100) + '%';
+      // FIX #1: Removed fake localStorage counter — fetch real count instead
+      fetchWaitlistCount();
       updateProgress();
       updateProgressPremium();
       startCountdownTimer();
