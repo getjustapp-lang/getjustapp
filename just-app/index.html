@@ -398,11 +398,26 @@
     }
     .task-item:last-child { border-bottom: none; }
     .task-item.premium {
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                  box-shadow 0.4s ease, 
+                  background-color 0.4s ease,
+                  opacity 0.4s ease;
+      position: relative;
+      z-index: 1;
     }
     .task-item.premium.reorder-moving {
-      opacity: 0.4;
-      transform: translateY(-4px);
+      z-index: 10;
+      transform: scale(1.02) translateY(-5px);
+      background-color: rgba(46,92,79,0.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    @keyframes taskFlash {
+      0% { background-color: transparent; }
+      50% { background-color: rgba(46,92,79,0.15); }
+      100% { background-color: transparent; }
+    }
+    .task-item.premium.reorder-flash {
+      animation: taskFlash 0.6s ease-out;
     }
     .task-check {
       width: 20px;
@@ -462,6 +477,12 @@
     .tag-medium:hover { background: rgba(245,124,0,0.08); }
     .tag-low  { border: 1px solid #388E3C; color: #388E3C; transition: all 0.2s; }
     .tag-low:hover { background: rgba(56,142,60,0.08); }
+    .task-item.premium .task-check.done ~ .task-tag {
+      border-color: var(--ink-faint);
+      color: var(--ink-faint);
+      background: transparent;
+      opacity: 0.6;
+    }
     .mockup-progress {
       margin-top: 24px;
       padding-top: 16px;
@@ -1125,9 +1146,9 @@
     <div class="container">
                         <div class="hero-inner">
         <div>
-          <div class="hero-logo-section">
-            <div class="hero-logo-large">JUST<span>.</span></div>
-            <p class="hero-tagline" style="font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--slate); margin-top: 32px; line-height: 1.6; max-width: 400px;">"You don't need a beautiful app.<br>You need a beautiful outcome"</p>
+          <div class="hero-logo-section" style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 0;">
+            <div class="hero-logo-large" style="margin-bottom: 24px;">JUST<span>.</span></div>
+            <p class="hero-tagline" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 440px; margin: 0;">"You don't need a beautiful app.<br>You need a beautiful outcome"</p>
           </div>
         </div>
         <div>
@@ -1280,8 +1301,8 @@
       <div class="behavioral-grid">
         <div class="behavioral-block reveal">
           <div class="behavioral-num">01</div>
-          <div class="behavioral-title">Decision Fatigue</div>
-          <p class="behavioral-desc">Every extra choice drains the same mental resource. Hick's Law: decision time increases with the number of options. We cap at three tasks so you spend energy doing, not deciding.</p>
+          <div class="behavioral-title">ADHD Friendly</div>
+          <p class="behavioral-desc">Executive dysfunction thrives on clutter. By enforcing a 3-task cap and a midnight wipe, we remove the "shame-backlog" and decision fatigue that paralyzes the ADHD brain. Restraint is the accommodation.</p>
         </div>
         <div class="behavioral-block reveal">
           <div class="behavioral-num">02</div>
@@ -1408,18 +1429,14 @@
       <div class="final-cta-grid" style="text-align: center; max-width: 700px; margin: 0 auto;">
         <p class="section-label">Join the waitlist</p>
         <h2 class="section-title">Three tasks.<br/>Midnight wipe.<br/>Nothing else.</h2>
-        <p class="section-sub" style="margin: 0 auto 24px; text-align: center;">Early access is limited to 500 people.</p>
-        <p class="hero-footnote" style="margin-bottom: 24px; text-align: center;">One email. No spam. We only message when it's ready.</p>
-        <p class="form-note" style="margin-bottom: 32px;">No spam. No onboarding hell. Just an email when JUST is ready.</p>
-        <div style="display: flex; flex-direction: column; gap: 10px; margin: 0 auto 48px; max-width: 460px;">
-          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ 3 tasks maximum. Hard cap enforced.</div>
-          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left;">✦ Unfinished tasks delete at midnight. Clean slate daily.</div>
-          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ Hit 67% completion yearly → 2 months free automatically.</div>
-  
-          
-          
-          
-      </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin: 0 auto 32px; max-width: 520px;">
+          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> 3 tasks maximum. Hard cap enforced.</div>
+          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> Unfinished tasks delete at midnight. Clean slate daily.</div>
+          <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> Hit 67% completion yearly <span style="font-size: 12px;">→</span> 2 months free automatically.</div>
+        </div>
+        <p class="section-sub" style="margin: 0 auto 12px; text-align: center; font-size: 18px;">Early access is limited to 500 people.</p>
+        <p class="hero-footnote" style="margin-bottom: 12px; text-align: center;">One email. No spam. We only message when it's ready.</p>
+        <p class="form-note" style="margin-bottom: 24px;">No spam. No onboarding hell. Just an email when JUST is ready.</p>
         <div class="final-form" id="final-form-wrap" style="margin: 0 auto 16px; max-width: 440px;">
           <input type="email" id="final-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for waitlist" />
           <button type="button" onclick="handleSignup('final')" aria-label="Claim your early access spot">Claim your spot →</button>
@@ -1687,16 +1704,24 @@
         return bt - at; // higher timestamp = more recent = goes first
       });
 
-      // Animate: flash items that are about to move
-      tasks.forEach(function(t) { t.classList.add('reorder-moving'); });
+      // Animate: Lift and magnify items that are about to move
+      tasks.forEach(function(t) { 
+        t.classList.add('reorder-moving'); 
+      });
 
       setTimeout(function() {
         // Re-insert in sorted order before the progress bar
         tasks.forEach(function(t) {
           t.classList.remove('reorder-moving');
           mockup.insertBefore(t, progressEl);
+          
+          // Add the final "flash" confirmation
+          t.classList.add('reorder-flash');
+          setTimeout(function() {
+            t.classList.remove('reorder-flash');
+          }, 600);
         });
-      }, 200);
+      }, 400);
     }
 
     function startCountdownTimer() {
@@ -1748,6 +1773,21 @@
       updateProgress();
       updateProgressPremium();
       startCountdownTimer();
+
+      // Smooth scroll for Nav CTA
+      const navCta = document.querySelector('.nav-cta');
+      if (navCta) {
+        navCta.addEventListener('click', (e) => {
+          const href = navCta.getAttribute('href');
+          if (href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      }
     });
   </script>
 </body>
