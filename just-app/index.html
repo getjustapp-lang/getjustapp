@@ -16,10 +16,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://justapp.com" />
   <meta property="og:image" content="https://justapp.com/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://justapp.com/og-image.png" />
   <meta name="twitter:title" content="JUST. — Stop Planning. Start Doing." />
   <meta name="twitter:description" content="Three tasks. Midnight wipe. We only win when you win." />
 
@@ -259,54 +256,6 @@
     .hero-form button:hover { background: var(--accent-hover); }
     .form-success { display: none; font-family: var(--mono); font-size: 14px; color: var(--accent); margin-bottom: 24px; }
     .form-error { display: none; font-family: var(--mono); font-size: 13px; color: var(--warn); margin-bottom: 24px; }
-
-    /* ─── BUTTON LOADING STATE ─── */
-    .hero-form button:disabled,
-    .final-form button:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      background: var(--accent);
-    }
-    @keyframes btnDots {
-      0%, 20%  { content: 'SENDING'; }
-      40%      { content: 'SENDING.'; }
-      60%      { content: 'SENDING..'; }
-      80%, 100%{ content: 'SENDING...'; }
-    }
-
-    /* ─── COMING SOON SOCIAL LINKS ─── */
-    .footer-link[data-coming-soon] {
-      position: relative;
-      opacity: 0.5;
-      cursor: default;
-      pointer-events: auto;
-    }
-    .footer-link[data-coming-soon]::after {
-      content: 'coming soon';
-      position: absolute;
-      left: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: 8px;
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      white-space: nowrap;
-      border: 1px solid var(--border);
-      padding: 2px 6px;
-      background: var(--cream);
-      opacity: 0;
-      transition: opacity 0.2s;
-      pointer-events: none;
-    }
-    .footer-link[data-coming-soon]:hover::after {
-      opacity: 1;
-    }
-    .footer-link[data-coming-soon]:hover {
-      color: var(--ink);
-    }
     .trust-badge {
       display: inline-flex;
       align-items: center;
@@ -1391,9 +1340,9 @@
           <a href="https://www.linkedin.com/in/chaitanya-madhavan-8001381b2/" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-top: 8px; display: inline-flex;" aria-label="Chaitanya Madhavan on LinkedIn">My LinkedIn</a>
         </div>
         <div class="footer-links">
-          <a class="footer-link" href="#" data-coming-soon aria-label="YouTube — coming soon" onclick="return false;">YouTube</a>
-          <a class="footer-link" href="#" data-coming-soon aria-label="TikTok — coming soon" onclick="return false;">TikTok</a>
-          <a class="footer-link" href="#" data-coming-soon aria-label="LinkedIn — coming soon" onclick="return false;">LinkedIn</a>
+          <a class="footer-link" href="https://youtube.com/@justapp" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a class="footer-link" href="https://tiktok.com/@justapp" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a class="footer-link" href="https://linkedin.com/company/justapp" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a class="footer-link" href="mailto:hello@justapp.com">hello@justapp.com</a>
         </div>
       </div>
@@ -1451,33 +1400,12 @@
       fillEl.style.backgroundColor = pct > 0 ? 'var(--accent)' : 'transparent';
     }
 
-    // ─── FIX #3: Loading state helpers ───────────────────────────────────────
-    function setButtonLoading(btn, isLoading) {
-      if (isLoading) {
-        btn.dataset.originalText = btn.textContent;
-        btn.textContent = 'SENDING...';
-        btn.disabled = true;
-      } else {
-        btn.textContent = btn.dataset.originalText || 'Get Early Access';
-        btn.disabled = false;
-      }
-    }
-
-    // ─── FIX #1 + #2: Real counter from Beehiiv via Netlify function ──────────
-    function updateWaitlistUI(count) {
-      if (typeof count !== 'number' || isNaN(count)) return;
-      const capped = Math.min(count, 500);
-      document.getElementById('spots-taken').textContent = capped;
-      document.getElementById('spots-fill').style.width = (capped / 500 * 100) + '%';
-    }
-
     async function handleSignup(source) {
       const emailEl = document.getElementById(source === 'hero' ? 'hero-email' : 'final-email');
       const email = emailEl.value.trim();
       const successEl = document.getElementById(source + '-success');
       const errorEl = document.getElementById(source + '-error');
       const formWrap = document.getElementById(source === 'hero' ? 'hero-form-wrap' : 'final-form-wrap');
-      const btn = formWrap ? formWrap.querySelector('button') : null;
 
       if (!email || !email.includes('@')) {
         emailEl.style.border = '1.5px solid var(--warn)';
@@ -1488,10 +1416,6 @@
       }
 
       if (errorEl) errorEl.style.display = 'none';
-
-      // FIX #3: Show loading state immediately
-      if (btn) setButtonLoading(btn, true);
-
       try {
         const res = await fetch('/.netlify/functions/signup', {
           method: 'POST',
@@ -1499,26 +1423,22 @@
           body: JSON.stringify({ email }),
         });
         const data = await res.json().catch(() => ({}));
-
         if (!res.ok) {
-          if (btn) setButtonLoading(btn, false);
           if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = data.error || 'Something went wrong. Try again.'; }
           return;
         }
-
-        // FIX #1 + #2: Read the REAL count back from the server response
-        if (data.count !== null && data.count !== undefined) {
-          updateWaitlistUI(data.count);
-        }
-
       } catch (err) {
-        if (btn) setButtonLoading(btn, false);
         if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Network error. Check connection and try again.'; }
         return;
       }
 
       formWrap.style.display = 'none';
       successEl.style.display = 'block';
+      var currentCount = parseInt(localStorage.getItem('just_signup_count') || '0');
+      currentCount++;
+      localStorage.setItem('just_signup_count', currentCount);
+      document.getElementById('spots-taken').textContent = currentCount;
+      document.getElementById('spots-fill').style.width = (currentCount / 500 * 100) + '%';
     }
 
     ['hero-email', 'final-email'].forEach(id => {
@@ -1639,23 +1559,11 @@
       updateProgressPremium();
     }
 
-    // ─── FIX #1: Fetch real subscriber count on page load ──────────────────
-    async function fetchWaitlistCount() {
-      try {
-        const res = await fetch('/.netlify/functions/signup-count');
-        if (res.ok) {
-          const data = await res.json();
-          updateWaitlistUI(data.count);
-        }
-      } catch (e) {
-        // Silently fail — counter stays at 0 if function is unavailable
-      }
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
       resetAllPremiumTasks();
-      // FIX #1: Removed fake localStorage counter — fetch real count instead
-      fetchWaitlistCount();
+      var savedCount = parseInt(localStorage.getItem('just_signup_count') || '0');
+      document.getElementById('spots-taken').textContent = savedCount;
+      document.getElementById('spots-fill').style.width = (savedCount / 500 * 100) + '%';
       updateProgress();
       updateProgressPremium();
       startCountdownTimer();
