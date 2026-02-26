@@ -116,7 +116,7 @@
       text-decoration: none;
       letter-spacing: -0.02em;
     }
-    .nav-logo span { color: var(--accent); }
+    .nav-logo span { color: var(--accent); margin-left: -6px; }
     .nav-cta {
       font-family: var(--mono);
       font-size: 13px;
@@ -190,6 +190,7 @@
     }
     .hero-logo-large span {
       color: var(--accent);
+      margin-left: -25px;
     }
     .hero-tagline {
       font-family: var(--serif);
@@ -880,10 +881,13 @@
     }
     .final-form {
       display: flex;
+      align-items: stretch;
       max-width: 440px;
       margin: 0 0 16px;
       border: 1.5px solid var(--ink);
       border-radius: 4px;
+      overflow: hidden;
+      gap: 0;
     }
     .final-form input {
       flex: 1;
@@ -894,6 +898,9 @@
       border: none;
       outline: none;
       color: var(--ink);
+      margin: 0;
+      height: auto;
+      line-height: 1.5;
     }
     .final-form input::placeholder { color: var(--ink-faint); font-style: italic; }
     .final-form button {
@@ -905,10 +912,17 @@
       background: var(--accent);
       color: var(--cream);
       border: none;
-      border-radius: 0 4px 4px 0;
-      padding: 18px 36px;
+      border-radius: 0;
+      padding: 16px 36px;
       cursor: pointer;
       transition: background 0.15s;
+      white-space: nowrap;
+      margin: 0;
+      flex-shrink: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .final-form button:hover { background: var(--accent-hover); }
     .form-note {
@@ -1146,10 +1160,9 @@
     <div class="container">
                         <div class="hero-inner">
         <div>
-          <div class="hero-logo-section" style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 0;">
+          <div class="hero-logo-section" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0;">
             <div class="hero-logo-large" style="margin-bottom: 24px;">JUST<span>.</span></div>
-            <p class="hero-tagline" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 440px; margin: 0;">"You don't need a beautiful app.<br>You need a beautiful outcome"</p>
-          </div>
+            <p class="hero-tagline" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 280px; margin: 0;\">"The world's most boring productivity app.<br>On purpose."</p>          </div>
         </div>
         <div>
           <p class="hero-eyebrow">Behavioral productivity — not engagement theatre</p>
@@ -1158,8 +1171,8 @@
             <em>Planning.</em><br />
             Start Doing.
           </h1>
-          <p class="hero-sub">
-            "The world's most boring productivity app. On purpose."
+          <p class="hero-sub" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 440px;">
+            "You don't need a beautiful app.<br>You need a beautiful outcome."
           </p>
           <p class="hero-note">Pick three. Finish them. Tomorrow starts fresh.</p>
           <div class="hero-form" id="hero-form-wrap">
