@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JUST. — Stop Planning. Start Doing.</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Three tasks. Midnight wipe. We only win when you win. The productivity app that pays you back when you show up." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://justapp.com" />
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="JUST. — Stop Planning. Start Doing." />
+  <meta property="og:description" content="Three tasks. Midnight wipe. 70% yearly completion = 2–3 months free." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://justapp.com" />
+  <meta property="og:image" content="https://justapp.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JUST. — Stop Planning. Start Doing." />
+  <meta name="twitter:description" content="Three tasks. Midnight wipe. We only win when you win." />
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#EDE8D0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="JUST." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── TOKENS ─── */
+    :root {
+      --cream:      #EDE8D0;
+      --cream-dark: #E2DBBC;
+      --ink:        #3C4142;
+      --ink-light:  #6B7273;
+      --ink-faint:  #9AABAC;
+      --accent:     #2E5C4F;
+      --accent-mid: #4A8C7A;
+      --warn:       #D32F2F;
+      --border:     rgba(60,65,66,0.18);
+      --grain-opacity: 0.045;
+      --mono: 'Space Mono', monospace;
+      --serif: 'Lora', Georgia, serif;
+    }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: var(--grain-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .mono { font-family: var(--mono); }
+    .serif { font-family: var(--serif); }
+
+    h1, h2, h3 { font-family: var(--mono); font-weight: 700; line-height: 1.15; }
+    p { font-family: var(--serif); }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { position: relative; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      background: transparent;
+      border: 1.5px solid var(--ink);
+      padding: 8px 20px;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-cta:hover { background: var(--ink); color: var(--cream); }
+
+    /* ─── FOCUS VISIBLE (Accessibility) ─── */
+    .nav-cta:focus-visible,
+    .hero-form button:focus-visible,
+    .final-form button:focus-visible,
+    .task-check:focus-visible,
+    .task-tag:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: calc(100svh - 61px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: flex-start;
+      padding: 60px 0;
+    }
+    @media (min-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr 1fr; gap: 120px; }
+    }
+    .hero-inner > div:first-child {
+      padding-top: 20px;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--ink-light);
+    }
+    .hero-headline {
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 32px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      font-family: var(--mono);
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 19px;
+      color: var(--ink-light);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .hero-note {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-light);
+      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+    }
+    .hero-footnote {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-top: 20px;
+    }
+    .hero-form {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border: 1.5px solid var(--ink);
+    }
+    .hero-form input {
+      flex: 1;
+      padding: 14px 18px;
+      font-family: var(--serif);
+      font-size: 16px;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ink);
+    }
+    .hero-form input::placeholder { color: var(--ink-faint); font-style: italic; }
+    .hero-form button {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      padding: 14px 22px;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .hero-form button:hover { background: var(--accent); }
+    .form-success { display: none; font-family: var(--mono); font-size: 14px; color: var(--accent); margin-bottom: 24px; }
+    .form-error { display: none; font-family: var(--mono); font-size: 13px; color: var(--warn); margin-bottom: 24px; }
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      border: 1px solid rgba(46,92,79,0.3);
+      background: rgba(46,92,79,0.06);
+      padding: 8px 14px;
+    }
+    .trust-badge::before {
+      content: '→';
+      font-size: 14px;
+    }
+
+    /* ─── APP MOCKUP ─── */
+    .mockup-wrap {
+      position: relative;
+    }
+    .mockup {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 32px;
+      position: relative;
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .mockup-header {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .mockup-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mockup-intention {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-light);
+      margin-bottom: 20px;
+    }
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .task-item:last-child { border-bottom: none; }
+    .task-check {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--ink);
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.15s;
+      background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .task-check.done {
+      background: var(--ink);
+    }
+    .task-check.done::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 9px;
+      width: 5px;
+      height: 2px;
+      background: var(--cream);
+      transform: rotate(45deg);
+      transform-origin: left center;
+    }
+    .task-check.done::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 5px;
+      width: 9px;
+      height: 2px;
+      background: var(--cream);
+      transform: rotate(-45deg);
+      transform-origin: left center;
+    }
+    .task-text { font-family: var(--serif); font-size: 15px; line-height: 1.4; }
+    .task-text.done { text-decoration: line-through; color: var(--ink-faint); }
+    .task-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      margin-left: auto;
+      flex-shrink: 0;
+      margin-top: 3px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .tag-high { border: 1px solid #D32F2F; color: #D32F2F; transition: all 0.2s; }
+    .tag-high:hover { background: rgba(211,47,47,0.08); }
+    .tag-medium { border: 1px solid #F57C00; color: #F57C00; transition: all 0.2s; }
+    .tag-medium:hover { background: rgba(245,124,0,0.08); }
+    .tag-low  { border: 1px solid #388E3C; color: #388E3C; transition: all 0.2s; }
+    .tag-low:hover { background: rgba(56,142,60,0.08); }
+    .mockup-progress {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-light);
+      margin-bottom: 8px;
+      letter-spacing: 0.06em;
+    }
+    .progress-bar {
+      height: 4px;
+      width: 100%;
+      background: var(--cream-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .progress-fill.pct-zero {
+      background: transparent !important;
+      border-right: 2px solid var(--ink-faint);
+      width: 2px !important;
+    }
+    .mockup-midnight {
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .mockup-corner {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mockup-corner span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--cream);
+      font-weight: 700;
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink-light);
+      max-width: 520px;
+    }
+
+    /* ─── OBSESSION FORMULA ─── */
+    .formula {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .formula-header {
+      margin-bottom: 64px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1.5px solid var(--ink);
+    }
+    .formula-block {
+      background: var(--cream);
+      padding: 40px 36px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .formula-block:hover { background: var(--cream-dark); }
+    .formula-block.wide {
+      grid-column: 1 / -1;
+    }
+    .formula-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+    }
+    .formula-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .formula-title {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .formula-desc {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+    .formula-block .formula-accent {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── WHY FAIL ─── */
+    .why {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .why-left { position: sticky; top: 100px; }
+    .contrast-list { list-style: none; }
+    .contrast-item {
+      padding: 32px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .contrast-item:first-child { border-top: 1px dashed var(--border); }
+    .contrast-item .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+    .contrast-item .label.them { color: var(--warn); }
+    .contrast-item .label.us   { color: var(--accent); }
+    .contrast-them {
+      font-size: 16px;
+      color: var(--ink-light);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .contrast-us {
+      font-size: 17px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ─── BEHAVIORAL SCIENCE (NEW) ─── */
+    .behavioral {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(46,92,79,0.03);
+    }
+    .behavioral-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1.5px solid var(--ink);
+      margin-top: 56px;
+    }
+    @media (min-width: 640px) {
+      .behavioral-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .behavioral-block {
+      background: var(--cream);
+      padding: 36px 28px;
+      transition: background 0.2s;
+    }
+    .behavioral-block:hover { background: var(--cream-dark); }
+    .behavioral-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .behavioral-title {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .behavioral-desc {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    /* ─── SOCIAL PROOF / SCIENCE ─── */
+    .science {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .science .section-label { color: rgba(237,232,208,0.4); }
+    .science .section-title { color: var(--cream); }
+    .science .section-sub { color: rgba(237,232,208,0.6); }
+    .science-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(237,232,208,0.1);
+      margin-top: 56px;
+      border: 1px solid rgba(237,232,208,0.15);
+    }
+    .science-item {
+      background: var(--ink);
+      padding: 36px 30px;
+      transition: background 0.2s;
+    }
+    .science-item:hover { background: #4A4E4F; }
+    .science-source {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 14px;
+    }
+    .science-stat {
+      font-family: var(--mono);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .science-desc {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: rgba(237,232,208,0.6);
+      font-style: italic;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1.5px solid var(--ink);
+      margin-top: 56px;
+    }
+    .pricing-plan {
+      background: var(--cream);
+      padding: 40px 36px;
+    }
+    .pricing-plan.featured { background: var(--ink); color: var(--cream); }
+    .plan-name {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .pricing-plan.featured .plan-name { color: rgba(237,232,208,0.5); }
+    .plan-price {
+      font-family: var(--mono);
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -0.03em;
+    }
+    .pricing-plan .plan-price { color: var(--ink); }
+    .pricing-plan.featured .plan-price { color: var(--cream); }
+    .plan-period {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+    .pricing-plan.featured .plan-period { color: rgba(237,232,208,0.4); }
+    .plan-features { list-style: none; }
+    .plan-feature {
+      font-family: var(--serif);
+      font-size: 15px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(60,65,66,0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-plan.featured .plan-feature {
+      border-bottom-color: rgba(237,232,208,0.12);
+      color: rgba(237,232,208,0.8);
+    }
+    .plan-feature::before { content: '—'; color: var(--ink-faint); font-family: var(--mono); }
+    .pricing-plan.featured .plan-feature::before { content: '✓'; color: var(--accent-mid); }
+    .plan-reward {
+      margin-top: 28px;
+      padding: 16px;
+      background: rgba(46,92,79,0.15);
+      border: 1px solid rgba(46,92,79,0.3);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent-mid);
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    /* ─── WAITLIST COUNTER ─── */
+    .waitlist-bar {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream-dark);
+    }
+    .waitlist-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .waitlist-text {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+    .waitlist-text strong { color: var(--accent); }
+    .spots-bar {
+      flex: 1;
+      max-width: 200px;
+      height: 6px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+    }
+    .spots-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta {
+      padding: 120px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .final-cta .section-title { font-size: clamp(36px, 5vw, 64px); margin-bottom: 16px; }
+    .final-cta .section-sub { margin: 0 auto 48px; text-align: center; max-width: 460px; }
+    .final-form {
+      display: flex;
+      max-width: 440px;
+      margin: 0 auto 16px;
+      border: 1.5px solid var(--ink);
+    }
+    .final-form input {
+      flex: 1;
+      padding: 16px 20px;
+      font-family: var(--serif);
+      font-size: 16px;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ink);
+    }
+    .final-form input::placeholder { color: var(--ink-faint); font-style: italic; }
+    .final-form button {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .final-form button:hover { background: var(--accent); }
+    .form-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 48px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--ink-light);
+      max-width: 240px;
+      margin-bottom: 20px;
+    }
+    .footer-founder {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--ink-faint);
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-link {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.15s;
+    }
+    .footer-link:hover { color: var(--accent); }
+    .footer-link::before { content: '→'; color: var(--ink-faint); }
+    .footer-legal {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── PREMIUM ANIMATIONS ─── */
+    @keyframes checkboxPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    .task-check.premium.done {
+      animation: checkboxPulse 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes progressGlow {
+      0% { box-shadow: 0 0 0 0 rgba(46,92,79,0.7); }
+      70% { box-shadow: 0 0 8px 4px rgba(46,92,79,0); }
+      100% { box-shadow: 0 0 0 0 rgba(46,92,79,0); }
+    }
+    .progress-bar.premium {
+      animation: progressGlow 0.6s ease-out;
+    }
+
+    @keyframes celebrate {
+      0% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.1) rotate(5deg); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .mockup-premium.celebrate {
+      animation: celebrate 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes streakPulse {
+      0%, 100% { transform: scale(1); color: var(--ink); }
+      50% { transform: scale(1.2); color: var(--accent); }
+    }
+    .mockup-midnight.premium.pulse {
+      animation: streakPulse 0.6s ease-in-out;
+    }
+
+    @keyframes countdownTick {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+    .countdown-timer {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--warn);
+      letter-spacing: 0.06em;
+      margin-top: 8px;
+      animation: countdownTick 1s ease-in-out infinite;
+    }
+
+    @keyframes intentionFocus {
+      0% { background: transparent; }
+      50% { background: rgba(46,92,79,0.08); }
+      100% { background: transparent; }
+    }
+    .mockup-intention.premium {
+      animation: intentionFocus 2s ease-in-out infinite;
+      padding: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    @keyframes taskHoverLift {
+      0% { transform: translateY(0); background: transparent; }
+      100% { transform: translateY(-2px); background: rgba(46,92,79,0.04); }
+    }
+    .task-item.premium:hover {
+      animation: taskHoverLift 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeComplete {
+      0% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+    .task-text.premium.done {
+      animation: fadeComplete 0.4s ease-out forwards;
+    }
+
+    .premium-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(46,92,79,0.1);
+      padding: 4px 8px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .formula-grid { grid-template-columns: 1fr; }
+      .formula-block.wide { grid-column: 1; }
+      .why-inner { grid-template-columns: 1fr; gap: 48px; }
+      .why-left { position: static; }
+      .science-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 32px; }
+      .footer-legal { flex-direction: column; gap: 8px; text-align: center; }
+      .hero-form { flex-direction: column; }
+      .hero-form button { width: 100%; padding: 14px; text-align: center; }
+      .final-form { flex-direction: column; }
+      .final-form button { padding: 14px; text-align: center; }
+      .waitlist-inner { flex-direction: column; align-items: flex-start; }
+      .mockup { padding: 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .behavioral-grid { grid-template-columns: 1fr; }
+      .science-grid { grid-template-columns: 1fr; }
+      .formula-grid { grid-template-columns: 1fr; }
+      .formula-block.wide { grid-column: 1; }
+      .container { padding: 0 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .hero { padding: 48px 0 40px; }
+      .formula, .why, .pricing, .final-cta, .behavioral { padding: 72px 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <div class="container">
+      <a class="nav-logo" href="#">JUST<span>.</span></a>
+      <a class="nav-cta" href="#waitlist" aria-label="Get early access to JUST">Get Early Access</a>
+    </div>
+  </nav>
+
+  <!-- ─── WAITLIST BAR ─── -->
+  <div class="waitlist-bar" role="region" aria-label="Waitlist progress">
+    <div class="container">
+      <div class="waitlist-inner">
+        <p class="waitlist-text">
+          <strong id="spots-taken">0</strong> / 500 early access spots claimed
+        </p>
+        <div class="spots-bar" aria-hidden="true">
+          <div class="spots-fill" id="spots-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <p class="hero-eyebrow">Behavioral productivity — not engagement theatre</p>
+          <h1 class="hero-headline">
+            Stop<br />
+            <em>Planning.</em><br />
+            Start Doing.
+          </h1>
+          <p class="hero-sub">
+            "The world's most boring productivity app. On purpose."
+          </p>
+          <p class="hero-note">Pick three. Finish them. Tomorrow starts fresh.</p>
+          <div class="hero-form" id="hero-form-wrap">
+            <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for early access" />
+            <button type="button" onclick="handleSignup('hero')" aria-label="Submit email for early access">Get Early Access</button>
+          </div>
+          <div class="form-success" id="hero-success">
+            ✓ You're on the list. Watch your inbox.
+          </div>
+          <div class="form-error" id="hero-error" role="alert"></div>
+          <div class="trust-badge">
+            67% yearly completion = 2 months free. Automatically.
+          </div>
+          <p class="hero-footnote">No infinite lists. No guilt. Just today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PREMIUM MOCKUP DEMO ─── -->
+  <section style="padding: 100px 0; border-top: 2px solid var(--border); background: rgba(46,92,79,0.02);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div class="premium-label">Interactive Demo</div>
+        <h2 class="section-title">Experience the Full Potential</h2>
+        <p class="section-sub">All 13 micro-interactions, animations, and behavioral features</p>
+        <p class="hero-footnote" style="margin-top: 12px; margin-bottom: 0;">Try the checkboxes and priority tags below.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 60px; max-width: 600px; margin: 0 auto;">
+        <div class="mockup-wrap">
+          <div class="mockup mockup-premium">
+            <div class="mockup-corner"><span>PRO</span></div>
+            <div class="mockup-header">JUST. Premium</div>
+            <div class="mockup-date">MON · FEB 25 · 2026</div>
+            <div class="mockup-intention premium">
+              "I will start my first task at 9:00 AM at my desk."
+            </div>
+            <div class="task-item premium">
+              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Write the investor deck intro" onclick="toggleCheckPremium(this)"></button>
+              <span class="task-text premium">Write the investor deck intro</span>
+              <button type="button" class="task-tag tag-high" aria-label="Priority: high. Click to change." onclick="togglePriorityPremium(this)">HIGH</button>
+            </div>
+            <div class="task-item premium">
+              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Reply to all waitlist DMs" onclick="toggleCheckPremium(this)"></button>
+              <span class="task-text premium">Reply to all waitlist DMs</span>
+              <button type="button" class="task-tag tag-high" aria-label="Priority: high. Click to change." onclick="togglePriorityPremium(this)">HIGH</button>
+            </div>
+            <div class="task-item premium">
+              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Record 60s TikTok on Zeigarnik Effect" onclick="toggleCheckPremium(this)"></button>
+              <span class="task-text premium">Record 60s TikTok on Zeigarnik Effect</span>
+              <button type="button" class="task-tag tag-low" aria-label="Priority: low. Click to change." onclick="togglePriorityPremium(this)">LOW</button>
+            </div>
+            <div class="mockup-progress">
+              <div class="progress-label">
+                <span>TODAY'S FOCUS</span>
+                <span id="pct-premium">0%</span>
+              </div>
+              <div class="progress-bar premium">
+                <div class="progress-fill" id="prog-fill-premium"></div>
+              </div>
+            </div>
+            <div class="mockup-midnight premium">
+              ↻ Resets at midnight · Streak: 12 days
+            </div>
+            <div class="countdown-timer" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div style="text-align: center; padding: 40px; background: var(--cream-dark); border-radius: 8px;">
+          <p style="font-family: var(--mono); font-size: 13px; color: var(--ink); margin-bottom: 16px; line-height: 1.6;">
+            <strong>Try it:</strong> Click the checkboxes to see animations.<br/>
+            Watch the progress bar glow, streak counter pulse, and celebration animation when all tasks are done.
+          </p>
+          <p style="font-family: var(--serif); font-size: 14px; color: var(--ink-light); font-style: italic;">
+            All 13 features included: checkbox animations, progress glow, task completion celebration, streak pulses, countdown timer, implementation intention highlight, dark mode ready, smooth hover states, color-coded completion, keyboard shortcuts support, local persistence, and motivational copy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── OBSESSION FORMULA ─── -->
+  <section class="formula">
+    <div class="container">
+      <div class="formula-header reveal">
+        <p class="section-label">The obsession formula</p>
+        <h2 class="section-title">Why it actually works.</h2>
+        <p class="section-sub">"JUST. Like that."</p>
+      </div>
+      <div class="formula-grid">
+        <div class="formula-block reveal">
+          <div class="formula-num">01</div>
+          <div class="formula-icon">🌑</div>
+          <div class="formula-title">Midnight Wipe</div>
+          <p class="formula-desc">Unfinished tasks vanish at midnight. Not archived. Gone. Guilt is not a productivity strategy — a clean slate is.</p>
+          <span class="formula-accent">Loss Aversion · Kahneman</span>
+        </div>
+        <div class="formula-block reveal">
+          <div class="formula-num">02</div>
+          <div class="formula-icon">✦</div>
+          <div class="formula-title">3-Task Cap</div>
+          <p class="formula-desc">Focus as status. When the list is small, the mind is quiet. When the mind is quiet, work begins. Three tasks. Nothing more.</p>
+          <span class="formula-accent">Ego Depletion · Baumeister</span>
+        </div>
+        <div class="formula-block reveal">
+          <div class="formula-num">03</div>
+          <div class="formula-icon">◎</div>
+          <div class="formula-title">67% Reward</div>
+          <p class="formula-desc">Average 67% completion across the year and we give you 2 months free. Automatically. Because your progress is not a metric - it is the business model.</p>
+          <span class="formula-accent">Incentive Design - Prospect Theory</span>
+        </div>
+        <div class="formula-block reveal">
+          <div class="formula-num">04</div>
+          <div class="formula-icon">◻</div>
+          <div class="formula-title">No Notifications</div>
+          <p class="formula-desc">One optional morning nudge. That is the entire notification system. Respect for attention is not a feature — it is the position.</p>
+          <span class="formula-accent">Attention Economics</span>
+        </div>
+        <div class="formula-block wide reveal">
+          <div class="formula-num">05</div>
+          <div class="formula-icon">⬡</div>
+          <div class="formula-title">The Grainy Aesthetic</div>
+          <p class="formula-desc" style="max-width:560px;">Cream paper. Monospace ink. Hand-drawn checkboxes. A grain texture overlay that makes the screen feel like your best notebook. Tactile satisfaction is not vanity — it is the reason you come back.</p>
+          <span class="formula-accent">Embodied Cognition</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BEHAVIORAL SCIENCE (NEW SECTION) ─── -->
+  <section class="behavioral" aria-labelledby="behavioral-heading">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">The science of behavior</p>
+        <h2 class="section-title" id="behavioral-heading">Decision Fatigue, Zeigarnik, Dopamine.</h2>
+        <p class="section-sub">Every feature is a lever for your behavior. Peer-reviewed, not invented.</p>
+      </div>
+      <div class="behavioral-grid">
+        <div class="behavioral-block reveal">
+          <div class="behavioral-num">01</div>
+          <div class="behavioral-title">Decision Fatigue</div>
+          <p class="behavioral-desc">Every extra choice drains the same mental resource. Hick's Law: decision time increases with the number of options. We cap at three tasks so you spend energy doing, not deciding.</p>
+        </div>
+        <div class="behavioral-block reveal">
+          <div class="behavioral-num">02</div>
+          <div class="behavioral-title">Zeigarnik Effect</div>
+          <p class="behavioral-desc">Unfinished tasks occupy ~90% more mental bandwidth than finished ones. Our progress bar and midnight wipe turn that tension into clarity: complete or let go.</p>
+        </div>
+        <div class="behavioral-block reveal">
+          <div class="behavioral-num">03</div>
+          <div class="behavioral-title">Dopamine Loop</div>
+          <p class="behavioral-desc">Small wins release dopamine and reinforce behavior. Three tasks, clear completion, and the 67% reward create a sustainable loop—not engagement theatre, but real habit formation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY FAIL ─── -->
+  <section class="why">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-left reveal">
+          <p class="section-label">Why everything else fails</p>
+          <h2 class="section-title">The apps aren't broken. The incentives are.</h2>
+          <p class="section-sub">"You don't need a beautiful app. You need a beautiful outcome."</p>
+        </div>
+        <ul class="contrast-list">
+          <li class="contrast-item reveal">
+            <p class="label them">Them</p>
+            <p class="contrast-them">"Add everything. Tag it. Categorize it. Archive it."</p>
+            <p class="label us">Us</p>
+            <p class="contrast-us">"If it's not one of your top 3, it doesn't exist today."</p>
+          </li>
+          <li class="contrast-item reveal">
+            <p class="label them">Them</p>
+            <p class="contrast-them">"Streaks based on opening the app."</p>
+            <p class="label us">Us</p>
+            <p class="contrast-us">"Streaks based on finishing what you started."</p>
+          </li>
+          <li class="contrast-item reveal">
+            <p class="label them">Them</p>
+            <p class="contrast-them">"Infinite scroll of yesterday's failures."</p>
+            <p class="label us">Us</p>
+            <p class="contrast-us">"Midnight wipe. Every day is Day 1."</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOCIAL PROOF / SCIENCE ─── -->
+  <section class="science">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">The science of focus</p>
+        <h2 class="section-title">Peer-reviewed. Not invented.</h2>
+        <p class="section-sub">Every feature is a lever for your behavior.</p>
+      </div>
+      <div class="science-grid">
+        <div class="science-item reveal">
+          <p class="science-source">Zeigarnik Effect</p>
+          <p class="science-stat">90%</p>
+          <p class="science-desc">Unfinished tasks occupy 90% more mental bandwidth than finished ones.</p>
+        </div>
+        <div class="science-item reveal">
+          <p class="science-source">Hick's Law</p>
+          <p class="science-stat">3x</p>
+          <p class="science-desc">Decision time increases logarithmically with the number of choices.</p>
+        </div>
+        <div class="science-item reveal">
+          <p class="science-source">Implementation Intentions</p>
+          <p class="science-stat">2.5x</p>
+          <p class="science-desc">People are 2.5x more likely to finish a task if they state when and where.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
+  <section class="pricing">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Honest pricing</p>
+        <h2 class="section-title">Free if you just start.<br/>Paid if you want it to count.</h2>
+        <p class="section-sub">"We only win when you win."</p>
+      </div>
+      <div class="pricing-grid reveal">
+        <div class="pricing-plan">
+          <p class="plan-name">Free — No account needed</p>
+          <p class="plan-price">$0</p>
+          <p class="plan-period">forever. no card. no friction.</p>
+          <ul class="plan-features">
+            <li class="plan-feature">3-task cap, enforced</li>
+            <li class="plan-feature">Midnight wipe</li>
+            <li class="plan-feature">Pomodoro timer (task-bound)</li>
+            <li class="plan-feature">Implementation intention prompt</li>
+            <li class="plan-feature">Zeigarnik progress bar</li>
+            <li class="plan-feature">Local storage — no sync</li>
+          </ul>
+        </div>
+        <div class="pricing-plan featured">
+          <p class="plan-name">Paid — The full system</p>
+          <p class="plan-price">$5</p>
+          <p class="plan-period">/ month. cancel anytime.</p>
+          <ul class="plan-features">
+            <li class="plan-feature">Everything in free</li>
+            <li class="plan-feature">Streak tracking (protectable)</li>
+            <li class="plan-feature">Weekly completion score</li>
+            <li class="plan-feature">Annual 67% reward tracking</li>
+            <li class="plan-feature">Multi-device sync & backup</li>
+            <li class="plan-feature">Daily reflection questions (30-library)</li>
+          </ul>
+          <div class="plan-reward">
+            → Average 67% completion across the year<br />
+            → We automatically give you 2 months free.<br />
+            → Because your success is the business model.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA ─── -->
+  <section class="final-cta" id="waitlist">
+    <div class="container">
+      <p class="section-label">Join the waitlist</p>
+      <h2 class="section-title">Three tasks.<br/>Midnight wipe.<br/>Nothing else.</h2>
+      <p class="section-sub">Early access is limited to 500 people.</p>
+      <p class="hero-footnote" style="margin-bottom: 24px;">One email. No spam. We only message when it's ready.</p>
+      <div style="margin: 0 auto 32px; display: flex; flex-direction: column; gap: 10px; max-width: 460px;">
+        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ 3 tasks maximum. Hard cap enforced.</div>
+        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left;">✦ Unfinished tasks delete at midnight. Clean slate daily.</div>
+        <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left;">✦ Hit 67% completion yearly → 2 months free automatically.</div>
+      </div>
+      <div class="final-form" id="final-form-wrap">
+        <input type="email" id="final-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for waitlist" />
+        <button type="button" onclick="handleSignup('final')" aria-label="Claim your early access spot">Claim your spot →</button>
+      </div>
+      <div class="form-success" id="final-success">
+        ✓ You're in. Watch your inbox for early access.
+      </div>
+      <div class="form-error" id="final-error" role="alert"></div>
+      <p class="form-note">No spam. No onboarding hell. Just an email when JUST is ready.</p>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">JUST.</div>
+          <p class="footer-tagline">Stop planning. Start doing. Built by one person who got tired of every other app.</p>
+          <p class="footer-founder" style="color: var(--ink);">Built by Chaitanya Madhavan, 18, Singapore.</p>
+          <a href="https://www.linkedin.com/in/chaitanya-madhavan-8001381b2/" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-top: 8px; display: inline-flex;" aria-label="Chaitanya Madhavan on LinkedIn">My LinkedIn</a>
+        </div>
+        <div class="footer-links">
+          <a class="footer-link" href="https://youtube.com/@justapp" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a class="footer-link" href="https://tiktok.com/@justapp" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a class="footer-link" href="https://linkedin.com/company/justapp" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="footer-link" href="mailto:hello@justapp.com">hello@justapp.com</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© 2026 JUST. All rights reserved.</span>
+        <span style="font-style:italic; font-family: var(--serif);">Restraint is the product.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── REVEAL ON SCROLL ───
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    let completedTasks = 0;
+    const totalTasks = 3;
+
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.setAttribute('aria-checked', el.classList.contains('done'));
+      const taskText = el.nextElementSibling;
+      if (taskText) taskText.classList.toggle('done');
+      completedTasks = document.querySelectorAll('.task-check.done').length;
+      updateProgress();
+    }
+
+    function togglePriority(el) {
+      const priorities = ['tag-high', 'tag-medium', 'tag-low'];
+      const labels = ['HIGH', 'MEDIUM', 'LOW'];
+      const currentClass = priorities.find(p => el.classList.contains(p));
+      const currentIndex = priorities.indexOf(currentClass);
+      const nextIndex = (currentIndex + 1) % priorities.length;
+      priorities.forEach(p => el.classList.remove(p));
+      el.classList.add(priorities[nextIndex]);
+      el.textContent = labels[nextIndex];
+    }
+
+    function updateProgress() {
+      const fillEl = document.getElementById('prog-fill');
+      const pctEl = document.getElementById('pct');
+      if (!fillEl || !pctEl) return;
+      const pct = Math.round((completedTasks / totalTasks) * 100);
+      pctEl.textContent = pct + '%';
+      fillEl.style.width = pct + '%';
+      fillEl.classList.toggle('pct-zero', pct === 0);
+      fillEl.style.backgroundColor = pct > 0 ? 'var(--accent)' : 'transparent';
+    }
+
+    async function handleSignup(source) {
+      const emailEl = document.getElementById(source === 'hero' ? 'hero-email' : 'final-email');
+      const email = emailEl.value.trim();
+      const successEl = document.getElementById(source + '-success');
+      const errorEl = document.getElementById(source + '-error');
+      const formWrap = document.getElementById(source === 'hero' ? 'hero-form-wrap' : 'final-form-wrap');
+
+      if (!email || !email.includes('@')) {
+        emailEl.style.border = '1.5px solid var(--warn)';
+        emailEl.focus();
+        if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Please enter a valid email.'; }
+        setTimeout(() => { emailEl.style.border = ''; if (errorEl) errorEl.style.display = 'none'; }, 2500);
+        return;
+      }
+
+      if (errorEl) errorEl.style.display = 'none';
+      try {
+        const res = await fetch('/.netlify/functions/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = data.error || 'Something went wrong. Try again.'; }
+          return;
+        }
+      } catch (err) {
+        if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Network error. Check connection and try again.'; }
+        return;
+      }
+
+      formWrap.style.display = 'none';
+      successEl.style.display = 'block';
+      var currentCount = parseInt(localStorage.getItem('just_signup_count') || '0');
+      currentCount++;
+      localStorage.setItem('just_signup_count', currentCount);
+      document.getElementById('spots-taken').textContent = currentCount;
+      document.getElementById('spots-fill').style.width = (currentCount / 500 * 100) + '%';
+    }
+
+    ['hero-email', 'final-email'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleSignup(id.split('-')[0]);
+      });
+    });
+
+    function toggleCheckPremium(el) {
+      el.classList.toggle('done');
+      el.setAttribute('aria-checked', el.classList.contains('done'));
+      const taskText = el.nextElementSibling;
+      if (taskText) taskText.classList.toggle('done');
+      updateProgressPremium();
+    }
+
+    function updateProgressPremium() {
+      const mockup = document.querySelector('.mockup-premium');
+      if (!mockup) return;
+      const premiumCompletedTasks = mockup.querySelectorAll('.task-check.done').length;
+      const pct = Math.round((premiumCompletedTasks / 3) * 100);
+      const pctEl = document.getElementById('pct-premium');
+      const fillEl = document.getElementById('prog-fill-premium');
+      if (pctEl) pctEl.textContent = pct + '%';
+      if (fillEl) {
+        fillEl.classList.toggle('pct-zero', pct === 0);
+        fillEl.style.width = pct + '%';
+        fillEl.style.backgroundColor = '';
+        fillEl.style.minWidth = '';
+        if (pct > 0) {
+          fillEl.style.backgroundColor = 'var(--accent)';
+          fillEl.style.minWidth = pct < 20 ? '15%' : '';
+        }
+      }
+      const progressBar = mockup.querySelector('.progress-bar.premium');
+      if (progressBar) {
+        progressBar.classList.remove('premium');
+        progressBar.offsetHeight;
+        progressBar.classList.add('premium');
+      }
+      if (premiumCompletedTasks === 3) {
+        if (!mockup.classList.contains('celebrate')) {
+          mockup.classList.add('celebrate');
+          setTimeout(() => mockup.classList.remove('celebrate'), 800);
+        }
+      }
+    }
+
+    function togglePriorityPremium(el) {
+      const priorities = ['tag-high', 'tag-medium', 'tag-low'];
+      const labels = ['HIGH', 'MEDIUM', 'LOW'];
+      const currentClass = priorities.find(p => el.classList.contains(p));
+      const currentIndex = priorities.indexOf(currentClass);
+      const nextIndex = (currentIndex + 1) % priorities.length;
+      priorities.forEach(p => el.classList.remove(p));
+      el.classList.add(priorities[nextIndex]);
+      el.textContent = labels[nextIndex];
+      sortTasksByPriority('.mockup-premium');
+    }
+
+    function sortTasksByPriority(mockupSelector) {
+      const mockup = document.querySelector(mockupSelector);
+      if (!mockup) return;
+      const intentionEl = mockup.querySelector('.mockup-intention');
+      const tasks = Array.from(mockup.querySelectorAll('.task-item.premium'));
+      const priorityOrder = { 'tag-high': 0, 'tag-medium': 1, 'tag-low': 2 };
+      tasks.sort((a, b) => {
+        const aTag = Array.from(a.classList).find(c => priorityOrder.hasOwnProperty(c));
+        const bTag = Array.from(b.classList).find(c => priorityOrder.hasOwnProperty(c));
+        return (priorityOrder[aTag] ?? 2) - (priorityOrder[bTag] ?? 2);
+      });
+      let ref = intentionEl.nextElementSibling;
+      for (const task of tasks) {
+        intentionEl.parentNode.insertBefore(task, ref);
+        ref = task.nextElementSibling;
+      }
+    }
+
+    function startCountdownTimer() {
+      function getMidnight() {
+        const m = new Date();
+        m.setHours(24, 0, 0, 0);
+        return m;
+      }
+      let midnight = getMidnight();
+      function updateCountdown() {
+        const now = new Date();
+        if (now >= midnight) midnight = getMidnight();
+        const timeUntilMidnight = midnight - now;
+        const hours = Math.floor(timeUntilMidnight / (1000 * 60 * 60));
+        const minutes = Math.floor((timeUntilMidnight % (1000 * 60 * 60)) / (1000 * 60));
+        document.querySelectorAll('.countdown-timer').forEach(el => {
+          el.textContent = 'Resets in ' + hours + 'h ' + minutes + 'm';
+        });
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+    }
+
+    function resetAllPremiumTasks() {
+      const mockup = document.querySelector('.mockup-premium');
+      if (!mockup) return;
+      mockup.querySelectorAll('.task-check').forEach(el => { el.classList.remove('done'); el.setAttribute('aria-checked', 'false'); });
+      mockup.querySelectorAll('.task-text').forEach(el => el.classList.remove('done'));
+      updateProgressPremium();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      resetAllPremiumTasks();
+      var savedCount = parseInt(localStorage.getItem('just_signup_count') || '0');
+      document.getElementById('spots-taken').textContent = savedCount;
+      document.getElementById('spots-fill').style.width = (savedCount / 500 * 100) + '%';
+      updateProgress();
+      updateProgressPremium();
+      startCountdownTimer();
+    });
+  </script>
+</body>
+</html>

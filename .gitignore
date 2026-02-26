@@ -1,0 +1,17 @@
+# Dependencies (if you add any later)
+node_modules/
+
+# Env / secrets — never commit these; use Netlify env vars
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo

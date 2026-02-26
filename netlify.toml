@@ -1,0 +1,9 @@
+# Netlify config for JUST. landing
+# Deploy this folder (e.g. connect Git or Netlify CLI) so Functions run.
+# Set in Netlify: Site settings → Environment variables:
+#   BEEHIIV_API_KEY = your Beehiiv API key
+#   BEEHIIV_PUB_ID  = pub_5dd3fcb6-6d09-4b12-a42a-2db06d8a8de6
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
