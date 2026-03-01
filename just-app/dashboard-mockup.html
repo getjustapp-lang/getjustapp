@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JUST. — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #EDE8D0;
+      color: #3C4142;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 48px 24px 64px;
+    }
+    .dashboard {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #EDE8D0;
+      border: 1px solid rgba(60, 65, 66, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      padding: 40px 48px 56px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(60, 65, 66, 0.08);
+    }
+    .top-bar-left {
+      font-family: 'Space Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #3C4142;
+    }
+    .top-bar-right {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: #6B7273;
+    }
+    .top-bar-right span { color: #3C4142; font-weight: 700; }
+
+    .section {
+      margin-bottom: 48px;
+    }
+    .section:last-child { margin-bottom: 0; }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6B7273;
+      margin-bottom: 16px;
+    }
+
+    /* Task Completion Graph */
+    .graph-wrap {
+      height: 180px;
+      position: relative;
+    }
+    .graph-wrap svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .graph-line {
+      fill: none;
+      stroke: #2E5C4F;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .graph-area {
+      fill: rgba(46, 92, 79, 0.06);
+    }
+
+    /* Focus Score + Completion in a row */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .metrics-row { grid-template-columns: 1fr; }
+    }
+
+    .focus-card {
+      padding: 32px 0 0;
+    }
+    .focus-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #2E5C4F;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .focus-caption {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 14px;
+      color: #6B7273;
+      font-style: italic;
+    }
+
+    .completion-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0 0;
+    }
+    .completion-ring {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .completion-ring svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+    .completion-ring-bg {
+      fill: none;
+      stroke: rgba(60, 65, 66, 0.08);
+      stroke-width: 6;
+    }
+    .completion-ring-fill {
+      fill: none;
+      stroke: #2E5C4F;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-dasharray: 92 100;
+      transition: none;
+    }
+    .completion-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Space Mono', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: #3C4142;
+    }
+    .completion-caption {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6B7273;
+    }
+
+    /* Midnight Reset */
+    .reset-section {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(60, 65, 66, 0.08);
+    }
+    .reset-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6B7273;
+      margin-bottom: 8px;
+    }
+    .reset-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #3C4142;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <header class="top-bar">
+      <div class="top-bar-left">Today: 3 Tasks Active</div>
+      <div class="top-bar-right">Streak: <span>12 days</span> 🔥</div>
+    </header>
+
+    <section class="section">
+      <p class="section-label">Task completion — last 14 days</p>
+      <div class="graph-wrap">
+        <svg viewBox="0 0 600 180" preserveAspectRatio="none">
+          <path class="graph-area" d="M 0 160 L 43 148 L 86 135 L 129 142 L 171 118 L 214 95 L 257 102 L 300 78 L 343 85 L 386 62 L 429 55 L 471 42 L 514 38 L 557 28 L 600 20 L 600 180 L 0 180 Z" />
+          <path class="graph-line" d="M 0 160 L 43 148 L 86 135 L 129 142 L 171 118 L 214 95 L 257 102 L 300 78 L 343 85 L 386 62 L 429 55 L 471 42 L 514 38 L 557 28 L 600 20" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="section metrics-row">
+      <div class="focus-card">
+        <p class="section-label">Focus</p>
+        <div class="focus-value">87%</div>
+        <p class="focus-caption">Focus Integrity Score</p>
+      </div>
+      <div class="completion-wrap">
+        <p class="section-label">Completion rate</p>
+        <div class="completion-ring">
+          <svg viewBox="0 0 120 120">
+            <circle class="completion-ring-bg" cx="60" cy="60" r="54" />
+            <circle class="completion-ring-fill" cx="60" cy="60" r="54" stroke-dasharray="312 339" />
+          </svg>
+          <span class="completion-value">92%</span>
+        </div>
+        <p class="completion-caption">This week</p>
+      </div>
+    </section>
+
+    <section class="section reset-section">
+      <p class="reset-label">Next reset in</p>
+      <p class="reset-value">02:13:44</p>
+    </section>
+  </div>
+</body>
+</html>

@@ -57,6 +57,7 @@
     }
 
     /* ─── GRAIN OVERLAY ─── */
+    html { overflow-x: hidden; }
     body {
       background: var(--cream);
       color: var(--ink);
@@ -200,6 +201,14 @@
       max-width: 280px;
       line-height: 1.6;
     }
+    .hero-preheadline {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
     .hero-eyebrow {
       font-family: var(--mono);
       font-size: 14px;
@@ -233,12 +242,39 @@
       color: var(--ink);
     }
     .hero-sub {
-      font-family: var(--mono);
-      font-size: 22px;
+      font-family: var(--serif);
+      font-size: 20px;
       font-weight: 400;
       color: var(--slate);
       line-height: 1.5;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
+      max-width: 520px;
+    }
+    .hero-bullets {
+      list-style: none;
+      margin: 0 0 32px 0;
+      padding: 0;
+      max-width: 520px;
+    }
+    .hero-bullets li {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      padding-left: 24px;
+      position: relative;
+    }
+    .hero-bullets li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 14px;
+    }
+    .hero-bullets li strong {
+      font-weight: 600;
+      color: var(--ink);
     }
     .hero-note {
       font-family: var(--mono);
@@ -571,6 +607,98 @@
       line-height: 1.6;
     }
 
+    /* ─── SOCIAL PROOF & EFFICACY ─── */
+    .social-proof {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .social-proof-header {
+      margin-bottom: 48px;
+    }
+    .proof-efficacy {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--ink);
+      line-height: 1.6;
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+    .proof-efficacy-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 12px;
+    }
+    .proof-efficacy-note {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--slate);
+      letter-spacing: 0.04em;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 768px) {
+      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .testimonial-card {
+      padding: 24px 20px;
+      border: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .testimonial-attribution {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--slate);
+    }
+    .visual-proof-placeholder {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .visual-proof-placeholder .screenshot-slot {
+      aspect-ratio: 3/4;
+      background: var(--cream-dark);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .visual-proof-caption {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--slate);
+      margin-top: 12px;
+      text-align: center;
+    }
+
     /* ─── OBSESSION FORMULA ─── */
     .formula {
       padding: 100px 0;
@@ -715,6 +843,85 @@
       color: var(--slate);
       line-height: 1.6;
     }
+    .behavioral-citation {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--slate);
+    }
+    .behavioral-citation-line {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--slate);
+      text-align: center;
+      margin-top: 28px;
+    }
+    .behavioral-foundation {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--ink);
+      opacity: 0.8;
+      margin-top: 32px;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+    .behavioral-foundation p { margin-bottom: 4px; }
+    .behavioral-foundation p:last-child { margin-bottom: 0; }
+    .behavioral-narrative {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--ink);
+      line-height: 1.65;
+      max-width: 560px;
+      margin-top: 20px;
+    }
+    .behavioral-narrative .mechanism-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    /* ─── PAIN / RELIEF ─── */
+    .pain-relief {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .pain-relief-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 60px;
+      margin-top: 40px;
+      max-width: 620px;
+    }
+    @media (max-width: 640px) {
+      .pain-relief-grid { grid-template-columns: 1fr; }
+    }
+    .pain-relief-col h3 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+    .pain-relief-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pain-relief-col li {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.5;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .pain-relief-col li:last-child { border-bottom: none; }
+    .pain-relief-col.pain h3 { color: var(--warn); }
+    .pain-relief-col.relief h3 { color: var(--accent); }
 
     /* ─── SOCIAL PROOF / SCIENCE ─── */
     .science {
@@ -833,6 +1040,165 @@
       color: var(--accent-mid);
       letter-spacing: 0.04em;
       line-height: 1.5;
+    }
+    .pricing-plan.featured {
+      box-shadow: 0 0 0 1px rgba(212,175,55,0.35), 0 8px 24px rgba(212,175,55,0.08);
+    }
+    .plan-value-prop {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 12px;
+    }
+    .pricing-plan.featured .plan-value-prop { color: rgba(242,237,220,0.6); }
+    .plan-annual-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--slate);
+      margin-top: 8px;
+      font-style: italic;
+    }
+    .pricing-plan.featured .plan-annual-note { color: rgba(242,237,220,0.5); }
+
+    /* ─── 67% REWARD CALLOUT ─── */
+    .reward-callout {
+      position: relative;
+      width: 100%;
+      background: var(--accent);
+      color: var(--cream);
+      padding: 80px 24px;
+      overflow: hidden;
+    }
+    .reward-callout::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+    .reward-callout-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .reward-callout h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .reward-callout-sub {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: rgba(242,237,220,0.8);
+      letter-spacing: 0.03em;
+      margin-bottom: 20px;
+    }
+    .reward-callout-body {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: rgba(242,237,220,0.7);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    @media (max-width: 640px) {
+      .reward-callout { padding: 48px 24px; overflow-x: hidden; }
+      .reward-callout h2 { font-size: clamp(24px, 3.5vw, 40px); }
+      .reward-callout-body { font-size: 15px; }
+      .reward-callout-inner { max-width: 100%; overflow-wrap: break-word; min-width: 0; }
+    }
+
+    /* ─── FOUNDER STORY (Why I Built JUST) ─── */
+    .founder-story {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .founder-story-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .founder-story-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      flex-shrink: 0;
+    }
+    .founder-story-text { flex: 1; min-width: 260px; }
+    .founder-story-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 12px;
+    }
+    .founder-story-heading {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+    .founder-story-body {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    @media (max-width: 640px) {
+      .founder-story-inner { flex-direction: column; }
+    }
+
+    /* ─── WAITLIST PROGRESS BAR (static) ─── */
+    .waitlist-spots {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .waitlist-spots strong { color: var(--accent); }
+    .waitlist-trust-line {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--slate);
+      text-align: center;
+      margin-top: 12px;
+    }
+    .waitlist-bar-static {
+      height: 6px;
+      background: var(--cream-dark);
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .waitlist-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      /* UPDATE THIS to match the [X] counter above: formula = (signups / 500) * 100 + '%' */
+      width: 0%;
+    }
+    .btn-joined {
+      opacity: 0.9;
+      cursor: not-allowed;
     }
 
     /* ─── JOINED TOAST ─── */
@@ -985,15 +1351,23 @@
       align-items: center;
     }
 
-    /* ─── ANIMATIONS ─── */
+    /* ─── ANIMATIONS (subtle scroll reveal) ─── */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(20px);
+      transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1), transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
     }
     .reveal.visible {
       opacity: 1;
-      transform: none;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
 
     /* ─── PREMIUM ANIMATIONS ─── */
@@ -1111,12 +1485,21 @@
       .formula-grid { grid-template-columns: 1fr; }
       .formula-block.wide { grid-column: 1; }
       .container { padding: 0 20px; }
+      /* Hero (Prompts 1–2) */
+      .hero-preheadline { font-size: 13px; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; }
+      .hero-bullets { padding-left: 16px; padding-right: 16px; max-width: 100%; }
+      .hero-bullets li { white-space: normal; overflow-wrap: break-word; }
+      /* 67% callout (Prompt 3): padding/headline/body in reward-callout block above */
+      /* Final CTA progress bar (Prompt 4) */
+      .final-cta .final-cta-grid { padding-left: 16px; padding-right: 16px; box-sizing: border-box; }
+      .final-cta .waitlist-bar-static { max-width: none; width: 100%; margin-left: 0; margin-right: 0; }
+      .final-cta-grid > div[style*="nowrap"] { white-space: normal; }
     }
 
     @media (max-width: 480px) {
       .container { padding: 0 18px; }
       .hero { padding: 48px 0 40px; }
-      .formula, .why, .pricing, .final-cta, .behavioral { padding: 72px 0; }
+      .formula, .why, .pricing, .final-cta, .behavioral, .pain-relief, .founder-story { padding: 72px 0; }
     }
   </style>
 </head>
@@ -1144,19 +1527,23 @@
             <p class="hero-tagline" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 280px; margin: 0;\">"The world's most boring productivity app.<br>On purpose."</p>          </div>
         </div>
         <div>
-          <p class="hero-eyebrow">Behavioral productivity — not engagement theatre</p>
+          <p class="hero-preheadline">STOP PLANNING. START DOING.</p>
           <h1 class="hero-headline">
-            Stop<br />
-            <em>Planning.</em><br />
-            Start Doing.
+            Finish 3 Meaningful Tasks Every Day.
           </h1>
-          <p class="hero-sub" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 440px;">
-            "You don't need a beautiful app.<br>You need a beautiful outcome."
+          <p class="hero-sub">
+            JUST limits you to 3 tasks daily — so you stop building lists and start finishing things.
           </p>
+          <ul class="hero-bullets">
+            <li><strong>No endless task lists.</strong> — Focus is a finite resource.</li>
+            <li><strong>No guilt from yesterday's backlog.</strong> — Clean slate every midnight.</li>
+            <li><strong>Midnight reset.</strong> Every day is Day 1.</li>
+            <li><strong>Built for execution.</strong> — Not engagement.</li>
+          </ul>
           <p class="hero-note">Pick three. Finish them. Tomorrow starts fresh.</p>
           <div class="hero-form" id="hero-form-wrap">
             <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for early access" />
-            <button type="button" onclick="handleSignup('hero')" aria-label="Submit email for early access">Get Early Access</button>
+            <button type="button" onclick="handleSignup('hero')" aria-label="Submit email for early access">Claim your spot →</button>
           </div>
           <div class="form-success" id="hero-success">
             ✓ You're on the list. Watch your inbox.
@@ -1167,6 +1554,47 @@
           </div>
           <p class="hero-footnote">No infinite lists. No guilt. Just today.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOCIAL PROOF & EFFICACY ─── -->
+  <section class="social-proof" aria-labelledby="social-proof-heading">
+    <div class="container">
+      <div class="social-proof-header reveal">
+        <p class="section-label">Social Proof & Efficacy</p>
+        <h2 class="section-title" id="social-proof-heading">Proof</h2>
+      </div>
+
+      <div class="proof-efficacy reveal">
+        <p class="proof-efficacy-title">Protocol Efficacy</p>
+        <p>Tested constraint vs unlimited lists—3-task limit won on adherence.</p>
+        <p class="proof-efficacy-note">Launching micro-beta Jan 30—first 50 get results dashboard access.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <p class="testimonial-quote">"Finally, an app that doesn't feel like a second job."</p>
+          <p class="testimonial-attribution">— Sarah, Founder</p>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-quote">"The midnight wipe is the only thing that stopped my shame-spiral."</p>
+          <p class="testimonial-attribution">— Marc, Designer</p>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-quote">"3 tasks is the perfect cognitive load for my ADHD brain."</p>
+          <p class="testimonial-attribution">— Alex, Student</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <p class="section-label">Visual Proof</p>
+        <div class="visual-proof-placeholder">
+          <div class="screenshot-slot" aria-hidden="true">User streak</div>
+          <div class="screenshot-slot" aria-hidden="true">User streak</div>
+          <div class="screenshot-slot" aria-hidden="true">User streak</div>
+        </div>
+        <p class="visual-proof-caption">3 blurred screenshots of user streaks (placeholder)</p>
       </div>
     </div>
   </section>
@@ -1282,30 +1710,71 @@
     </div>
   </section>
 
-  <!-- ─── BEHAVIORAL SCIENCE (NEW SECTION) ─── -->
+  <!-- ─── WHY PLANNING FAILS YOU (Pain / Relief) ─── -->
+  <section class="pain-relief" aria-labelledby="pain-relief-heading">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">The shift</p>
+        <h2 class="section-title" id="pain-relief-heading">Why Planning Fails You.</h2>
+      </div>
+      <div class="pain-relief-grid reveal">
+        <div class="pain-relief-col pain">
+          <h3>Pain</h3>
+          <ul>
+            <li>Infinite lists</li>
+            <li>Onboarding hell</li>
+            <li>Backlog guilt</li>
+            <li>Notification noise</li>
+          </ul>
+        </div>
+        <div class="pain-relief-col relief">
+          <h3>Relief</h3>
+          <ul>
+            <li>3-task cap</li>
+            <li>Zero setup</li>
+            <li>Midnight wipe</li>
+            <li>Silent by design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW JUST REWIRES EXECUTION (Psychology / Mechanism) ─── -->
   <section class="behavioral" aria-labelledby="behavioral-heading">
     <div class="container">
       <div class="reveal">
-        <p class="section-label">The science of behavior</p>
-        <h2 class="section-title" id="behavioral-heading">Decision Fatigue, Zeigarnik, Dopamine.</h2>
-        <p class="section-sub">Every feature is a lever for your behavior. Peer-reviewed, not invented.</p>
+        <p class="section-label">Psychology</p>
+        <h2 class="section-title" id="behavioral-heading">How JUST Rewires Execution.</h2>
+        <p class="behavioral-narrative">
+          <span class="mechanism-label">Mechanism:</span> Constraint. We cap you at three tasks.<br />
+          <span class="mechanism-label">Behavior:</span> Reduced choice. You stop deciding what to do and start doing.<br />
+          <span class="mechanism-label">Felt state:</span> Focus. The brain stops juggling and lands. That's how JUST rewires execution—not more options, fewer.
+        </p>
       </div>
       <div class="behavioral-grid">
         <div class="behavioral-block reveal">
           <div class="behavioral-num">01</div>
           <div class="behavioral-title">ADHD Friendly</div>
-          <p class="behavioral-desc">Executive dysfunction thrives on clutter. By enforcing a 3-task cap and a midnight wipe, we remove the "shame-backlog" and decision fatigue that paralyzes the ADHD brain. Restraint is the accommodation.</p>
+          <p class="behavioral-desc">Executive dysfunction thrives on clutter. By enforcing a 3-task cap and a midnight wipe, we remove the "shame-backlog" and decision fatigue that paralyzes the ADHD brain. Restraint is the accommodation. <span class="behavioral-citation">(Baumeister, 1998 — ego depletion)</span></p>
         </div>
         <div class="behavioral-block reveal">
           <div class="behavioral-num">02</div>
           <div class="behavioral-title">Zeigarnik Effect</div>
-          <p class="behavioral-desc">Unfinished tasks occupy ~90% more mental bandwidth than finished ones. Our progress bar and midnight wipe turn that tension into clarity: complete or let go.</p>
+          <p class="behavioral-desc">Unfinished tasks occupy ~90% more mental bandwidth than finished ones. Our progress bar and midnight wipe turn that tension into clarity: complete or let go. <span class="behavioral-citation">(Zeigarnik, 1927 — incomplete task bandwidth)</span></p>
         </div>
         <div class="behavioral-block reveal">
           <div class="behavioral-num">03</div>
           <div class="behavioral-title">Dopamine Loop</div>
-          <p class="behavioral-desc">Small wins release dopamine and reinforce behavior. Three tasks, clear completion, and the 67% reward create a sustainable loop—not engagement theatre, but real habit formation.</p>
+          <p class="behavioral-desc">Small wins release dopamine and reinforce behavior. Three tasks, clear completion, and the 67% reward create a sustainable loop—not engagement theatre, but real habit formation. <span class="behavioral-citation">(Davenport &amp; Beck, 2001 — attention economics)</span></p>
         </div>
+      </div>
+      <p class="behavioral-citation-line">Mechanism-first. Every constraint has a citation.</p>
+      <div class="behavioral-foundation reveal">
+        <p>Built on research in:</p>
+        <p>— Decision fatigue (Baumeister et al.)</p>
+        <p>— Dopamine-driven reward cycles</p>
+        <p>— Commitment device behavioral economics</p>
       </div>
     </div>
   </section>
@@ -1315,7 +1784,7 @@
     <div class="container">
       <div class="reveal">
         <p class="section-label">The science of focus</p>
-        <h2 class="section-title">Peer-reviewed. Not invented.</h2>
+        <h2 class="section-title">Mechanism-first. Every constraint has a citation.</h2>
         <p class="section-sub">Every feature is a lever for your behavior.</p>
       </div>
       <div class="science-grid">
@@ -1384,6 +1853,7 @@
           <p class="plan-name">Free — No account needed</p>
           <p class="plan-price">$0</p>
           <p class="plan-period">forever. no card. no friction.</p>
+          <p class="plan-value-prop">Enforced Focus</p>
           <ul class="plan-features">
             <li class="plan-feature">3-task cap, enforced</li>
             <li class="plan-feature">Midnight wipe</li>
@@ -1394,9 +1864,11 @@
           </ul>
         </div>
         <div class="pricing-plan featured">
-          <p class="plan-name">Paid — The full system</p>
+          <p class="plan-name">Premium — The full system</p>
           <p class="plan-price">$5</p>
           <p class="plan-period">/ month. cancel anytime.</p>
+          <p class="plan-annual-note">Annual (save 25%) coming Q1 2026.</p>
+          <p class="plan-value-prop">Enforced Focus</p>
           <ul class="plan-features">
             <li class="plan-feature">Everything in free</li>
             <li class="plan-feature">Streak tracking (protectable)</li>
@@ -1415,24 +1887,53 @@
     </div>
   </section>
 
+  <!-- ─── 67% REWARD CALLOUT ─── -->
+  <section class="reward-callout" aria-labelledby="reward-callout-heading">
+    <div class="reward-callout-inner">
+      <h2 id="reward-callout-heading">67% completion across the year = 2 months free.</h2>
+      <p class="reward-callout-sub">Automatically. No form. No request. It just happens.</p>
+      <p class="reward-callout-body">Because we only win when you win. That is not a marketing message. That is the business model.</p>
+    </div>
+  </section>
+
+  <!-- ─── WHY I BUILT JUST (Founder Story) ─── -->
+  <section class="founder-story" aria-labelledby="founder-heading">
+    <div class="container">
+      <div class="founder-story-inner reveal">
+        <img src="founder.jpeg" alt="Chaitanya Madhavan, founder of JUST." class="founder-story-photo" width="140" height="140" loading="lazy" />
+        <div class="founder-story-text">
+          <p class="founder-story-title">Founder</p>
+          <h2 class="founder-story-heading" id="founder-heading">Why I Built JUST</h2>
+          <p class="founder-story-body">Productivity culture sold us a lie. More tools. More systems. More integrations. As if the problem was organisation, never discipline. It wasn't. The problem was infinite optionality dressed up as productivity.</p>
+          <p class="founder-story-body">JUST exists because constraint is a decision. Three tasks. Midnight wipe. No backlog. Not for aesthetics, but because the brain performs better when the choice is already made. Fewer decisions. More execution.</p>
+          <p class="founder-story-body">JUST began as a personal protocol. A way to end the cycle of planning over finishing. The structure worked. The negotiation stopped. This isn't a productivity app. It's a daily commitment mechanism, designed to close the gap between intention and action.</p>
+          <p class="founder-story-body">Built for people who are done negotiating with themselves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── FINAL CTA ─── -->
   <section class="final-cta" id="waitlist">
     <div class="container">
       <div class="final-cta-grid" style="text-align: center; max-width: 700px; margin: 0 auto;">
-        <p class="section-label">Join the waitlist</p>
-        <h2 class="section-title">Three tasks.<br/>Midnight wipe.<br/>Nothing else.</h2>
+        <p class="section-label">Early access</p>
+        <h2 class="section-title">Three tasks. Midnight wipe. Nothing else.</h2>
+        <p class="section-sub" style="margin: 0 auto 24px; text-align: center;">Join the first 500. Lifetime 20% off. Shape the roadmap.</p>
+        <p class="waitlist-spots" style="text-align: center;"><strong id="waitlist-count">[X]</strong> / 500 early spots claimed</p>
+        <div class="waitlist-bar-static" style="margin-left: auto; margin-right: auto;">
+          <div class="waitlist-bar-fill" id="waitlist-bar-fill"></div>
+        </div>
         <div style="display: flex; flex-direction: column; gap: 10px; margin: 0 auto 32px; max-width: 520px;">
           <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> 3 tasks maximum. Hard cap enforced.</div>
           <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> Unfinished tasks delete at midnight. Clean slate daily.</div>
           <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> Hit 67% completion yearly <span style="font-size: 12px;">→</span> 2 months free automatically.</div>
         </div>
-        <p class="section-sub" style="margin: 0 auto 12px; text-align: center; font-size: 18px;">Early access is limited to 500 people.</p>
-        <p class="hero-footnote" style="margin-bottom: 12px; text-align: center;">One email. No spam. We only message when it's ready.</p>
-        <p class="form-note" style="margin-bottom: 24px;">No spam. No onboarding hell. Just an email when JUST is ready.</p>
         <div class="final-form" id="final-form-wrap" style="margin: 0 auto 16px; max-width: 440px;">
           <input type="email" id="final-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for waitlist" />
           <button type="button" onclick="handleSignup('final')" aria-label="Claim your early access spot">Claim your spot →</button>
         </div>
+        <p class="waitlist-trust-line">One email. No spam. No onboarding hell. Just an email when JUST is ready.</p>
         <div class="form-success" id="final-success">
           ✓ You're in. Watch your inbox for early access.
         </div>
@@ -1466,17 +1967,23 @@
   </footer>
 
   <script>
-    // ─── REVEAL ON SCROLL ───
+    // ─── REVEAL ON SCROLL (subtle fade-in, respects prefers-reduced-motion) ───
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 60);
-          observer.unobserve(e.target);
-        }
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var section = el.closest('section');
+        var siblings = section ? section.querySelectorAll('.reveal') : [el];
+        var idx = Array.prototype.indexOf.call(siblings, el);
+        var delay = prefersReducedMotion ? 0 : idx * 100;
+        el.style.transitionDelay = delay + 'ms';
+        el.classList.add('visible');
+        observer.unobserve(el);
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    }, { threshold: 0.08, rootMargin: '0px 0px -2% 0px' });
+    reveals.forEach(function (el) { observer.observe(el); });
 
     let completedTasks = 0;
     const totalTasks = 3;
@@ -1569,6 +2076,12 @@
       formWrap.style.display = 'none';
       successEl.style.display = 'block';
       showJoinedToast();
+      document.querySelectorAll('#hero-form-wrap button, #final-form-wrap button').forEach(function (b) {
+        b.textContent = 'JOINED ✓';
+        b.disabled = true;
+        b.classList.add('btn-joined');
+        b.setAttribute('aria-label', 'You have joined the waitlist');
+      });
     }
 
     function showJoinedToast() {
@@ -1586,6 +2099,18 @@
         if (e.key === 'Enter') handleSignup(id.split('-')[0]);
       });
     });
+
+    (function () {
+      var counterEl = document.getElementById('waitlist-count');
+      var barEl = document.getElementById('waitlist-bar-fill');
+      if (!counterEl || !barEl) return;
+      var raw = counterEl.textContent.trim();
+      var value = raw === '[X]' ? 0 : parseInt(raw, 10);
+      if (isNaN(value)) value = 0;
+      value = Math.min(500, Math.max(0, value));
+      var pct = (value / 500) * 100;
+      barEl.style.width = pct + '%';
+    })();
 
     function toggleCheckPremium(el) {
       var wasDone = el.classList.contains('done');

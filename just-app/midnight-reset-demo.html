@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JUST. — Midnight Reset</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #EDE8D0;
+      --bg-dark: #E0DAC4;
+      --ink: #3C4142;
+      --accent: #2E5C4F;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Lora', Georgia, serif;
+      color: var(--ink);
+      overflow: hidden;
+    }
+    body {
+      background: var(--bg);
+      transition: background 1.2s var(--ease);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+    body.phase-dark { background: var(--bg-dark); }
+
+    .clock {
+      font-family: 'Space Mono', monospace;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      margin-bottom: 64px;
+      opacity: 0.6;
+    }
+
+    .tasks {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 360px;
+      width: 100%;
+    }
+    .task {
+      font-family: 'Space Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      padding: 14px 18px;
+      border: 1px solid rgba(60, 65, 66, 0.12);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.4);
+      transition: opacity 800ms var(--ease);
+    }
+    .task.fade-out { opacity: 0; }
+
+    .message-wrap {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s var(--ease);
+    }
+    .message-wrap.visible { opacity: 1; }
+    .message-wrap .line {
+      font-family: 'Space Mono', monospace;
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .message-wrap .line.second {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--ink);
+      opacity: 0.85;
+    }
+
+    .accent-line {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      width: 0;
+      opacity: 0.6;
+      transition: none;
+    }
+    .accent-line.animate {
+      transition: width 1.2s var(--ease);
+      width: 100%;
+    }
+
+    .start-btn {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid rgba(46, 92, 79, 0.4);
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .start-btn:hover { border-color: var(--accent); }
+    .start-btn.hidden { opacity: 0; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div class="clock" aria-live="polite">00:00</div>
+  <div class="tasks" role="list">
+    <div class="task" role="listitem">Reply to investor email</div>
+    <div class="task" role="listitem">Ship feature flag for beta</div>
+    <div class="task" role="listitem">Draft weekly update</div>
+  </div>
+
+  <div class="message-wrap" aria-live="polite" aria-atomic="true">
+    <p class="line">Reset complete.</p>
+    <p class="line second">Tomorrow is earned.</p>
+  </div>
+
+  <div class="accent-line" aria-hidden="true"></div>
+
+  <button type="button" class="start-btn" id="start">Run reset</button>
+
+  <script>
+    (function () {
+      var body = document.body;
+      var tasks = document.querySelectorAll('.task');
+      var messageWrap = document.querySelector('.message-wrap');
+      var accentLine = document.querySelector('.accent-line');
+      var startBtn = document.getElementById('start');
+      var DURATION_FADE = 800;
+      var DURATION_BG = 1200;
+      var DURATION_LINE = 1200;
+      var EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+      function run() {
+        startBtn.classList.add('hidden');
+
+        // 0: Clock already at 00:00. Start fade-out of tasks.
+        tasks.forEach(function (t) { t.classList.add('fade-out'); });
+
+        // After task fade, darken background and show message
+        setTimeout(function () {
+          body.classList.add('phase-dark');
+          messageWrap.classList.add('visible');
+          // Accent line: start after message is visible
+          requestAnimationFrame(function () {
+            accentLine.classList.add('animate');
+          });
+        }, DURATION_FADE + 200);
+
+        // Re-run after full sequence so user can watch again
+        setTimeout(function () {
+          body.classList.remove('phase-dark');
+          messageWrap.classList.remove('visible');
+          accentLine.classList.remove('animate');
+          tasks.forEach(function (t) { t.classList.remove('fade-out'); });
+          startBtn.classList.remove('hidden');
+        }, DURATION_FADE + 200 + DURATION_BG + DURATION_LINE + 800);
+      }
+
+      startBtn.addEventListener('click', run);
+    })();
+  </script>
+</body>
+</html>
