@@ -671,34 +671,6 @@
       letter-spacing: 0.06em;
       color: var(--slate);
     }
-    .visual-proof-placeholder {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .visual-proof-placeholder .screenshot-slot {
-      aspect-ratio: 3/4;
-      background: var(--cream-dark);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--ink-faint);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .visual-proof-caption {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--slate);
-      margin-top: 12px;
-      text-align: center;
-    }
-
     /* ─── OBSESSION FORMULA ─── */
     .formula {
       padding: 100px 0;
@@ -1135,6 +1107,7 @@
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center 35%;
       border: 4px solid var(--accent);
       flex-shrink: 0;
     }
@@ -1587,15 +1560,6 @@
         </div>
       </div>
 
-      <div class="reveal">
-        <p class="section-label">Visual Proof</p>
-        <div class="visual-proof-placeholder">
-          <div class="screenshot-slot" aria-hidden="true">User streak</div>
-          <div class="screenshot-slot" aria-hidden="true">User streak</div>
-          <div class="screenshot-slot" aria-hidden="true">User streak</div>
-        </div>
-        <p class="visual-proof-caption">3 blurred screenshots of user streaks (placeholder)</p>
-      </div>
     </div>
   </section>
 
@@ -1749,7 +1713,8 @@
         <p class="behavioral-narrative">
           <span class="mechanism-label">Mechanism:</span> Constraint. We cap you at three tasks.<br />
           <span class="mechanism-label">Behavior:</span> Reduced choice. You stop deciding what to do and start doing.<br />
-          <span class="mechanism-label">Felt state:</span> Focus. The brain stops juggling and lands. That's how JUST rewires execution—not more options, fewer.
+          <span class="mechanism-label">Felt state:</span> Focus. The brain stops juggling and lands.<br />
+          That's how JUST rewires execution—not more options, fewer.
         </p>
       </div>
       <div class="behavioral-grid">
@@ -1900,7 +1865,7 @@
   <section class="founder-story" aria-labelledby="founder-heading">
     <div class="container">
       <div class="founder-story-inner reveal">
-        <img src="founder.jpeg" alt="Chaitanya Madhavan, founder of JUST." class="founder-story-photo" width="140" height="140" loading="lazy" />
+        <img src="../Just PDFBIZ/Photo_of_founder.jpeg" alt="Chaitanya Madhavan, founder of JUST." class="founder-story-photo" width="140" height="140" loading="lazy" style="object-position: center 35%;" />
         <div class="founder-story-text">
           <p class="founder-story-title">Founder</p>
           <h2 class="founder-story-heading" id="founder-heading">Why I Built JUST</h2>
@@ -2165,8 +2130,8 @@
     }
 
     function togglePriorityPremium(el) {
-      const priorities = ['tag-high', 'tag-medium', 'tag-low'];
-      const labels = ['HIGH', 'MEDIUM', 'LOW'];
+      const priorities = ['tag-low', 'tag-medium', 'tag-high'];
+      const labels = ['LOW', 'MEDIUM', 'HIGH'];
       const currentClass = priorities.find(p => el.classList.contains(p));
       const currentIndex = priorities.indexOf(currentClass);
       const nextIndex = (currentIndex + 1) % priorities.length;
