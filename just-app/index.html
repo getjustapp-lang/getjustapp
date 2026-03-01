@@ -835,37 +835,27 @@
       line-height: 1.5;
     }
 
-    /* ─── WAITLIST COUNTER ─── */
-    .waitlist-bar {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-      background: var(--cream-dark);
-    }
-    .waitlist-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .waitlist-text {
+    /* ─── JOINED TOAST ─── */
+    .joined-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: var(--ink);
+      color: var(--cream);
       font-family: var(--mono);
-      font-size: 13px;
-      letter-spacing: 0.04em;
-      color: var(--ink);
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 0.06em;
+      padding: 24px 48px;
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
     }
-    .waitlist-text strong { color: var(--accent); }
-    .spots-bar {
-      flex: 1;
-      max-width: 200px;
-      height: 6px;
-      background: var(--cream);
-      border: 1px solid var(--border);
-    }
-    .spots-fill {
-      height: 100%;
-      background: var(--accent);
-      width: 0%;
-      transition: width 0.4s ease;
+    .joined-toast.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
     }
 
     /* ─── FINAL CTA (Brand Bible: left-align) ─── */
@@ -1133,6 +1123,9 @@
 
 <body>
 
+  <!-- ─── JOINED CONFIRMATION POPUP ─── -->
+  <div class="joined-toast" id="joined-toast" aria-live="polite" aria-atomic="true">Joined!</div>
+
   <!-- ─── NAV ─── -->
   <nav>
     <div class="container">
@@ -1140,20 +1133,6 @@
       <a class="nav-cta" href="#waitlist" aria-label="Get early access to JUST">Get Early Access</a>
     </div>
   </nav>
-
-  <!-- ─── WAITLIST BAR ─── -->
-  <div class="waitlist-bar" role="region" aria-label="Waitlist progress">
-    <div class="container">
-      <div class="waitlist-inner">
-        <p class="waitlist-text">
-          <strong id="spots-taken">0</strong> / 500 early access spots claimed
-        </p>
-        <div class="spots-bar" aria-hidden="true">
-          <div class="spots-fill" id="spots-fill"></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ─── HERO ─── -->
   <section class="hero">
@@ -1546,13 +1525,6 @@
     }
 
     // ─── FIX #1 + #2: Real counter from Beehiiv via Netlify function ──────────
-    function updateWaitlistUI(count) {
-      if (typeof count !== 'number' || isNaN(count)) return;
-      const capped = Math.min(count, 500);
-      document.getElementById('spots-taken').textContent = capped;
-      document.getElementById('spots-fill').style.width = (capped / 500 * 100) + '%';
-    }
-
     async function handleSignup(source) {
       const emailEl = document.getElementById(source === 'hero' ? 'hero-email' : 'final-email');
       const email = emailEl.value.trim();
@@ -1588,11 +1560,6 @@
           return;
         }
 
-        // FIX #1 + #2: Read the REAL count back from the server response
-        if (data.count !== null && data.count !== undefined) {
-          updateWaitlistUI(data.count);
-        }
-
       } catch (err) {
         if (btn) setButtonLoading(btn, false);
         if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Network error. Check connection and try again.'; }
@@ -1601,6 +1568,16 @@
 
       formWrap.style.display = 'none';
       successEl.style.display = 'block';
+      showJoinedToast();
+    }
+
+    function showJoinedToast() {
+      const toast = document.getElementById('joined-toast');
+      if (!toast) return;
+      toast.classList.add('visible');
+      setTimeout(function () {
+        toast.classList.remove('visible');
+      }, 2000);
     }
 
     ['hero-email', 'final-email'].forEach(id => {
@@ -1767,22 +1744,8 @@
     }
 
     // ─── FIX #1: Fetch real subscriber count on page load ──────────────────
-    async function fetchWaitlistCount() {
-      try {
-        const res = await fetch('/.netlify/functions/signup-count');
-        if (res.ok) {
-          const data = await res.json();
-          updateWaitlistUI(data.count);
-        }
-      } catch (e) {
-        // Silently fail — counter stays at 0 if function is unavailable
-      }
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
       resetAllPremiumTasks();
-      // FIX #1: Removed fake localStorage counter — fetch real count instead
-      fetchWaitlistCount();
       updateProgress();
       updateProgressPremium();
       startCountdownTimer();
