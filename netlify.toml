@@ -1,0 +1,10 @@
+# Netlify config at repo root — build from just-app so config is found
+# Set env in Netlify UI: BEEHIIV_API_KEY, BEEHIIV_PUB_ID
+
+[build]
+  base = "just-app"
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
