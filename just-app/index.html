@@ -1885,7 +1885,7 @@
 
       try {
         console.log('[JUST signup] Attempting signup for:', email);
-        const res = await fetch('/.netlify/functions/signup', {
+        const res = await fetch('/api/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
