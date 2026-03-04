@@ -1373,6 +1373,102 @@
       .hero { padding: 48px 0 40px; }
       .formula, .why, .pricing, .final-cta, .behavioral, .pain-relief, .founder-story { padding: 72px 0; }
     }
+
+    /* ─── TWO QUESTIONS (Objection cards) ─── */
+    .two-questions-section .two-questions-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 40px;
+    }
+    .two-questions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--ink);
+      border: 1.5px solid var(--ink);
+      align-items: stretch;
+    }
+    .two-questions-card {
+      background: var(--cream);
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    .two-questions-question {
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .two-questions-answer {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .two-questions-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      height: 100%;
+    }
+    .two-questions-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.65;
+      padding: 13px 0;
+      border-bottom: 1px dashed var(--border);
+      height: 100%;
+      min-height: unset;
+    }
+    .two-questions-list li:last-child {
+      border-bottom: none;
+    }
+    .two-questions-arrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .two-questions-list li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .two-questions-footer {
+      background: var(--ink);
+      padding: 26px 40px;
+      border: 1.5px solid var(--ink);
+      border-top: none;
+    }
+    .two-questions-footer p {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--cream);
+      text-align: center;
+      line-height: 1.55;
+    }
+    @media (max-width: 700px) {
+      .two-questions-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
@@ -1430,33 +1526,57 @@
     </div>
   </section>
 
-  <section style="padding: 80px 0; border-bottom: 1px solid var(--border);">
+  <section class="two-questions-section" style="padding: 80px 0; border-bottom: 1px solid var(--border);">
     <div class="container">
-      <p style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-bottom: 40px;">Two questions everyone asks</p>
-      <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px; background: var(--ink); border: 1.5px solid var(--ink); max-width: 100%;">
-        <div style="background: var(--cream); padding: 40px 36px; min-width: 0;">
-          <p style="font-family: var(--serif); font-size: 22px; font-weight: 400; font-style: italic; color: var(--ink); line-height: 1.3; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px dashed var(--border);">"But I have more than 3 things to do."</p>
-          <p style="font-family: var(--serif); font-size: 16px; color: var(--ink); line-height: 1.7; margin-bottom: 20px;">You do. JUST. is not for all of it.</p>
-          <ul style="list-style: none; padding: 0; margin: 0;">
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: 1px dashed var(--border); display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;">It's for the 3 things that <strong style="color: var(--ink); font-weight: 600;">won't happen</strong> unless you actively decide they will</span></li>
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: 1px dashed var(--border); display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;">Your lectures, meetings, obligations have <strong style="color: var(--ink); font-weight: 600;">external deadlines</strong>. They happen regardless.</span></li>
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: 1px dashed var(--border); display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;">JUST. is for the things with <strong style="color: var(--ink); font-weight: 600;">no deadline</strong>. No one chasing you. Only a slow accumulation of regret if you skip.</span></li>
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: none; display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;">A 20-task list doesn't make you 20x more productive. It gives your brain <strong style="color: var(--ink); font-weight: 600;">20 reasons to shut down</strong> before you start.</span></li>
+      <p class="two-questions-label">Two questions everyone asks</p>
+      <div class="two-questions-grid">
+        <div class="two-questions-card">
+          <p class="two-questions-question">"But I have more than 3 things to do."</p>
+          <p class="two-questions-answer">You do. JUST. is not for all of it.</p>
+          <ul class="two-questions-list">
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span>It's for the 3 things that <strong>won't happen</strong> unless you actively decide they will.</span>
+            </li>
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span>Your lectures, meetings, obligations have <strong>external deadlines</strong>. They happen regardless.</span>
+            </li>
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span>JUST. is for the things with <strong>no deadline</strong>. No one chasing you. Only a slow accumulation of regret if you skip.</span>
+            </li>
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span>A 20-task list doesn't make you 20x more productive. It gives your brain <strong>20 reasons to shut down</strong> before you start.</span>
+            </li>
           </ul>
         </div>
-        <div style="background: var(--cream); padding: 40px 36px; min-width: 0;">
-          <p style="font-family: var(--serif); font-size: 22px; font-weight: 400; font-style: italic; color: var(--ink); line-height: 1.3; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px dashed var(--border);">"Why not just use a notebook?"</p>
-          <p style="font-family: var(--serif); font-size: 16px; color: var(--ink); line-height: 1.7; margin-bottom: 20px;">You can. Four things a notebook cannot do.</p>
-          <ul style="list-style: none; padding: 0; margin: 0;">
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: 1px dashed var(--border); display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;"><strong style="color: var(--ink); font-weight: 600;">Midnight wipe is automatic.</strong> A notebook carries everything forward. JUST. deletes at midnight whether you want it to or not.</span></li>
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: 1px dashed var(--border); display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;"><strong style="color: var(--ink); font-weight: 600;">The limit is enforced.</strong> A notebook lets you write a 4th task. Then 15. The constraint only works if it cannot be broken.</span></li>
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: 1px dashed var(--border); display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;"><strong style="color: var(--ink); font-weight: 600;">67% rule requires data.</strong> A notebook cannot track 365 days of completion and give you 2 months free automatically.</span></li>
-            <li style="font-family: var(--serif); font-size: 15px; color: var(--slate); line-height: 1.65; padding: 14px 0 14px 0; padding-left: 20px; border-bottom: none; display: flex; align-items: flex-start; gap: 8px;"><span style="flex-shrink: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; margin-top: 3px;">→</span><span style="flex: 1; min-width: 0; overflow-wrap: break-word;"><strong style="color: var(--ink); font-weight: 600;">A notebook has no streak to lose.</strong> JUST. does. Miss a day and it resets. That feeling of not wanting to break the chain is exactly what keeps you coming back.</span></li>
+        <div class="two-questions-card">
+          <p class="two-questions-question">"Why not just use a notebook?"</p>
+          <p class="two-questions-answer">You can. Four things a notebook cannot do.</p>
+          <ul class="two-questions-list">
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span><strong>Midnight wipe is automatic.</strong> A notebook carries everything forward. JUST. deletes at midnight whether you want it to or not.</span>
+            </li>
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span><strong>The limit is enforced.</strong> A notebook lets you write a 4th task. Then 15. The constraint only works if it cannot be broken.</span>
+            </li>
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span><strong>67% rule requires data.</strong> A notebook cannot track 365 days of completion and give you 2 months free automatically.</span>
+            </li>
+            <li>
+              <span class="two-questions-arrow">→</span>
+              <span><strong>A notebook has no streak to lose.</strong> JUST. does. Miss a day and it resets. That feeling of not wanting to break the chain is exactly what keeps you coming back.</span>
+            </li>
           </ul>
         </div>
       </div>
-      <div style="background: var(--ink); padding: 28px 36px; border: 1.5px solid var(--ink); border-top: none;">
-        <p style="font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--cream); text-align: center; line-height: 1.5; margin: 0;">The 3 are not your whole day. They're the part of your day that only exists if you choose it.</p>
+      <div class="two-questions-footer">
+        <p>The 3 are not your whole day. They're the part of your day that only exists if you choose it.</p>
       </div>
     </div>
   </section>
