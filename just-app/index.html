@@ -1445,7 +1445,7 @@
           <div class="mockup mockup-premium">
             <div class="mockup-corner"><span>PRO</span></div>
             <div class="mockup-header">JUST. Premium</div>
-            <div class="mockup-date">MON · FEB 25 · 2026</div>
+            <div class="mockup-date" id="mockup-date"></div>
             <div class="mockup-intention premium">
               "I will start my first task at 9:00 AM at my desk."
             </div>
@@ -2091,6 +2091,11 @@
 
     // ─── FIX #1: Fetch real subscriber count on page load ──────────────────
     document.addEventListener('DOMContentLoaded', () => {
+      const d = new Date();
+      const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+      const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+      document.getElementById('mockup-date').textContent = days[d.getDay()] + ' · ' + months[d.getMonth()] + ' ' + String(d.getDate()).padStart(2,'0') + ' · ' + d.getFullYear();
+
       resetAllPremiumTasks();
       updateProgress();
       updateProgressPremium();
