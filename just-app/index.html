@@ -607,70 +607,6 @@
       line-height: 1.6;
     }
 
-    /* ─── SOCIAL PROOF & EFFICACY ─── */
-    .social-proof {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--border);
-      background: var(--cream);
-    }
-    .social-proof-header {
-      margin-bottom: 48px;
-    }
-    .proof-efficacy {
-      font-family: var(--serif);
-      font-size: 18px;
-      color: var(--ink);
-      line-height: 1.6;
-      padding: 24px 28px;
-      border: 1px solid var(--border);
-      margin-bottom: 40px;
-      max-width: 560px;
-    }
-    .proof-efficacy-title {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--slate);
-      margin-bottom: 12px;
-    }
-    .proof-efficacy-note {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--slate);
-      letter-spacing: 0.04em;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border);
-    }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-    @media (min-width: 768px) {
-      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .testimonial-card {
-      padding: 24px 20px;
-      border: 1px solid var(--border);
-      background: var(--cream);
-    }
-    .testimonial-quote {
-      font-family: var(--serif);
-      font-size: 16px;
-      font-style: italic;
-      color: var(--ink);
-      line-height: 1.55;
-      margin-bottom: 14px;
-    }
-    .testimonial-attribution {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--slate);
-    }
     /* ─── OBSESSION FORMULA ─── */
     .formula {
       padding: 100px 0;
@@ -1102,6 +1038,7 @@
       gap: 40px;
       flex-wrap: wrap;
     }
+    .founder-photo-wrap:has(img[style*="display:none"]) { display: none; }
     .founder-story-photo {
       width: 140px;
       height: 140px;
@@ -1136,42 +1073,6 @@
     }
     @media (max-width: 640px) {
       .founder-story-inner { flex-direction: column; }
-    }
-
-    /* ─── WAITLIST PROGRESS BAR (static) ─── */
-    .waitlist-spots {
-      font-family: var(--mono);
-      font-size: 13px;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-    .waitlist-spots strong { color: var(--accent); }
-    .waitlist-trust-line {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--slate);
-      text-align: center;
-      margin-top: 12px;
-    }
-    .waitlist-bar-static {
-      height: 6px;
-      background: var(--cream-dark);
-      border: 1px solid var(--border);
-      margin-bottom: 32px;
-      max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .waitlist-bar-fill {
-      height: 100%;
-      background: var(--accent);
-      /* UPDATE THIS to match the [X] counter above: formula = (signups / 500) * 100 + '%' */
-      width: 0%;
-    }
-    .btn-joined {
-      opacity: 0.9;
-      cursor: not-allowed;
     }
 
     /* ─── JOINED TOAST ─── */
@@ -1463,9 +1364,7 @@
       .hero-bullets { padding-left: 16px; padding-right: 16px; max-width: 100%; }
       .hero-bullets li { white-space: normal; overflow-wrap: break-word; }
       /* 67% callout (Prompt 3): padding/headline/body in reward-callout block above */
-      /* Final CTA progress bar (Prompt 4) */
       .final-cta .final-cta-grid { padding-left: 16px; padding-right: 16px; box-sizing: border-box; }
-      .final-cta .waitlist-bar-static { max-width: none; width: 100%; margin-left: 0; margin-right: 0; }
       .final-cta-grid > div[style*="nowrap"] { white-space: normal; }
     }
 
@@ -1528,38 +1427,6 @@
           <p class="hero-footnote">No infinite lists. No guilt. Just today.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── SOCIAL PROOF & EFFICACY ─── -->
-  <section class="social-proof" aria-labelledby="social-proof-heading">
-    <div class="container">
-      <div class="social-proof-header reveal">
-        <p class="section-label">Social Proof & Efficacy</p>
-        <h2 class="section-title" id="social-proof-heading">Proof</h2>
-      </div>
-
-      <div class="proof-efficacy reveal">
-        <p class="proof-efficacy-title">Protocol Efficacy</p>
-        <p>Tested constraint vs unlimited lists—3-task limit won on adherence.</p>
-        <p class="proof-efficacy-note">Launching micro-beta Jan 30—first 50 get results dashboard access.</p>
-      </div>
-
-      <div class="testimonials-grid">
-        <div class="testimonial-card reveal">
-          <p class="testimonial-quote">"Finally, an app that doesn't feel like a second job."</p>
-          <p class="testimonial-attribution">— Sarah, Founder</p>
-        </div>
-        <div class="testimonial-card reveal">
-          <p class="testimonial-quote">"The midnight wipe is the only thing that stopped my shame-spiral."</p>
-          <p class="testimonial-attribution">— Marc, Designer</p>
-        </div>
-        <div class="testimonial-card reveal">
-          <p class="testimonial-quote">"3 tasks is the perfect cognitive load for my ADHD brain."</p>
-          <p class="testimonial-attribution">— Alex, Student</p>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -1866,7 +1733,9 @@
   <section class="founder-story" aria-labelledby="founder-heading">
     <div class="container">
       <div class="founder-story-inner reveal">
-        <img src="founder.jpeg" alt="Chaitanya Madhavan, founder of JUST." class="founder-story-photo" width="140" height="140" loading="lazy" style="object-position: center 35%;" />
+        <div class="founder-photo-wrap">
+          <img src="founder.jpeg" alt="Chaitanya Madhavan, founder of JUST." class="founder-story-photo" width="140" height="140" loading="lazy" style="object-position: center 35%;" onerror="this.style.display='none'" />
+        </div>
         <div class="founder-story-text">
           <p class="founder-story-title">Founder</p>
           <h2 class="founder-story-heading" id="founder-heading">Why I Built JUST</h2>
@@ -1886,10 +1755,6 @@
         <p class="section-label">Early access</p>
         <h2 class="section-title">Three tasks. Midnight wipe. Nothing else.</h2>
         <p class="section-sub" style="margin: 0 auto 24px; text-align: center;">Join the first 500. Lifetime 20% off. Shape the roadmap.</p>
-        <p class="waitlist-spots" style="text-align: center;"><strong id="waitlist-count">[X]</strong> / 500 early spots claimed</p>
-        <div class="waitlist-bar-static" style="margin-left: auto; margin-right: auto;">
-          <div class="waitlist-bar-fill" id="waitlist-bar-fill"></div>
-        </div>
         <div style="display: flex; flex-direction: column; gap: 10px; margin: 0 auto 32px; max-width: 520px;">
           <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; letter-spacing: 0.03em; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> 3 tasks maximum. Hard cap enforced.</div>
           <div style="font-family: var(--mono); font-size: 13px; color: var(--ink); border: 1px dashed var(--border); padding: 12px 16px; text-align: left; white-space: nowrap;"><span style="font-size: 12px; margin-right: 4px;">✦</span> Unfinished tasks delete at midnight. Clean slate daily.</div>
@@ -1899,7 +1764,6 @@
           <input type="email" id="final-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for waitlist" />
           <button type="button" onclick="handleSignup('final')" aria-label="Claim your early access spot">Claim your spot →</button>
         </div>
-        <p class="waitlist-trust-line">One email. No spam. No onboarding hell. Just an email when JUST is ready.</p>
         <div class="form-success" id="final-success">
           ✓ You're in. Watch your inbox for early access.
         </div>
@@ -2020,6 +1884,7 @@
       if (btn) setButtonLoading(btn, true);
 
       try {
+        console.log('[JUST signup] Attempting signup for:', email);
         const res = await fetch('/.netlify/functions/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -2032,8 +1897,10 @@
           if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = data.error || 'Something went wrong. Try again.'; }
           return;
         }
+        console.log('[JUST signup] Success. Response:', data);
 
       } catch (err) {
+        console.log('[JUST signup] Network error:', err);
         if (btn) setButtonLoading(btn, false);
         if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Network error. Check connection and try again.'; }
         return;
@@ -2065,18 +1932,6 @@
         if (e.key === 'Enter') handleSignup(id.split('-')[0]);
       });
     });
-
-    (function () {
-      var counterEl = document.getElementById('waitlist-count');
-      var barEl = document.getElementById('waitlist-bar-fill');
-      if (!counterEl || !barEl) return;
-      var raw = counterEl.textContent.trim();
-      var value = raw === '[X]' ? 0 : parseInt(raw, 10);
-      if (isNaN(value)) value = 0;
-      value = Math.min(500, Math.max(0, value));
-      var pct = (value / 500) * 100;
-      barEl.style.width = pct + '%';
-    })();
 
     function toggleCheckPremium(el) {
       var wasDone = el.classList.contains('done');
