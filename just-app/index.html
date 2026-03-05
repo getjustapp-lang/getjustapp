@@ -146,25 +146,21 @@
       outline-offset: 2px;
     }
 
-    /* ─── HERO (Brand Bible §8: 90vh, left-align, Source Serif 4 76px, CTA #2F5D50) ─── */
+    /* ─── HERO ─── */
     .hero {
       min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 0 60px;
+      padding: 80px 0;
       border-bottom: 1px solid var(--border);
       text-align: left;
     }
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 48px;
-      align-items: flex-start;
-      padding: 60px 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
-    @media (min-width: 900px) {
-      .hero-inner { grid-template-columns: 0.8fr 1.2fr; gap: 80px; }
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
     }
     .hero-inner > div:first-child {
       display: block;
@@ -225,11 +221,11 @@
     }
     .hero-headline {
       font-family: var(--serif);
-      font-size: clamp(32px, 4vw, 52px);
+      font-size: clamp(36px, 4vw, 56px);
       font-weight: 400;
       letter-spacing: -0.01em;
       line-height: 1.15;
-      margin-bottom: 32px;
+      margin-top: 32px;
       color: var(--ink);
     }
     .hero-headline em {
@@ -1354,81 +1350,77 @@
   <!-- ─── HERO ─── -->
   <section class="hero">
     <div class="container">
-      <div class="hero-inner hero-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-        <div style="padding-top: 60px;">
-          <h1 class="hero-headline">
-            Not a todo list. The 3 things you keep moving to tomorrow.
-          </h1>
-          <p class="hero-sub">
-            3-task cap. Midnight wipe. Free during early access.
-          </p>
-          <div class="hero-form" id="hero-form-wrap">
+      <div class="hero-inner">
+        <!-- Left column -->
+        <div>
+          <a href="#" class="nav-logo" style="display: inline-block;">JUST<span>.</span></a>
+          <h1 class="hero-headline">Not a todo list. The 3 things you keep moving to tomorrow.</h1>
+          <p style="font-family: var(--mono); font-size: 15px; color: var(--slate); letter-spacing: 0.06em; margin-top: 20px;">3-task cap. Midnight wipe. Free during early access.</p>
+          <div class="hero-form" id="hero-form-wrap" style="margin-top: 36px;">
             <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for early access" />
-            <button type="button" onclick="handleSignup('hero')" aria-label="Submit email for early access">Claim your spot →</button>
+            <button type="button" onclick="handleSignup('hero')" aria-label="Submit email for early access">CLAIM YOUR SPOT →</button>
           </div>
-          <div class="form-success" id="hero-success">
-            ✓ You're on the list. Watch your inbox.
-          </div>
+          <div class="form-success" id="hero-success">✓ You're on the list. Watch your inbox.</div>
           <div class="form-error" id="hero-error" role="alert"></div>
-          <div class="trust-badge">
-            Free during early access. No card needed.
-          </div>
+          <div style="font-family: var(--mono); font-size: 11px; color: var(--slate); border: 1px solid var(--border); padding: 8px 16px; margin-top: 16px; display: inline-block;">→ Free during early access. No card needed.</div>
         </div>
-        <div style="display: flex; justify-content: center; align-items: flex-start; padding-top: 10px;">
-          <div style="position: relative; background: #1a1a1a; border-radius: 54px; padding: 16px; box-shadow: 0 60px 120px rgba(0,0,0,0.5), 0 20px 40px rgba(0,0,0,0.3), inset 0 0 0 2px #3a3a3a; width: 280px; flex-shrink: 0;">
-
+        <!-- Right column: iPhone 15 Pro mockup -->
+        <div style="display: flex; justify-content: center; order: 2;">
+          <div style="width: 300px; background: #1c1c1e; border-radius: 52px; padding: 14px; box-shadow: 0 0 0 1px #3a3a3c, 0 0 0 3px #1c1c1e, 0 0 0 4px #48484a, 0 60px 120px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08); position: relative; margin: 0 auto;">
             <!-- Dynamic island -->
-            <div style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 90px; height: 28px; background: #000; border-radius: 20px; z-index: 10;"></div>
-
-            <!-- Left buttons -->
-            <div style="position: absolute; left: -4px; top: 110px; width: 4px; height: 28px; background: #2a2a2a; border-radius: 2px 0 0 2px;"></div>
-            <div style="position: absolute; left: -4px; top: 150px; width: 4px; height: 44px; background: #2a2a2a; border-radius: 2px 0 0 2px;"></div>
-            <div style="position: absolute; left: -4px; top: 206px; width: 4px; height: 44px; background: #2a2a2a; border-radius: 2px 0 0 2px;"></div>
-
-            <!-- Right button -->
-            <div style="position: absolute; right: -4px; top: 160px; width: 4px; height: 64px; background: #2a2a2a; border-radius: 0 2px 2px 0;"></div>
-
+            <div style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 120px; height: 34px; background: #000; border-radius: 20px; z-index: 10;"></div>
+            <!-- Left side buttons -->
+            <div style="position: absolute; left: -4px; top: 108px; width: 4px; height: 32px; background: #3a3a3c; border-radius: 2px 0 0 2px;"></div>
+            <div style="position: absolute; left: -4px; top: 158px; width: 4px; height: 44px; background: #3a3a3c; border-radius: 2px 0 0 2px;"></div>
+            <div style="position: absolute; left: -4px; top: 214px; width: 4px; height: 44px; background: #3a3a3c; border-radius: 2px 0 0 2px;"></div>
+            <!-- Right side button -->
+            <div style="position: absolute; right: -4px; top: 172px; width: 4px; height: 64px; background: #3a3a3c; border-radius: 0 2px 2px 0;"></div>
             <!-- Screen -->
-            <div style="border-radius: 40px; overflow: hidden; background: var(--cream);">
-
+            <div style="border-radius: 40px; overflow: hidden; background: var(--cream); aspect-ratio: 9 / 19.5;">
               <!-- Status bar -->
-              <div style="background: var(--cream); padding: 14px 20px 6px 20px; display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--ink);">9:41</span>
-                <div style="display: flex; gap: 5px; align-items: center; font-size: 10px;">
-                  <span>▌▌▌</span>
-                  <span>WiFi</span>
-                  <span>🔋</span>
+              <div style="padding: 14px 20px 6px; display: flex; justify-content: space-between; align-items: center; background: var(--cream);">
+                <span style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink);">9:41</span>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                  <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1c1c1e"/>
+                    <rect x="4.5" y="5.5" width="3" height="6.5" rx="0.5" fill="#1c1c1e"/>
+                    <rect x="9" y="3" width="3" height="9" rx="0.5" fill="#1c1c1e"/>
+                    <rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#1c1c1e"/>
+                  </svg>
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 3C10.2 3 12.2 3.9 13.6 5.4L15 4C13.2 2.1 10.7 1 8 1C5.3 1 2.8 2.1 1 4L2.4 5.4C3.8 3.9 5.8 3 8 3Z" fill="#1c1c1e"/>
+                    <path d="M8 6C9.4 6 10.7 6.6 11.6 7.5L13 6.1C11.7 4.8 10 4 8 4C6 4 4.3 4.8 3 6.1L4.4 7.5C5.3 6.6 6.6 6 8 6Z" fill="#1c1c1e"/>
+                    <circle cx="8" cy="10.5" r="1.5" fill="#1c1c1e"/>
+                  </svg>
+                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#1c1c1e" stroke-opacity="0.35"/>
+                    <rect x="2" y="2" width="16" height="8" rx="2" fill="#1c1c1e"/>
+                    <path d="M23 4C23.8 4.3 24.5 5.1 24.5 6C24.5 6.9 23.8 7.7 23 8V4Z" fill="#1c1c1e" fill-opacity="0.4"/>
+                  </svg>
                 </div>
               </div>
-
               <!-- App content -->
-              <div style="padding: 10px 18px 24px 18px;">
-
-                <div style="font-family: var(--mono); font-size: 8px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);" id="hero-mockup-date"></div>
-
-                <div style="font-family: var(--serif); font-style: italic; font-size: 10px; color: var(--slate); margin-bottom: 14px; padding: 6px 10px; border-left: 2px solid var(--accent); background: rgba(46,92,79,0.04);">"I will start my first task at 9:00 AM at my desk."</div>
-
+              <div style="padding: 12px 18px 24px 18px;">
+                <div style="font-family: var(--mono); font-size: 8px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 10px;" id="hero-mockup-date"></div>
+                <div style="font-family: var(--serif); font-style: italic; font-size: 10px; color: var(--slate); border-left: 2px solid var(--accent); padding: 6px 10px; background: rgba(46,92,79,0.04); margin-bottom: 14px;">"I will start my first task at 9:00 AM at my desk."</div>
                 <!-- Task 1 -->
                 <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border);" class="hero-task-item">
                   <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
                   <span style="font-family: var(--serif); font-size: 11px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Call mom back. You've been putting it off.</span>
                   <span style="font-family: var(--mono); font-size: 7px; border: 1px solid #b8860b; color: #b8860b; padding: 2px 5px; letter-spacing: 0.06em;">MED</span>
                 </div>
-
                 <!-- Task 2 -->
                 <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border);" class="hero-task-item">
                   <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
                   <span style="font-family: var(--serif); font-size: 11px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Go to the gym. No more excuses.</span>
                   <span style="font-family: var(--mono); font-size: 7px; border: 1px solid #c0392b; color: #c0392b; padding: 2px 5px; letter-spacing: 0.06em;">HIGH</span>
                 </div>
-
                 <!-- Task 3 -->
                 <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0;" class="hero-task-item">
                   <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
                   <span style="font-family: var(--serif); font-size: 11px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Start. Just the first 10 minutes.</span>
                   <span style="font-family: var(--mono); font-size: 7px; border: 1px solid #2e7d32; color: #2e7d32; padding: 2px 5px; letter-spacing: 0.06em;">LOW</span>
                 </div>
-
                 <!-- Progress -->
                 <div style="margin-top: 14px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
@@ -1439,22 +1431,18 @@
                     <div style="height: 100%; width: 0%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease;" id="hero-prog-fill"></div>
                   </div>
                 </div>
-
                 <!-- Footer -->
                 <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
                   <span style="font-family: var(--mono); font-size: 7px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em;">↻ Resets at midnight</span>
                   <span style="font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; letter-spacing: 0.04em;">🔥 12 DAY STREAK</span>
                 </div>
                 <div style="font-family: var(--mono); font-size: 7px; color: #c0392b; text-align: right; margin-top: 5px;" id="hero-countdown"></div>
-
+              </div>
+              <!-- Home indicator -->
+              <div style="height: 22px; display: flex; align-items: center; justify-content: center;">
+                <div style="width: 100px; height: 4px; background: #48484a; border-radius: 2px;"></div>
               </div>
             </div>
-
-            <!-- Home indicator -->
-            <div style="height: 20px; display: flex; align-items: center; justify-content: center;">
-              <div style="width: 80px; height: 4px; background: #444; border-radius: 2px;"></div>
-            </div>
-
           </div>
         </div>
       </div>
