@@ -29,10 +29,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="JUST." />
 
-  <!-- Fonts: Brand Bible v1 — Space Mono (structural) + Source Serif 4 (intellectual) -->
+  <!-- Fonts: Editorial — Libre Baskerville (serif) + Space Mono (labels/buttons) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
   <style>
     /* ─── RESET ─── */
@@ -54,6 +54,7 @@
       --grain-opacity: 0.04;
       --mono: 'Space Mono', monospace;
       --serif: 'Source Serif 4', Georgia, serif;
+      --serif-editorial: 'Libre Baskerville', Georgia, serif;
     }
 
     /* ─── GRAIN OVERLAY ─── */
@@ -146,18 +147,31 @@
       outline-offset: 2px;
     }
 
-    /* ─── HERO ─── */
+    /* ─── HERO (editorial: cream #edeae0, tight spacing, fadeUp) ─── */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .hero {
+      background: #edeae0;
       min-height: 90vh;
-      padding: 80px 0;
+      padding: 56px 0 64px;
       border-bottom: 1px solid var(--border);
       text-align: left;
     }
     .hero-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 48px;
       align-items: center;
+    }
+    .hero-phone {
+      animation: heroFadeUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    .hero-content {
+      animation: heroFadeUp 0.6s ease-out 0.12s forwards;
+      opacity: 0;
     }
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; }
@@ -273,14 +287,14 @@
     .hero-form {
       display: flex;
       gap: 0;
-      margin-bottom: 24px;
+      margin-bottom: 0;
       border: 1px solid var(--ink);
-      border-radius: 4px;
+      border-radius: 0;
     }
     .hero-form input {
       flex: 1;
-      padding: 16px 18px;
-      font-family: var(--serif);
+      padding: 14px 18px;
+      font-family: var(--serif-editorial);
       font-size: 16px;
       background: transparent;
       border: none;
@@ -294,16 +308,16 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      background: var(--accent);
-      color: var(--cream);
+      background: #1f4a3c;
+      color: #edeae0;
       border: none;
-      border-radius: 0 4px 4px 0;
-      padding: 18px 36px;
+      border-radius: 0;
+      padding: 14px 28px;
       cursor: pointer;
       transition: background 0.15s;
       white-space: nowrap;
     }
-    .hero-form button:hover { background: var(--accent-hover); }
+    .hero-form button:hover { background: #163a2f; }
     .form-success { display: none; font-family: var(--mono); font-size: 14px; color: var(--accent); margin-bottom: 24px; }
     .form-error { display: none; font-family: var(--mono); font-size: 13px; color: var(--warn); margin-bottom: 24px; }
 
@@ -1339,8 +1353,8 @@
   <section class="hero">
     <div class="container">
       <div class="hero-inner">
-        <!-- Left column: static iPhone mockup -->
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <!-- Left column: phone mockup (pure CSS) -->
+        <div class="hero-phone" style="display: flex; justify-content: center; align-items: center;">
           <div style="width: 280px; background: #1c1c1e; border-radius: 48px; padding: 12px; box-shadow: 0 0 0 1px #3a3a3c, 0 0 0 3px #1c1c1e, 0 0 0 4px #48484a, 0 60px 120px rgba(0,0,0,0.55), 0 24px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08); position: relative;">
 
             <!-- Dynamic island -->
@@ -1412,7 +1426,7 @@
                   <span style="font-family: var(--mono); font-size: 7px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em;">↻ Resets at midnight</span>
                   <span style="font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px;">🔥 12 DAY STREAK</span>
                 </div>
-                <div style="font-family: var(--mono); font-size: 7px; color: #c0392b; text-align: right; margin-top: 5px;">Resets in 12h 19m</div>
+                <div style="font-family: var(--mono); font-size: 7px; color: #c0392b; text-align: right; margin-top: 5px;">Resets in 12h 58m</div>
 
               </div>
 
@@ -1424,19 +1438,17 @@
             </div>
           </div>
         </div>
-        <!-- Right column: text -->
-        <div>
-          <p style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); margin-bottom: 32px;">—— Behavioral productivity — not engagement theatre</p>
-          <h1 style="font-family: var(--serif); font-size: clamp(52px, 7vw, 88px); font-weight: 400; line-height: 1.05; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.02em;">Not a todo list.<br><em style="font-style: italic;">The 3 things</em><br>you keep moving<br>to tomorrow.</h1>
-          <p style="font-family: var(--mono); font-size: 13px; color: var(--slate); letter-spacing: 0.06em; margin-bottom: 36px;">3-task cap. Midnight wipe. Free during early access.</p>
+        <!-- Right column: eyebrow, headline, subtext, CTA -->
+        <div class="hero-content">
+          <p style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); margin-bottom: 18px;">-- BEHAVIORAL PRODUCTIVITY — NOT ENGAGEMENT THEATRE</p>
+          <h1 style="font-family: var(--serif-editorial); font-size: clamp(36px, 4vw, 52px); font-weight: 700; line-height: 1.12; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.02em;">Not a todo list. <em style="font-style: italic; font-weight: 400;">The 3 things</em> you keep moving to tomorrow.</h1>
+          <p style="font-family: var(--mono); font-size: 13px; color: var(--slate); letter-spacing: 0.06em; margin-bottom: 24px;">3-task cap. Midnight wipe. Free during early access.</p>
           <div class="hero-form" id="hero-form-wrap">
             <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for early access" />
             <button type="button" onclick="handleSignup('hero')" aria-label="Submit email for early access">CLAIM YOUR SPOT →</button>
           </div>
           <div class="form-success" id="hero-success">✓ You're on the list. Watch your inbox.</div>
           <div class="form-error" id="hero-error" role="alert"></div>
-          <div style="font-family: var(--mono); font-size: 11px; color: var(--slate); border: 1px solid var(--border); padding: 8px 16px; margin-top: 16px; display: inline-block;">→ Free during early access. No card needed.</div>
-          <p style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-top: 12px; letter-spacing: 0.04em;">No infinite lists. No guilt. Just today.</p>
         </div>
       </div>
     </div>
