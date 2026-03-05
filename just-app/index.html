@@ -203,8 +203,8 @@
     }
     .hero-preheadline {
       font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.12em;
+      font-size: 14px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--slate);
       margin-bottom: 16px;
@@ -212,7 +212,7 @@
     .hero-eyebrow {
       font-family: var(--mono);
       font-size: 14px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--slate);
       margin-bottom: 32px;
@@ -584,7 +584,7 @@
     .section-label {
       font-family: var(--mono);
       font-size: 14px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--slate);
       margin-bottom: 16px;
@@ -876,154 +876,6 @@
       font-size: 15px;
       color: rgba(242,237,220,0.65);
       font-style: italic;
-    }
-
-    /* ─── PRICING ─── */
-    .pricing {
-      padding: 100px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      background: var(--border);
-      border: 1.5px solid var(--ink);
-      margin-top: 56px;
-    }
-    .pricing-plan {
-      background: var(--cream);
-      padding: 40px 36px;
-    }
-    .pricing-plan.featured { background: var(--ink); color: var(--cream); }
-    .plan-name {
-      font-family: var(--mono);
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .pricing-plan.featured .plan-name { color: rgba(242,237,220,0.5); }
-    .plan-price {
-      font-family: var(--mono);
-      font-size: 52px;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 6px;
-      letter-spacing: -0.03em;
-    }
-    .pricing-plan .plan-price { color: var(--ink); }
-    .pricing-plan.featured .plan-price { color: var(--cream); }
-    .plan-period {
-      font-family: var(--serif);
-      font-size: 14px;
-      color: var(--ink-faint);
-      font-style: italic;
-      margin-bottom: 32px;
-    }
-    .pricing-plan.featured .plan-period { color: rgba(242,237,220,0.45); }
-    .plan-features { list-style: none; }
-    .plan-feature {
-      font-family: var(--serif);
-      font-size: 15px;
-      padding: 10px 0;
-      border-bottom: 1px dashed rgba(60,65,66,0.12);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .pricing-plan.featured .plan-feature {
-      border-bottom-color: rgba(242,237,220,0.15);
-      color: rgba(242,237,220,0.85);
-    }
-    .plan-feature::before { content: '—'; color: var(--ink-faint); font-family: var(--mono); }
-    .pricing-plan.featured .plan-feature::before { content: '✓'; color: var(--accent-mid); }
-    .plan-reward {
-      margin-top: 28px;
-      padding: 16px;
-      background: rgba(46,92,79,0.15);
-      border: 1px solid rgba(46,92,79,0.3);
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--accent-mid);
-      letter-spacing: 0.04em;
-      line-height: 1.5;
-    }
-    .pricing-plan.featured {
-      box-shadow: 0 0 0 1px rgba(212,175,55,0.35), 0 8px 24px rgba(212,175,55,0.08);
-    }
-    .plan-value-prop {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--slate);
-      margin-bottom: 12px;
-    }
-    .pricing-plan.featured .plan-value-prop { color: rgba(242,237,220,0.6); }
-    .plan-annual-note {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: var(--slate);
-      margin-top: 8px;
-      font-style: italic;
-    }
-    .pricing-plan.featured .plan-annual-note { color: rgba(242,237,220,0.5); }
-
-    /* ─── 67% REWARD CALLOUT ─── */
-    .reward-callout {
-      position: relative;
-      width: 100%;
-      background: var(--accent);
-      color: var(--cream);
-      padding: 80px 24px;
-      overflow: hidden;
-    }
-    .reward-callout::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.06;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-size: 256px 256px;
-    }
-    .reward-callout-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 520px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .reward-callout h2 {
-      font-family: var(--serif);
-      font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.25;
-      margin-bottom: 12px;
-    }
-    .reward-callout-sub {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: rgba(242,237,220,0.8);
-      letter-spacing: 0.03em;
-      margin-bottom: 20px;
-    }
-    .reward-callout-body {
-      font-family: var(--serif);
-      font-size: 17px;
-      color: rgba(242,237,220,0.7);
-      line-height: 1.7;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    @media (max-width: 640px) {
-      .reward-callout { padding: 48px 24px; overflow-x: hidden; }
-      .reward-callout h2 { font-size: clamp(24px, 3.5vw, 40px); }
-      .reward-callout-body { font-size: 15px; }
-      .reward-callout-inner { max-width: 100%; overflow-wrap: break-word; min-width: 0; }
     }
 
     /* ─── FOUNDER STORY (Why I Built JUST) ─── */
@@ -1334,6 +1186,10 @@
       margin-bottom: 16px;
     }
 
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -1342,7 +1198,6 @@
       .why-inner { grid-template-columns: 1fr; gap: 48px; }
       .why-left { position: static; }
       .science-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; gap: 32px; }
       .footer-legal { flex-direction: column; gap: 8px; text-align: center; }
       .hero-form { flex-direction: column; }
@@ -1363,7 +1218,6 @@
       .hero-preheadline { font-size: 13px; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; }
       .hero-bullets { padding-left: 16px; padding-right: 16px; max-width: 100%; }
       .hero-bullets li { white-space: normal; overflow-wrap: break-word; }
-      /* 67% callout (Prompt 3): padding/headline/body in reward-callout block above */
       .final-cta .final-cta-grid { padding-left: 16px; padding-right: 16px; box-sizing: border-box; }
       .final-cta-grid > div[style*="nowrap"] { white-space: normal; }
     }
@@ -1371,14 +1225,14 @@
     @media (max-width: 480px) {
       .container { padding: 0 18px; }
       .hero { padding: 48px 0 40px; }
-      .formula, .why, .pricing, .final-cta, .behavioral, .pain-relief, .founder-story { padding: 72px 0; }
+      .formula, .why, .final-cta, .behavioral, .pain-relief, .founder-story { padding: 72px 0; }
     }
 
     /* ─── TWO QUESTIONS (Objection cards) ─── */
     .two-questions-section .two-questions-label {
       font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.12em;
+      font-size: 14px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--slate);
       margin-bottom: 40px;
@@ -1469,6 +1323,22 @@
     @media (max-width: 700px) {
       .two-questions-grid { grid-template-columns: 1fr; }
     }
+
+    .mockup-premium.demo-dark {
+      background: #1a1a1a;
+      border-color: #333;
+      box-shadow: 6px 6px 0 #000;
+      color: #f2eddc;
+    }
+    .mockup-premium.demo-dark .mockup-header { color: #f2eddc; }
+    .mockup-premium.demo-dark .mockup-date { color: #666; border-bottom-color: #333; }
+    .mockup-premium.demo-dark .mockup-intention { color: #888; }
+    .mockup-premium.demo-dark .task-text { color: #f2eddc; }
+    .mockup-premium.demo-dark .task-tag { border-color: #444; color: #888; }
+    .mockup-premium.demo-dark .progress-label { color: #888; }
+    .mockup-premium.demo-dark .progress-bar { background: #333; }
+    .mockup-premium.demo-dark .mockup-corner { background: #2e5c4f; color: #f2eddc; }
+    .mockup-premium.demo-dark .countdown-timer { color: #888; }
   </style>
 </head>
 
@@ -1488,19 +1358,18 @@
   <!-- ─── HERO ─── -->
   <section class="hero">
     <div class="container">
-                        <div class="hero-inner">
+      <div class="hero-inner hero-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
         <div>
           <div class="hero-logo-section" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0;">
             <div class="hero-logo-large" style="margin-bottom: 24px;">JUST<span>.</span></div>
-            <p class="hero-tagline" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 280px; margin: 0;\">"The world's most boring productivity app.<br>On purpose."</p>          </div>
-        </div>
-        <div>
+            <p class="hero-tagline" style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); line-height: 1.4; max-width: 280px; margin: 0;">"The world's most boring productivity app.<br>On purpose."</p>
+          </div>
           <p class="hero-preheadline">STOP PLANNING. START DOING.</p>
           <h1 class="hero-headline">
             Finish 3 Meaningful Tasks Every Day.
           </h1>
           <p class="hero-sub">
-            JUST limits you to 3 tasks daily: so you stop building lists and start finishing things.
+            Not a todo list. The 3 things you keep moving to tomorrow. Free during early access.
           </p>
           <ul class="hero-bullets">
             <li><strong>No endless task lists.</strong> Focus is a finite resource.</li>
@@ -1518,9 +1387,17 @@
           </div>
           <div class="form-error" id="hero-error" role="alert"></div>
           <div class="trust-badge">
-            67% yearly completion = 2 months free. Automatically.
+            Free during early access. No card needed.
           </div>
           <p class="hero-footnote">No infinite lists. No guilt. Just today.</p>
+        </div>
+        <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+          <div style="position: relative; background: #1a1a1a; border-radius: 44px; padding: 12px; box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08); max-width: 300px; width: 100%;">
+            <div style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 80px; height: 6px; background: #1a1a1a; border-radius: 3px; z-index: 2;"></div>
+            <div style="border-radius: 36px; overflow: hidden; background: #F2EDDC;">
+              <img src="mockup-screenshot.png" alt="JUST. app interface showing 3 tasks and streak" style="width: 100%; display: block; border-radius: 36px;" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1581,71 +1458,7 @@
     </div>
   </section>
 
-  <!-- ─── PREMIUM MOCKUP DEMO ─── -->
-  <section style="padding: 100px 0; border-top: 2px solid var(--border); background: rgba(46,92,79,0.02);">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center;">
-        <div class="premium-label">Interactive Demo</div>
-        <h2 class="section-title">Experience the Full Potential</h2>
-        <p class="section-sub" style="margin: 0 auto;">All 13 micro-interactions, animations, and behavioral features</p>
-        <p class="hero-footnote" style="margin-top: 12px; margin-bottom: 0; margin-left: auto; margin-right: auto;">Try the checkboxes and priority tags below.</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr; gap: 60px; max-width: 600px; margin: 0 auto;">
-        <div class="mockup-wrap">
-          <div class="mockup mockup-premium">
-            <div class="mockup-corner"><span>PRO</span></div>
-            <div class="mockup-header">JUST. Premium</div>
-            <div class="mockup-date" id="mockup-date"></div>
-            <div class="mockup-intention premium">
-              "I will start my first task at 9:00 AM at my desk."
-            </div>
-            <div class="task-item premium" data-priority-touched="0">
-              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Write the investor deck intro" onclick="toggleCheckPremium(this)"></button>
-              <span class="task-text premium">Call mom back. You've been putting it off.</span>
-              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
-            </div>
-            <div class="task-item premium" data-priority-touched="0">
-              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Reply to all waitlist DMs" onclick="toggleCheckPremium(this)"></button>
-              <span class="task-text premium">Go to the gym. No more excuses.</span>
-              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
-            </div>
-            <div class="task-item premium" data-priority-touched="0">
-              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Record 60s TikTok on Zeigarnik Effect" onclick="toggleCheckPremium(this)"></button>
-              <span class="task-text premium">Start. Just the first 10 minutes.</span>
-              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
-            </div>
-            <div class="mockup-progress">
-              <div class="progress-label">
-                <span>TODAY'S FOCUS</span>
-                <span id="pct-premium">0%</span>
-              </div>
-              <div class="progress-bar premium">
-                <div class="progress-fill" id="prog-fill-premium"></div>
-              </div>
-            </div>
-            <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;">↻ Resets at midnight</span>
-              <span style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 3px 8px; letter-spacing: 0.06em;">🔥 12 DAY STREAK</span>
-            </div>
-            <div class="countdown-timer" aria-live="polite"></div>
-          </div>
-        </div>
-
-        <div style="text-align: center; padding: 40px; background: var(--cream-dark); border-radius: 8px;">
-          <p style="font-family: var(--mono); font-size: 13px; color: var(--ink); margin-bottom: 16px; line-height: 1.6;">
-            <strong>Try it:</strong> Click the checkboxes to see animations.<br/>
-            Watch the progress bar glow, streak counter pulse, and celebration animation when all tasks are done.
-          </p>
-          <p style="font-family: var(--serif); font-size: 14px; color: var(--slate); font-style: italic;">
-            All 13 features included: checkbox animations, progress glow, task completion celebration, streak pulses, countdown timer, implementation intention highlight, dark mode ready, smooth hover states, color-coded completion, keyboard shortcuts support, local persistence, and motivational copy.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── OBSESSION FORMULA ─── -->
+  <!-- ─── OBSESSION FORMULA (How it works) ─── -->
   <section class="formula">
     <div class="container">
       <div class="formula-header reveal">
@@ -1670,10 +1483,10 @@
         </div>
         <div class="formula-block reveal">
           <div class="formula-num">03</div>
-          <div class="formula-icon">◎</div>
-          <div class="formula-title">67% Reward</div>
-          <p class="formula-desc">Average 67% completion across the year and you get 2 months free. Automatically. Because your progress is not a metric - it is the business model.</p>
-          <span class="formula-accent">Incentive Design - Prospect Theory</span>
+          <div class="formula-icon">🔥</div>
+          <div class="formula-title">Streak System</div>
+          <p class="formula-desc">Every day you finish 2 out of 3 tasks your streak grows. Miss a day and it resets. The fear of losing a streak is more powerful than the desire to build one. That is loss aversion. That is why it works.</p>
+          <span class="formula-accent">Loss Aversion · Kahneman</span>
         </div>
         <div class="formula-block reveal">
           <div class="formula-num">04</div>
@@ -1689,77 +1502,6 @@
           <p class="formula-desc" style="max-width:560px;">Cream paper. Monospace ink. Hand-drawn checkboxes. A grain texture overlay that makes the screen feel like your best notebook. Tactile satisfaction is not vanity. It is the reason you come back.</p>
           <span class="formula-accent">Embodied Cognition</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── WHY PLANNING FAILS YOU (Pain / Relief) ─── -->
-  <section class="pain-relief" aria-labelledby="pain-relief-heading">
-    <div class="container">
-      <div class="reveal">
-        <p class="section-label">The shift</p>
-        <h2 class="section-title" id="pain-relief-heading">Why Planning Fails You.</h2>
-      </div>
-      <div class="pain-relief-grid reveal">
-        <div class="pain-relief-col pain">
-          <h3>Pain</h3>
-          <ul>
-            <li>Infinite lists</li>
-            <li>Onboarding hell</li>
-            <li>Backlog guilt</li>
-            <li>Notification noise</li>
-          </ul>
-        </div>
-        <div class="pain-relief-col relief">
-          <h3>Relief</h3>
-          <ul>
-            <li>3-task cap</li>
-            <li>Zero setup</li>
-            <li>Midnight wipe</li>
-            <li>Silent by design</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── HOW JUST REWIRES EXECUTION (Psychology / Mechanism) ─── -->
-  <section class="behavioral" aria-labelledby="behavioral-heading">
-    <div class="container">
-      <div class="reveal">
-        <p class="section-label">Psychology</p>
-        <h2 class="section-title" id="behavioral-heading">How JUST Rewires Execution.</h2>
-        <p class="behavioral-narrative">
-          <span class="mechanism-label">Mechanism:</span> Constraint. It caps you at three tasks.<br />
-          <span class="mechanism-label">Behavior:</span> Reduced choice.<br />
-          You stop deciding what to do and start doing.<br />
-          <span class="mechanism-label">Felt state:</span> Focus. The brain stops juggling and lands.<br />
-          That's how JUST rewires execution—not more options, fewer.
-        </p>
-      </div>
-      <div class="behavioral-grid">
-        <div class="behavioral-block reveal">
-          <div class="behavioral-num">01</div>
-          <div class="behavioral-title">ADHD Friendly</div>
-          <p class="behavioral-desc">Executive dysfunction thrives on clutter. By enforcing a 3-task cap and a midnight wipe, it removes the "shame-backlog" and decision fatigue that paralyzes the ADHD brain. Restraint is the accommodation. <span class="behavioral-citation">(Baumeister, 1998 — ego depletion)</span></p>
-        </div>
-        <div class="behavioral-block reveal">
-          <div class="behavioral-num">02</div>
-          <div class="behavioral-title">Zeigarnik Effect</div>
-          <p class="behavioral-desc">Unfinished tasks occupy ~90% more mental bandwidth than finished ones. The progress bar and midnight wipe turn that tension into clarity: complete or let go. <span class="behavioral-citation">(Zeigarnik, 1927 — incomplete task bandwidth)</span></p>
-        </div>
-        <div class="behavioral-block reveal">
-          <div class="behavioral-num">03</div>
-          <div class="behavioral-title">Dopamine Loop</div>
-          <p class="behavioral-desc">Small wins release dopamine and reinforce behavior. Three tasks, clear completion, and the 67% reward create a sustainable loop, not engagement theatre, but real habit formation. <span class="behavioral-citation">(Davenport &amp; Beck, 2001 — attention economics)</span></p>
-        </div>
-      </div>
-      <p class="behavioral-citation-line">Mechanism-first. Every constraint has a citation.</p>
-      <div class="behavioral-foundation reveal">
-        <p>Built on research in:</p>
-        <p>: Decision fatigue (Baumeister et al.)</p>
-        <p>: Dopamine-driven reward cycles</p>
-        <p>: Commitment device behavioral economics</p>
       </div>
     </div>
   </section>
@@ -1825,64 +1567,104 @@
     </div>
   </section>
 
-  <!-- ─── PRICING ─── -->
-  <section class="pricing">
+  <!-- ─── PREMIUM MOCKUP DEMO ─── -->
+  <section style="padding: 100px 0; border-top: 2px solid var(--border); background: rgba(46,92,79,0.02);">
     <div class="container">
-      <div class="reveal">
-        <p class="section-label">Honest pricing</p>
-        <h2 class="section-title">Free if you just start.<br/>Paid if you want it to count.</h2>
-        <p class="section-sub">"I only win when you win."</p>
+      <div style="text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center;">
+        <div class="premium-label">Interactive Demo</div>
+        <h2 class="section-title">Experience the Full Potential</h2>
+        <p class="section-sub" style="margin: 0 auto;">All 13 micro-interactions, animations, and behavioral features</p>
+        <p class="hero-footnote" style="margin-top: 12px; margin-bottom: 0; margin-left: auto; margin-right: auto;">Try the checkboxes and priority tags below.</p>
       </div>
-      <div class="pricing-grid reveal">
-        <div class="pricing-plan">
-          <p class="plan-name">Free: No account needed</p>
-          <p class="plan-price">$0</p>
-          <p class="plan-period">forever. no card. no friction.</p>
-          <p class="plan-value-prop">Enforced Focus</p>
-          <ul class="plan-features">
-            <li class="plan-feature">3-task cap, enforced</li>
-            <li class="plan-feature">Midnight wipe</li>
-            <li class="plan-feature">Pomodoro timer (task-bound)</li>
-            <li class="plan-feature">Implementation intention prompt</li>
-            <li class="plan-feature">Zeigarnik progress bar</li>
-            <li class="plan-feature">Local storage: no sync</li>
-          </ul>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 60px; max-width: 600px; margin: 0 auto;">
+        <div class="mockup-wrap">
+          <div class="mockup mockup-premium">
+            <div class="mockup-corner"><span>PRO</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0;">
+              <div class="mockup-header" style="margin-bottom: 0;">JUST. Premium</div>
+              <button id="demo-theme-toggle" onclick="toggleDemoTheme()" aria-label="Toggle dark mode" style="display: flex; align-items: center; width: 52px; height: 28px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--cream); padding: 3px; cursor: pointer; transition: background 0.3s, border-color 0.3s; position: relative;">
+                <span id="demo-toggle-thumb" style="display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); transition: transform 0.3s; flex-shrink: 0; font-size: 11px;">🌙</span>
+              </button>
+            </div>
+            <div class="mockup-date" id="mockup-date"></div>
+            <div class="mockup-intention premium">
+              "I will start my first task at 9:00 AM at my desk."
+            </div>
+            <div class="task-item premium" data-priority-touched="0">
+              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Write the investor deck intro" onclick="toggleCheckPremium(this)"></button>
+              <span class="task-text premium">Call mom back. You've been putting it off.</span>
+              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
+            </div>
+            <div class="task-item premium" data-priority-touched="0">
+              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Reply to all waitlist DMs" onclick="toggleCheckPremium(this)"></button>
+              <span class="task-text premium">Go to the gym. No more excuses.</span>
+              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
+            </div>
+            <div class="task-item premium" data-priority-touched="0">
+              <button type="button" class="task-check premium" role="checkbox" aria-checked="false" aria-label="Mark task complete: Record 60s TikTok on Zeigarnik Effect" onclick="toggleCheckPremium(this)"></button>
+              <span class="task-text premium">Start. Just the first 10 minutes.</span>
+              <button type="button" class="task-tag tag-medium" aria-label="Priority: medium. Click to change." onclick="togglePriorityPremium(this)">MEDIUM</button>
+            </div>
+            <div class="mockup-progress">
+              <div class="progress-label">
+                <span>TODAY'S FOCUS</span>
+                <span id="pct-premium">0%</span>
+              </div>
+              <div class="progress-bar premium">
+                <div class="progress-fill" id="prog-fill-premium"></div>
+              </div>
+            </div>
+            <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;">↻ Resets at midnight</span>
+              <span style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 3px 8px; letter-spacing: 0.06em;">🔥 12 DAY STREAK</span>
+            </div>
+            <div class="countdown-timer" aria-live="polite"></div>
+          </div>
         </div>
-        <div class="pricing-plan featured">
-          <p class="plan-name">Premium: The full system</p>
-          <p class="plan-price">$5</p>
-          <p class="plan-period">/ month. cancel anytime.</p>
-          <p class="plan-annual-note">Annual (save 25%) coming Q3 2026.</p>
-          <p class="plan-value-prop">Enforced Focus</p>
-          <ul class="plan-features">
-            <li class="plan-feature">Everything in free</li>
-            <li class="plan-feature">Streak tracking (protectable)</li>
-            <li class="plan-feature">Weekly completion score</li>
-            <li class="plan-feature">Annual 67% reward tracking</li>
-            <li class="plan-feature">Multi-device sync & backup</li>
-            <li class="plan-feature">Daily reflection questions (30-library)</li>
-          </ul>
-          <div class="plan-reward">
-            → Average 67% completion across the year<br />
-            → You automatically get 2 months free.<br />
-            → Because your success is the business model.
-          </div>
-          <div style="border-top: 1px dashed rgba(242,237,220,0.2); padding-top: 24px; margin-top: 20px;">
-            <p style="font-family: var(--serif); font-size: 15px; color: rgba(242,237,220,0.7); line-height: 1.7; margin-bottom: 8px;">You're not paying for a task list.</p>
-            <p style="font-family: var(--serif); font-size: 15px; color: rgba(242,237,220,0.7); line-height: 1.7; margin-bottom: 8px;">You're paying for <strong style="color: #F2EDDC; font-weight: 600;">the constraint you can't enforce on yourself.</strong></p>
-            <p style="font-family: var(--serif); font-size: 15px; color: rgba(242,237,220,0.7); line-height: 1.7; margin-bottom: 0;">And if you hit 67% across the year, 2 months come back automatically.</p>
-          </div>
+
+        <div style="text-align: center; padding: 40px; background: var(--cream-dark); border-radius: 8px;">
+          <p style="font-family: var(--mono); font-size: 13px; color: var(--ink); margin-bottom: 16px; line-height: 1.6;">
+            <strong>Try it:</strong> Click the checkboxes to see animations.<br/>
+            Watch the progress bar glow, streak counter pulse, and celebration animation when all tasks are done.
+          </p>
+          <p style="font-family: var(--serif); font-size: 14px; color: var(--slate); font-style: italic;">
+            All 13 features included: checkbox animations, progress glow, task completion celebration, streak pulses, countdown timer, implementation intention highlight, dark mode ready, smooth hover states, color-coded completion, keyboard shortcuts support, local persistence, and motivational copy.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 67% REWARD CALLOUT ─── -->
-  <section class="reward-callout" aria-labelledby="reward-callout-heading">
-    <div class="reward-callout-inner">
-      <h2 id="reward-callout-heading">67% completion across the year = 2 months free.</h2>
-      <p class="reward-callout-sub">Automatically. No form. No request. It just happens.</p>
-      <p class="reward-callout-body">Because I only win when you win. That is not a marketing message. That is the business model.</p>
+  <section style="padding: 100px 0; border-top: 2px solid var(--border); background: rgba(46,92,79,0.04);">
+    <div class="container">
+      <div style="max-width: 680px; margin: 0 auto; text-align: center;">
+        <p style="font-family: var(--mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">Early access</p>
+        <h2 style="font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 16px;">Free during early access.</h2>
+        <p style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--slate); margin-bottom: 48px;">No card. No catch. No countdown.</p>
+        <div style="text-align: left; background: var(--cream); border: 1.5px solid var(--ink); padding: 40px; margin-bottom: 40px; box-shadow: 4px 4px 0 var(--ink);">
+          <p style="font-family: var(--mono); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-bottom: 24px;">Everything included</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">3-task cap, enforced</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Midnight wipe</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Streak tracking</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Pomodoro timer</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Morning notification</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">PWA — works like an app</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Dark mode</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border);"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Implementation intention prompt</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0;"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Progress bar</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 0;"><span style="font-family: var(--mono); font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 3px;">✓</span><span style="font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.5;">Multi-device sync</span></div>
+          </div>
+        </div>
+        <p style="font-family: var(--serif); font-size: 17px; font-style: italic; color: var(--slate); margin-bottom: 40px;">All of it, free, while we build this together. When pricing launches you will hear about it first and get a founding member rate.</p>
+        <div class="hero-form" style="justify-content: center;">
+          <input type="email" id="early-email" placeholder="Your email address" autocomplete="email" style="max-width: 320px;"/>
+          <button type="button" onclick="handleSignup('early')">Claim your spot →</button>
+        </div>
+        <div class="form-success" id="early-success">✓ You're on the list. Watch your inbox.</div>
+        <div class="form-error" id="early-error" role="alert"></div>
+      </div>
     </div>
   </section>
 
@@ -2273,6 +2055,26 @@
         });
       }
     });
+
+    function toggleDemoTheme() {
+      const mockup = document.querySelector('.mockup-premium');
+      const toggle = document.getElementById('demo-theme-toggle');
+      const thumb = document.getElementById('demo-toggle-thumb');
+      const isDark = mockup.classList.toggle('demo-dark');
+      if (isDark) {
+        toggle.style.background = '#1a1a1a';
+        toggle.style.borderColor = '#444';
+        thumb.style.transform = 'translateX(24px)';
+        thumb.style.background = '#2e5c4f';
+        thumb.textContent = '☀️';
+      } else {
+        toggle.style.background = 'var(--cream)';
+        toggle.style.borderColor = 'var(--ink)';
+        thumb.style.transform = 'translateX(0)';
+        thumb.style.background = 'var(--ink)';
+        thumb.textContent = '🌙';
+      }
+    }
   </script>
 </body>
 </html>
