@@ -1335,17 +1335,6 @@
     .mockup-premium.demo-dark .progress-bar { background: #333; }
     .mockup-premium.demo-dark .mockup-corner { background: #2e5c4f; color: #f2eddc; }
     .mockup-premium.demo-dark .countdown-timer { color: #888; }
-
-    .scroll-device-wrap {
-      perspective: 1200px;
-      perspective-origin: center center;
-    }
-    .scroll-device {
-      transform: rotateX(20deg) scale(1.05);
-      transition: transform 0.1s linear;
-      transform-origin: center bottom;
-      will-change: transform;
-    }
   </style>
 </head>
 
@@ -1385,84 +1374,86 @@
             Free during early access. No card needed.
           </div>
         </div>
-        <div class="scroll-device-wrap" style="display: flex; justify-content: center; align-items: flex-start; padding-top: 20px;">
-          <div class="scroll-device" style="width: 100%; max-width: 480px;">
+        <div style="display: flex; justify-content: center; align-items: flex-start; padding-top: 10px;">
+          <div style="position: relative; background: #1a1a1a; border-radius: 54px; padding: 16px; box-shadow: 0 60px 120px rgba(0,0,0,0.5), 0 20px 40px rgba(0,0,0,0.3), inset 0 0 0 2px #3a3a3a; width: 280px; flex-shrink: 0;">
 
-            <!-- MacBook lid/screen -->
-            <div style="background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 10px 10px 0 10px; box-shadow: 0 -2px 0 #555 inset, 0 40px 80px rgba(0,0,0,0.4);">
+            <!-- Dynamic island -->
+            <div style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 90px; height: 28px; background: #000; border-radius: 20px; z-index: 10;"></div>
 
-              <!-- Camera dot -->
-              <div style="width: 6px; height: 6px; border-radius: 50%; background: #333; margin: 0 auto 6px auto;"></div>
+            <!-- Left buttons -->
+            <div style="position: absolute; left: -4px; top: 110px; width: 4px; height: 28px; background: #2a2a2a; border-radius: 2px 0 0 2px;"></div>
+            <div style="position: absolute; left: -4px; top: 150px; width: 4px; height: 44px; background: #2a2a2a; border-radius: 2px 0 0 2px;"></div>
+            <div style="position: absolute; left: -4px; top: 206px; width: 4px; height: 44px; background: #2a2a2a; border-radius: 2px 0 0 2px;"></div>
 
-              <!-- Screen bezel -->
-              <div style="background: #0a0a0a; border-radius: 6px; overflow: hidden; aspect-ratio: 16/10;">
+            <!-- Right button -->
+            <div style="position: absolute; right: -4px; top: 160px; width: 4px; height: 64px; background: #2a2a2a; border-radius: 0 2px 2px 0;"></div>
 
-                <!-- Browser chrome -->
-                <div style="background: #2a2a2a; padding: 6px 10px; display: flex; align-items: center; gap: 6px;">
-                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #ff5f57;"></div>
-                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #febc2e;"></div>
-                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #28c840;"></div>
-                  <div style="flex: 1; background: #1a1a1a; border-radius: 4px; padding: 3px 10px; margin-left: 8px;">
-                    <span style="font-family: var(--mono); font-size: 8px; color: #666; letter-spacing: 0.04em;">usejust.co</span>
+            <!-- Screen -->
+            <div style="border-radius: 40px; overflow: hidden; background: var(--cream);">
+
+              <!-- Status bar -->
+              <div style="background: var(--cream); padding: 14px 20px 6px 20px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--ink);">9:41</span>
+                <div style="display: flex; gap: 5px; align-items: center; font-size: 10px;">
+                  <span>▌▌▌</span>
+                  <span>WiFi</span>
+                  <span>🔋</span>
+                </div>
+              </div>
+
+              <!-- App content -->
+              <div style="padding: 10px 18px 24px 18px;">
+
+                <div style="font-family: var(--mono); font-size: 8px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);" id="hero-mockup-date"></div>
+
+                <div style="font-family: var(--serif); font-style: italic; font-size: 10px; color: var(--slate); margin-bottom: 14px; padding: 6px 10px; border-left: 2px solid var(--accent); background: rgba(46,92,79,0.04);">"I will start my first task at 9:00 AM at my desk."</div>
+
+                <!-- Task 1 -->
+                <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border);" class="hero-task-item">
+                  <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
+                  <span style="font-family: var(--serif); font-size: 11px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Call mom back. You've been putting it off.</span>
+                  <span style="font-family: var(--mono); font-size: 7px; border: 1px solid #b8860b; color: #b8860b; padding: 2px 5px; letter-spacing: 0.06em;">MED</span>
+                </div>
+
+                <!-- Task 2 -->
+                <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border);" class="hero-task-item">
+                  <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
+                  <span style="font-family: var(--serif); font-size: 11px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Go to the gym. No more excuses.</span>
+                  <span style="font-family: var(--mono); font-size: 7px; border: 1px solid #c0392b; color: #c0392b; padding: 2px 5px; letter-spacing: 0.06em;">HIGH</span>
+                </div>
+
+                <!-- Task 3 -->
+                <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0;" class="hero-task-item">
+                  <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
+                  <span style="font-family: var(--serif); font-size: 11px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Start. Just the first 10 minutes.</span>
+                  <span style="font-family: var(--mono); font-size: 7px; border: 1px solid #2e7d32; color: #2e7d32; padding: 2px 5px; letter-spacing: 0.06em;">LOW</span>
+                </div>
+
+                <!-- Progress -->
+                <div style="margin-top: 14px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                    <span style="font-family: var(--mono); font-size: 7px; letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;">TODAY'S FOCUS</span>
+                    <span style="font-family: var(--mono); font-size: 7px; color: var(--ink-faint);" id="hero-pct">0%</span>
+                  </div>
+                  <div style="height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;">
+                    <div style="height: 100%; width: 0%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease;" id="hero-prog-fill"></div>
                   </div>
                 </div>
 
-                <!-- App content -->
-                <div style="background: var(--cream); height: calc(100% - 28px); padding: 16px 20px; overflow: hidden;">
-
-                  <div style="font-family: var(--mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);" id="hero-mockup-date"></div>
-
-                  <div style="font-family: var(--serif); font-style: italic; font-size: 10px; color: var(--slate); margin-bottom: 14px; padding: 6px 10px; border-left: 2px solid var(--accent); background: rgba(46,92,79,0.04);">"I will start my first task at 9:00 AM at my desk."</div>
-
-                  <!-- Task 1 -->
-                  <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border);" class="hero-task-item">
-                    <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
-                    <span style="font-family: var(--serif); font-size: 12px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Call mom back. You've been putting it off.</span>
-                    <span style="font-family: var(--mono); font-size: 8px; border: 1px solid #b8860b; color: #b8860b; padding: 2px 6px; letter-spacing: 0.06em;">MED</span>
-                  </div>
-
-                  <!-- Task 2 -->
-                  <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border);" class="hero-task-item">
-                    <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
-                    <span style="font-family: var(--serif); font-size: 12px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Go to the gym. No more excuses.</span>
-                    <span style="font-family: var(--mono); font-size: 8px; border: 1px solid #c0392b; color: #c0392b; padding: 2px 6px; letter-spacing: 0.06em;">HIGH</span>
-                  </div>
-
-                  <!-- Task 3 -->
-                  <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0;" class="hero-task-item">
-                    <button onclick="heroToggleTask(this)" style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; transition: all 0.2s;" class="hero-task-check"></button>
-                    <span style="font-family: var(--serif); font-size: 12px; color: var(--ink); flex: 1; line-height: 1.4;" class="hero-task-text">Start. Just the first 10 minutes.</span>
-                    <span style="font-family: var(--mono); font-size: 8px; border: 1px solid #2e7d32; color: #2e7d32; padding: 2px 6px; letter-spacing: 0.06em;">LOW</span>
-                  </div>
-
-                  <!-- Progress -->
-                  <div style="margin-top: 14px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                      <span style="font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;">TODAY'S FOCUS</span>
-                      <span style="font-family: var(--mono); font-size: 8px; color: var(--ink-faint);" id="hero-pct">0%</span>
-                    </div>
-                    <div style="height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;">
-                      <div style="height: 100%; width: 0%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease;" id="hero-prog-fill"></div>
-                    </div>
-                  </div>
-
-                  <!-- Footer -->
-                  <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family: var(--mono); font-size: 8px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em;">↻ Resets at midnight</span>
-                    <span style="font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 2px 7px; letter-spacing: 0.04em;">🔥 12 DAY STREAK</span>
-                  </div>
-                  <div style="font-family: var(--mono); font-size: 8px; color: #c0392b; text-align: right; margin-top: 5px;" id="hero-countdown"></div>
-
+                <!-- Footer -->
+                <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-family: var(--mono); font-size: 7px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em;">↻ Resets at midnight</span>
+                  <span style="font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; letter-spacing: 0.04em;">🔥 12 DAY STREAK</span>
                 </div>
+                <div style="font-family: var(--mono); font-size: 7px; color: #c0392b; text-align: right; margin-top: 5px;" id="hero-countdown"></div>
+
               </div>
             </div>
 
-            <!-- MacBook base -->
-            <div style="background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%); height: 18px; border-radius: 0 0 4px 4px; position: relative;">
-              <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40%; height: 6px; background: #111; border-radius: 0 0 4px 4px;"></div>
+            <!-- Home indicator -->
+            <div style="height: 20px; display: flex; align-items: center; justify-content: center;">
+              <div style="width: 80px; height: 4px; background: #444; border-radius: 2px;"></div>
             </div>
-            <!-- Desk reflection -->
-            <div style="height: 6px; background: linear-gradient(180deg, #333 0%, transparent 100%); border-radius: 0 0 8px 8px; opacity: 0.4;"></div>
 
           </div>
         </div>
@@ -2142,21 +2133,6 @@
         thumb.textContent = '🌙';
       }
     }
-
-    function initScrollTilt() {
-      const device = document.querySelector('.scroll-device');
-      const wrap = document.querySelector('.scroll-device-wrap');
-      if (!device || !wrap) return;
-      window.addEventListener('scroll', function() {
-        const rect = wrap.getBoundingClientRect();
-        const windowH = window.innerHeight;
-        const progress = Math.min(Math.max(1 - (rect.top / windowH), 0), 1);
-        const rotate = 20 - (progress * 20);
-        const scale = 1.05 - (progress * 0.05);
-        device.style.transform = 'rotateX(' + rotate + 'deg) scale(' + scale + ')';
-      }, { passive: true });
-    }
-    initScrollTilt();
 
     function heroToggleTask(btn) {
       const item = btn.closest('.hero-task-item');
