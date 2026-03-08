@@ -1,0 +1,12 @@
+---
+description: This project is the deploy source for usejust.co — edit here
+alwaysApply: true
+---
+
+# usejust.co deploy source
+
+This folder (`just-app`) is the canonical source for the JUST website (usejust.co).
+
+- All landing page, hero, and site edits belong in this project.
+- `index.html` and other files here are what get committed and deployed.
+- Prefer editing these files over any copy of index.html in other workspaces.
