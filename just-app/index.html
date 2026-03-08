@@ -182,6 +182,24 @@
       height: auto;
       object-fit: contain;
     }
+    .hero-content .hl-bold,
+    .hero-content .hl-italic {
+      display: block;
+      font-family: var(--serif-editorial);
+      font-size: clamp(24px, 2.8vw, 36px);
+      line-height: 1.15;
+      color: #1e2a26;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .hero-content .hl-bold {
+      font-weight: 700;
+      font-style: normal;
+    }
+    .hero-content .hl-italic {
+      font-weight: 400;
+      font-style: italic;
+    }
     .hero-content {
       animation: heroFadeUp 0.6s ease-out 0.12s forwards;
       opacity: 0;
@@ -1373,7 +1391,7 @@
         <!-- Right column: eyebrow, headline, subtext, CTA -->
         <div class="hero-content">
           <p style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); margin-bottom: 18px;">-- BEHAVIORAL PRODUCTIVITY — NOT ENGAGEMENT THEATRE</p>
-          <h1 style="font-family: var(--serif-editorial); font-size: clamp(36px, 4vw, 52px); font-weight: 700; line-height: 1.12; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.02em;">Not a todo list. <em style="font-style: italic; font-weight: 400;">The 3 things</em> you keep moving to tomorrow.</h1>
+          <h1 style="margin-bottom: 16px; text-align: left;"><span class="hl-bold">Stop moving it to tomorrow.</span><span class="hl-italic">Three things. That's it.</span><span class="hl-bold">Pick three. Do them. Done.</span></h1>
           <p style="font-family: var(--mono); font-size: 13px; color: var(--slate); letter-spacing: 0.06em; margin-bottom: 24px;">3-task cap. Midnight wipe. Free during early access.</p>
           <div class="hero-form" id="hero-form-wrap">
             <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for early access" />
