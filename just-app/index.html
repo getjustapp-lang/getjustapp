@@ -1180,6 +1180,55 @@
       animation: celebrate 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
+    @keyframes demoStreakPulse {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    @keyframes demoFireBounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.4); }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1.1); }
+    }
+    @keyframes completionFadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .demo-complete-message {
+      font-family: var(--mono), 'Space Mono', monospace;
+      font-size: 11px;
+      color: #1f4a3c;
+      font-style: italic;
+      text-align: center;
+      animation: completionFadeIn 0.3s ease forwards;
+      margin: 8px 0;
+    }
+    .demo-streak-badge-pulse {
+      animation: demoStreakPulse 0.3s ease forwards;
+    }
+    .demo-fire-animate {
+      display: inline-block;
+      animation: demoFireBounce 0.4s ease forwards;
+    }
+    .mockup-premium.demo-card-lift {
+      transform: translateY(-4px);
+      box-shadow: 0 0 0 2px rgba(31, 74, 60, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .demo-try-again-message {
+      font-family: var(--mono), 'Space Mono', monospace;
+      font-size: 11px;
+      color: rgba(31, 74, 60, 0.65);
+      text-align: center;
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    #prog-fill-premium {
+      transition: width 0.4s ease;
+    }
+
     @keyframes streakPulse {
       0%, 100% { transform: scale(1); color: var(--ink); }
       50% { transform: scale(1.2); color: var(--accent); }
@@ -1652,11 +1701,11 @@
                 <div class="progress-fill" id="prog-fill-premium"></div>
               </div>
             </div>
-            <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <div id="demo-streak-row" style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
               <span style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;">↻ Resets at midnight</span>
-              <span style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 3px 8px; letter-spacing: 0.06em;">🔥 12 DAY STREAK</span>
+              <span id="demo-streak-badge" style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); padding: 3px 8px; letter-spacing: 0.06em;"><span id="demo-fire-emoji">🔥</span> <span id="demo-streak-num">12</span> DAY STREAK</span>
             </div>
-            <div class="countdown-timer" aria-live="polite"></div>
+            <div id="demo-countdown" class="countdown-timer" aria-live="polite"></div>
           </div>
         </div>
 
@@ -1920,6 +1969,7 @@
         sortTasksByPriority('.mockup-premium');
       }
       updateProgressPremium();
+      checkAllComplete();
     }
 
     function updateProgressPremium() {
@@ -1951,6 +2001,179 @@
           mockup.classList.add('celebrate');
           setTimeout(() => mockup.classList.remove('celebrate'), 800);
         }
+      }
+    }
+
+    var demoCompleteShown = false;
+    var demoResetting = false;
+    var demoResetTimeoutId = null;
+
+    function checkAllComplete() {
+      var mockup = document.querySelector('.mockup-premium');
+      if (!mockup) return;
+      var doneCount = mockup.querySelectorAll('.task-check.done').length;
+      if (doneCount === 3 && !demoCompleteShown && !demoResetting) {
+        handleDemoComplete();
+      } else if (doneCount < 3) {
+        if (demoCompleteShown || demoResetting) {
+          handleDemoReset(false);
+        }
+      }
+    }
+
+    function animateValue(el, fromVal, toVal, durationMs, easing) {
+      if (!el) return;
+      var start = performance.now();
+      function tick(now) {
+        var t = Math.min((now - start) / durationMs, 1);
+        var e = easing ? easing(t) : t;
+        var val = Math.round(fromVal + (toVal - fromVal) * e);
+        el.textContent = val;
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function handleDemoComplete() {
+      var mockup = document.querySelector('.mockup-premium');
+      if (!mockup) return;
+      demoCompleteShown = true;
+      var fillEl = document.getElementById('prog-fill-premium');
+      var pctEl = document.getElementById('pct-premium');
+      var badge = document.getElementById('demo-streak-badge');
+      var numEl = document.getElementById('demo-streak-num');
+      var fireEl = document.getElementById('demo-fire-emoji');
+      var streakRow = document.getElementById('demo-streak-row');
+      var countdownEl = document.getElementById('demo-countdown');
+
+      if (fillEl) {
+        fillEl.style.transition = 'none';
+        fillEl.style.width = '100%';
+        fillEl.style.backgroundColor = '#1f4a3c';
+        fillEl.style.boxShadow = '0 0 12px rgba(31, 74, 60, 0.5)';
+        fillEl.classList.remove('pct-zero');
+      }
+      if (pctEl) pctEl.textContent = '100%';
+
+      setTimeout(function() {
+        if (badge) {
+          badge.classList.add('demo-streak-badge-pulse');
+          badge.style.backgroundColor = '#fff3e0';
+          setTimeout(function() { badge.style.backgroundColor = ''; }, 300);
+        }
+        if (fireEl) fireEl.classList.add('demo-fire-animate');
+        if (numEl) animateValue(numEl, 12, 13, 600, function(t) { return 1 - Math.pow(1 - t, 2); });
+        setTimeout(function() {
+          if (badge) badge.classList.remove('demo-streak-badge-pulse');
+          if (fireEl) fireEl.classList.remove('demo-fire-animate');
+        }, 600);
+      }, 150);
+
+      setTimeout(function() {
+        mockup.classList.add('demo-card-lift');
+        setTimeout(function() { mockup.classList.remove('demo-card-lift'); }, 400);
+      }, 400);
+
+      setTimeout(function() {
+        var msg = document.createElement('div');
+        msg.className = 'demo-complete-message';
+        msg.setAttribute('id', 'demo-complete-msg');
+        msg.textContent = 'Day complete. Clean slate at midnight.';
+        msg.style.opacity = '0';
+        if (streakRow) mockup.insertBefore(msg, streakRow);
+        requestAnimationFrame(function() { msg.style.transition = 'opacity 0.3s ease'; msg.style.opacity = '1'; });
+      }, 600);
+
+      setTimeout(function() {
+        if (numEl) numEl.textContent = '13';
+        if (countdownEl) {
+          countdownEl.style.color = '#1f4a3c';
+          countdownEl.style.transition = 'color 0.3s ease';
+          setTimeout(function() { countdownEl.style.color = ''; }, 1500);
+        }
+      }, 800);
+
+      demoResetTimeoutId = setTimeout(function() {
+        handleDemoReset(true);
+      }, 2500);
+    }
+
+    function handleDemoReset(fullReset) {
+      var mockup = document.querySelector('.mockup-premium');
+      if (!mockup) return;
+      if (demoResetTimeoutId) {
+        clearTimeout(demoResetTimeoutId);
+        demoResetTimeoutId = null;
+      }
+      demoResetting = fullReset;
+      var fillEl = document.getElementById('prog-fill-premium');
+      var pctEl = document.getElementById('pct-premium');
+      var badge = document.getElementById('demo-streak-badge');
+      var numEl = document.getElementById('demo-streak-num');
+      var msg = document.getElementById('demo-complete-msg');
+      var countdownEl = document.getElementById('demo-countdown');
+      var checks = mockup.querySelectorAll('.task-check.premium');
+
+      if (fullReset) {
+        function uncheckOne(idx) {
+          if (idx < 0) {
+            demoResetting = false;
+            demoCompleteShown = false;
+            if (fillEl) {
+              fillEl.style.transition = 'width 0.6s ease';
+              fillEl.style.width = '0%';
+              fillEl.style.backgroundColor = '';
+              fillEl.style.boxShadow = '';
+              setTimeout(function() { fillEl.style.transition = ''; }, 700);
+            }
+            if (pctEl) pctEl.textContent = '0%';
+            if (numEl) animateValue(numEl, 13, 12, 400, function(t) { return t; });
+            setTimeout(function() {
+              if (numEl) numEl.textContent = '12';
+              var m = document.getElementById('demo-complete-msg');
+              if (m) { m.style.opacity = '0'; m.style.transition = 'opacity 0.2s ease'; setTimeout(function() { if (m.parentNode) m.parentNode.removeChild(m); }, 200); }
+              if (badge) badge.style.backgroundColor = '';
+              if (countdownEl) countdownEl.style.color = '';
+              mockup.classList.remove('demo-card-lift');
+              updateProgressPremium();
+              var tryAgain = document.getElementById('demo-try-again-msg');
+              if (tryAgain && tryAgain.parentNode) tryAgain.parentNode.removeChild(tryAgain);
+              tryAgain = document.createElement('div');
+              tryAgain.id = 'demo-try-again-msg';
+              tryAgain.className = 'demo-try-again-message';
+              tryAgain.textContent = 'Try it again. It feels better every time.';
+              mockup.appendChild(tryAgain);
+              requestAnimationFrame(function() { tryAgain.style.opacity = '1'; });
+              setTimeout(function() {
+                tryAgain.style.opacity = '0';
+                setTimeout(function() { if (tryAgain.parentNode) tryAgain.parentNode.removeChild(tryAgain); }, 350);
+              }, 3000);
+            }, 400);
+            return;
+          }
+          var el = checks[idx];
+          if (el && el.classList.contains('done')) {
+            el.classList.remove('done');
+            el.setAttribute('aria-checked', 'false');
+            var tx = el.nextElementSibling;
+            if (tx) tx.classList.remove('done');
+            var item = el.closest('.task-item');
+            if (item) item.removeAttribute('data-completed-at');
+          }
+          setTimeout(function() { uncheckOne(idx - 1); }, 200);
+        }
+        uncheckOne(checks.length - 1);
+      } else {
+        var m = document.getElementById('demo-complete-msg');
+        if (m) { m.style.opacity = '0'; m.style.transition = 'opacity 0.2s ease'; setTimeout(function() { if (m && m.parentNode) m.parentNode.removeChild(m); }, 200); }
+        mockup.classList.remove('demo-card-lift');
+        if (fillEl) { fillEl.style.transition = ''; fillEl.style.backgroundColor = ''; fillEl.style.boxShadow = ''; }
+        if (numEl) numEl.textContent = '12';
+        if (badge) badge.style.backgroundColor = '';
+        if (countdownEl) countdownEl.style.color = '';
+        demoCompleteShown = false;
+        demoResetting = false;
+        updateProgressPremium();
       }
     }
 
