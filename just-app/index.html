@@ -661,9 +661,14 @@
       background: var(--cream);
       padding: 40px 36px;
       position: relative;
-      transition: background 0.2s;
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .formula-block:hover { background: var(--cream-dark); }
+    .formula-block:hover {
+      background-color: rgba(31, 74, 60, 0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
     .formula-block.wide {
       grid-column: 1 / -1;
     }
@@ -887,9 +892,14 @@
     .science-item {
       background: var(--ink);
       padding: 36px 30px;
-      transition: background 0.2s;
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .science-item:hover { background: #4A4E4F; }
+    .science-item:hover {
+      background-color: rgba(31, 74, 60, 0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
     .science-source {
       font-family: var(--mono);
       font-size: 10px;
@@ -1494,35 +1504,35 @@
         <p class="section-sub">"JUST. Like that."</p>
       </div>
       <div class="formula-grid">
-        <div class="formula-block reveal">
+        <div class="formula-block reveal" onclick="window.open('https://www.publichealth.columbia.edu/news/global-study-confirms-influential-theory-behind-loss-aversion', '_blank', 'noopener,noreferrer')">
           <div class="formula-num">01</div>
           <div class="formula-icon">🌑</div>
           <div class="formula-title">Midnight Wipe</div>
           <p class="formula-desc">Unfinished tasks vanish at midnight. Not archived. Gone. Guilt is not a productivity strategy. A clean slate is.</p>
           <span class="formula-accent">Loss Aversion · Kahneman</span>
         </div>
-        <div class="formula-block reveal">
+        <div class="formula-block reveal" onclick="window.open('https://faculty.washington.edu/jdb/345/345%20Articles/Baumeister%20et%20al.%20(1998).pdf', '_blank', 'noopener,noreferrer')">
           <div class="formula-num">02</div>
           <div class="formula-icon">✦</div>
           <div class="formula-title">3-Task Cap</div>
           <p class="formula-desc">Some research suggests self-control draws on a limited resource. When it's depleted, starting anything new gets harder. Three tasks means you spend that resource on what matters.</p>
           <span class="formula-accent">Ego Depletion · Baumeister</span>
         </div>
-        <div class="formula-block reveal">
+        <div class="formula-block reveal" onclick="window.open('https://www.publichealth.columbia.edu/news/global-study-confirms-influential-theory-behind-loss-aversion', '_blank', 'noopener,noreferrer')">
           <div class="formula-num">03</div>
           <div class="formula-icon">🔥</div>
           <div class="formula-title">Streak System</div>
           <p class="formula-desc">Every day you finish 2 out of 3 tasks your streak grows. Miss a day and it resets. The fear of losing a streak is more powerful than the desire to build one. That is loss aversion. That is why it works.</p>
           <span class="formula-accent">Loss Aversion · Kahneman</span>
         </div>
-        <div class="formula-block reveal">
+        <div class="formula-block reveal" onclick="window.open('https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0277220', '_blank', 'noopener,noreferrer')">
           <div class="formula-num">04</div>
           <div class="formula-icon">◻</div>
           <div class="formula-title">No Notifications</div>
           <p class="formula-desc">Notifications can disrupt focus mid-task. One optional morning nudge. That is the entire notification system. Respect for attention is not a feature. It is the position.</p>
           <span class="formula-accent">Attention Economics</span>
         </div>
-        <div class="formula-block wide reveal">
+        <div class="formula-block wide reveal" onclick="window.open('https://pmc.ncbi.nlm.nih.gov/articles/PMC2674671/', '_blank', 'noopener,noreferrer')">
           <div class="formula-num">05</div>
           <div class="formula-icon">⬡</div>
           <div class="formula-title">The Grainy Aesthetic</div>
@@ -1542,17 +1552,17 @@
         <p class="section-sub">Every feature is a lever for your behavior.</p>
       </div>
       <div class="science-grid">
-        <div class="science-item reveal">
+        <div class="science-item reveal" onclick="window.open('https://www.verywellmind.com/zeigarnik-effect-memory-overview-4175150', '_blank', 'noopener,noreferrer')">
           <p class="science-source">Zeigarnik Effect</p>
           <p class="science-stat">—</p>
           <p class="science-desc">Unfinished tasks create lingering cognitive tension and intrusive thoughts, making it harder to focus on what's in front of you.</p>
         </div>
-        <div class="science-item reveal">
+        <div class="science-item reveal" onclick="window.open('https://www2.psychology.uiowa.edu/faculty/mordkoff/InfoProc/pdfs/Hick%201952.pdf', '_blank', 'noopener,noreferrer')">
           <p class="science-source">Hick's Law</p>
           <p class="science-stat">3x</p>
           <p class="science-desc">Decision time increases non-linearly with the number of choices. Three tasks is not arbitrary — it's the point where the list stops fighting you.</p>
         </div>
-        <div class="science-item reveal">
+        <div class="science-item reveal" onclick="window.open('https://sparq.stanford.edu/sites/g/files/sbiybj19021/files/media/file/gollwitzer_brandstatter_1997_-_implementation_intentions_effective_goal_pursuit.pdf', '_blank', 'noopener,noreferrer')">
           <p class="science-source">Implementation Intentions</p>
           <p class="science-stat">2x</p>
           <p class="science-desc">People are roughly twice as likely to complete a task when they state when and where they'll do it. JUST. prompts this every morning.</p>
