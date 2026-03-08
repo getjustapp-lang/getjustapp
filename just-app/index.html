@@ -1071,7 +1071,7 @@
       max-width: 440px;
       margin: 0 0 16px;
       border: 1.5px solid var(--ink);
-      border-radius: 4px;
+      border-radius: 4px 4px 0 0;
       overflow: visible;
       gap: 0;
       box-sizing: border-box;
@@ -1103,7 +1103,7 @@
       background: var(--accent);
       color: var(--cream);
       border: none;
-      border-radius: 0;
+      border-radius: 0 4px 4px 0;
       cursor: pointer;
       transition: background 0.15s;
       overflow: visible;
@@ -1374,6 +1374,7 @@
         padding: 14px;
         text-align: center;
         white-space: nowrap;
+        border-radius: 0 0 4px 4px;
       }
       .waitlist-inner { flex-direction: column; align-items: flex-start; }
       .mockup { padding: 24px; }
@@ -1522,6 +1523,31 @@
     .mockup-premium.demo-dark .mockup-intention { color: #888; }
     .mockup-premium.demo-dark .task-text { color: #f2eddc; }
     .mockup-premium.demo-dark .task-tag { border-color: #444; color: #888; }
+    .mockup-premium.demo-dark .task-tag.tag-high,
+    .mockup-premium.demo-dark .priority-badge.high,
+    .mockup-premium.demo-dark .badge-high,
+    .mockup-premium.demo-dark [class*="priority"][class*="high"] {
+      background: #fde8e8 !important;
+      color: #c0392b !important;
+      border-color: #c0392b !important;
+    }
+    .mockup-premium.demo-dark .task-tag.tag-medium,
+    .mockup-premium.demo-dark .priority-badge.med,
+    .mockup-premium.demo-dark .priority-badge.medium,
+    .mockup-premium.demo-dark .badge-med,
+    .mockup-premium.demo-dark [class*="priority"][class*="med"] {
+      background: #fdf0e0 !important;
+      color: #d4621a !important;
+      border-color: #d4621a !important;
+    }
+    .mockup-premium.demo-dark .task-tag.tag-low,
+    .mockup-premium.demo-dark .priority-badge.low,
+    .mockup-premium.demo-dark .badge-low,
+    .mockup-premium.demo-dark [class*="priority"][class*="low"] {
+      background: #e6f4ec !important;
+      color: #2d6a4f !important;
+      border-color: #2d6a4f !important;
+    }
     .mockup-premium.demo-dark .progress-label { color: #888; }
     .mockup-premium.demo-dark .progress-bar { background: #333; }
     .mockup-premium.demo-dark .mockup-corner { background: #2e5c4f; color: #f2eddc; }
