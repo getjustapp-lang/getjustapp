@@ -1067,15 +1067,18 @@
     .final-form {
       display: flex;
       align-items: stretch;
+      width: 100%;
       max-width: 440px;
       margin: 0 0 16px;
       border: 1.5px solid var(--ink);
       border-radius: 4px;
       overflow: visible;
       gap: 0;
+      box-sizing: border-box;
     }
     .final-form input {
       flex: 1;
+      min-width: 0;
       padding: 16px 20px;
       font-family: var(--serif);
       font-size: 16px;
