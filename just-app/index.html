@@ -182,26 +182,31 @@
       height: auto;
       object-fit: contain;
     }
-    .hero-content .hl-bold,
-    .hero-content .hl-italic {
-      display: block;
-      font-family: var(--serif-editorial);
-      font-size: clamp(24px, 2.8vw, 36px);
-      line-height: 1.15;
-      color: #1e2a26;
-      margin: 0;
-      letter-spacing: -0.02em;
+    .hero-headline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 24px;
     }
-    .hero-content .hl-bold {
+    .hero-headline span {
+      display: block;
+      font-family: var(--serif-editorial), 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: #1e2a26;
+    }
+    .hl-bold {
       font-weight: 700;
       font-style: normal;
     }
-    .hero-content h1 .hl-bold:first-of-type {
-      white-space: nowrap;
-    }
-    .hero-content .hl-italic {
+    .hl-italic {
       font-weight: 400;
       font-style: italic;
+    }
+    .hl-done {
+      font-size: clamp(22px, 2.4vw, 32px);
+      color: #4a5550;
     }
     .hero-content {
       animation: heroFadeUp 0.6s ease-out 0.12s forwards;
@@ -924,7 +929,7 @@
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: center 35%;
+      object-position: 52% 30%;
       border: 4px solid var(--accent);
       flex-shrink: 0;
     }
@@ -950,6 +955,16 @@
       font-size: 17px;
       color: var(--ink);
       line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .founder-story-body:last-of-type { margin-bottom: 0; }
+    .founder-story-signoff {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--slate);
+      margin-top: 24px;
+      margin-bottom: 0;
     }
     @media (max-width: 640px) {
       .founder-story-inner { flex-direction: column; }
@@ -1066,6 +1081,7 @@
       color: var(--slate);
       max-width: 240px;
       margin-bottom: 20px;
+      line-height: 1.5;
     }
     .footer-founder {
       font-family: var(--mono);
@@ -1394,7 +1410,12 @@
         <!-- Right column: eyebrow, headline, subtext, CTA -->
         <div class="hero-content">
           <p style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); margin-bottom: 18px;">-- BEHAVIORAL PRODUCTIVITY — NOT ENGAGEMENT THEATRE</p>
-          <h1 style="margin-bottom: 16px; text-align: left;"><span class="hl-bold">Stop moving it to tomorrow.</span><span class="hl-italic">Three things. That's it.</span><span class="hl-bold">Pick three. Do them. Done.</span></h1>
+          <h1 class="hero-headline">
+  <span class="hl-bold">Stop moving it to tomorrow.</span>
+  <span class="hl-italic">Pick three.</span>
+  <span class="hl-bold">Do them.</span>
+  <span class="hl-italic hl-done">Done.</span>
+</h1>
           <p style="font-family: var(--mono); font-size: 13px; color: var(--slate); letter-spacing: 0.06em; margin-bottom: 24px;">3-task cap. Midnight wipe. Free during early access.</p>
           <div class="hero-form" id="hero-form-wrap">
             <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address for early access" />
@@ -1670,15 +1691,15 @@
     <div class="container">
       <div class="founder-story-inner reveal">
         <div class="founder-photo-wrap">
-          <img src="founder.jpeg" alt="Chaitanya Madhavan, founder of JUST." class="founder-story-photo" width="140" height="140" loading="lazy" style="object-position: center 35%;" onerror="this.style.display='none'" />
+          <img src="founder.jpeg" alt="Chaitanya Madhavan, founder of JUST." class="founder-story-photo" width="140" height="140" loading="lazy" style="object-position: 52% 30%;" onerror="this.style.display='none'" />
         </div>
         <div class="founder-story-text">
           <p class="founder-story-title">Founder</p>
           <h2 class="founder-story-heading" id="founder-heading">Why I Built JUST</h2>
           <p class="founder-story-body">Productivity culture sold us a lie. More tools. More systems. More integrations. As if the problem was organisation, never discipline. It wasn't. The problem was infinite optionality dressed up as productivity.</p>
           <p class="founder-story-body">JUST exists because constraint is a decision. Three tasks. Midnight wipe. No backlog. Not for aesthetics, but because the brain performs better when the choice is already made. Fewer decisions. More execution.</p>
-          <p class="founder-story-body">JUST began as a personal protocol. A way to end the cycle of planning over finishing. The structure worked. The negotiation stopped. This isn't a productivity app. It's a daily commitment mechanism, designed to close the gap between intention and action.</p>
-          <p class="founder-story-body">Built for people who are done negotiating with themselves.</p>
+          <p class="founder-story-body">JUST began as a personal protocol. A way to end the cycle of planning over finishing. The structure worked. The negotiation stopped. This isn't a productivity app. It's a daily commitment mechanism, designed to close the gap between intention and action. Built for people who are done negotiating with themselves.</p>
+          <p class="founder-story-signoff">— Chai</p>
         </div>
       </div>
     </div>
@@ -1714,8 +1735,8 @@
       <div class="footer-inner">
         <div>
           <div class="footer-logo">JUST.</div>
-          <p class="footer-tagline">Stop planning. Start doing. Built by one person who got tired of every other app.</p>
-          <p class="footer-founder">Built by Chaitanya Madhavan, 19, Singapore.</p>
+          <p class="footer-tagline">Stop planning.<br>Start doing.<br>Built by one person<br>who got tired of every other app.</p>
+          <p class="footer-founder">Built by Chaitanya Madhavan, Singapore.</p>
           <a href="https://www.linkedin.com/in/chaitanya-madhavan-8001381b2/" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-top: 8px; display: inline-flex;" aria-label="Chaitanya Madhavan on LinkedIn">My LinkedIn</a>
         </div>
         <div class="footer-links">
