@@ -664,6 +664,31 @@
       transition: background 0.2s;
     }
     .formula-block:hover { background: var(--cream-dark); }
+    .psych-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      cursor: pointer;
+    }
+    .psych-card-link:hover {
+      background-color: rgba(31, 74, 60, 0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
+    .formula-block .psych-card-link {
+      position: absolute;
+      inset: 0;
+      padding: 40px 36px;
+      box-sizing: border-box;
+    }
+    .science-item .psych-card-link {
+      position: absolute;
+      inset: 0;
+      padding: 36px 30px;
+      box-sizing: border-box;
+    }
+    .science-item:has(.psych-card-link) { position: relative; }
     .formula-block.wide {
       grid-column: 1 / -1;
     }
@@ -1495,39 +1520,49 @@
       </div>
       <div class="formula-grid">
         <div class="formula-block reveal">
-          <div class="formula-num">01</div>
-          <div class="formula-icon">🌑</div>
-          <div class="formula-title">Midnight Wipe</div>
-          <p class="formula-desc">Unfinished tasks vanish at midnight. Not archived. Gone. Guilt is not a productivity strategy. A clean slate is.</p>
-          <span class="formula-accent">Loss Aversion · Kahneman</span>
+          <a href="https://www.publichealth.columbia.edu/news/global-study-confirms-influential-theory-behind-loss-aversion" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <div class="formula-num">01</div>
+            <div class="formula-icon">🌑</div>
+            <div class="formula-title">Midnight Wipe</div>
+            <p class="formula-desc">Unfinished tasks vanish at midnight. Not archived. Gone. Guilt is not a productivity strategy. A clean slate is.</p>
+            <span class="formula-accent">Loss Aversion · Kahneman</span>
+          </a>
         </div>
         <div class="formula-block reveal">
-          <div class="formula-num">02</div>
-          <div class="formula-icon">✦</div>
-          <div class="formula-title">3-Task Cap</div>
-          <p class="formula-desc">Focus as status. When the list is small, the mind is quiet. When the mind is quiet, work begins. Three tasks. Nothing more.</p>
-          <span class="formula-accent">Ego Depletion · Baumeister</span>
+          <a href="https://faculty.washington.edu/jdb/345/345%20Articles/Baumeister%20et%20al.%20(1998).pdf" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <div class="formula-num">02</div>
+            <div class="formula-icon">✦</div>
+            <div class="formula-title">3-Task Cap</div>
+            <p class="formula-desc">Some research suggests self-control draws on a limited resource. When it's depleted, starting anything new gets harder. Three tasks means you spend that resource on what matters.</p>
+            <span class="formula-accent">Ego Depletion · Baumeister</span>
+          </a>
         </div>
         <div class="formula-block reveal">
-          <div class="formula-num">03</div>
-          <div class="formula-icon">🔥</div>
-          <div class="formula-title">Streak System</div>
-          <p class="formula-desc">Every day you finish 2 out of 3 tasks your streak grows. Miss a day and it resets. The fear of losing a streak is more powerful than the desire to build one. That is loss aversion. That is why it works.</p>
-          <span class="formula-accent">Loss Aversion · Kahneman</span>
+          <a href="https://www.publichealth.columbia.edu/news/global-study-confirms-influential-theory-behind-loss-aversion" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <div class="formula-num">03</div>
+            <div class="formula-icon">🔥</div>
+            <div class="formula-title">Streak System</div>
+            <p class="formula-desc">Every day you finish 2 out of 3 tasks your streak grows. Miss a day and it resets. The fear of losing a streak is more powerful than the desire to build one. That is loss aversion. That is why it works.</p>
+            <span class="formula-accent">Loss Aversion · Kahneman</span>
+          </a>
         </div>
         <div class="formula-block reveal">
-          <div class="formula-num">04</div>
-          <div class="formula-icon">◻</div>
-          <div class="formula-title">No Notifications</div>
-          <p class="formula-desc">One optional morning nudge. That is the entire notification system. Respect for attention is not a feature. It is the position.</p>
-          <span class="formula-accent">Attention Economics</span>
+          <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0277220" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <div class="formula-num">04</div>
+            <div class="formula-icon">◻</div>
+            <div class="formula-title">No Notifications</div>
+            <p class="formula-desc">Notifications can disrupt focus mid-task. One optional morning nudge. That is the entire notification system. Respect for attention is not a feature. It is the position.</p>
+            <span class="formula-accent">Attention Economics</span>
+          </a>
         </div>
         <div class="formula-block wide reveal">
-          <div class="formula-num">05</div>
-          <div class="formula-icon">⬡</div>
-          <div class="formula-title">The Grainy Aesthetic</div>
-          <p class="formula-desc" style="max-width:560px;">Cream paper. Monospace ink. Hand-drawn checkboxes. A grain texture overlay that makes the screen feel like your best notebook. Tactile satisfaction is not vanity. It is the reason you come back.</p>
-          <span class="formula-accent">Embodied Cognition</span>
+          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2674671/" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <div class="formula-num">05</div>
+            <div class="formula-icon">⬡</div>
+            <div class="formula-title">The Grainy Aesthetic</div>
+            <p class="formula-desc" style="max-width:560px;">Inspired by research on embodied cognition — the idea that physical sensation shapes how we think. Cream paper. Monospace ink. Hand-drawn checkboxes. Tactile satisfaction is not vanity. It is the reason you come back.</p>
+            <span class="formula-accent">Embodied Cognition</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1543,19 +1578,25 @@
       </div>
       <div class="science-grid">
         <div class="science-item reveal">
-          <p class="science-source">Zeigarnik Effect</p>
-          <p class="science-stat">90%</p>
-          <p class="science-desc">Unfinished tasks occupy 90% more mental bandwidth than finished ones.</p>
+          <a href="https://www.verywellmind.com/zeigarnik-effect-memory-overview-4175150" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <p class="science-source">Zeigarnik Effect</p>
+            <p class="science-stat">—</p>
+            <p class="science-desc">Unfinished tasks create lingering cognitive tension and intrusive thoughts, making it harder to focus on what's in front of you.</p>
+          </a>
         </div>
         <div class="science-item reveal">
-          <p class="science-source">Hick's Law</p>
-          <p class="science-stat">3x</p>
-          <p class="science-desc">Decision time increases logarithmically with the number of choices.</p>
+          <a href="https://www2.psychology.uiowa.edu/faculty/mordkoff/InfoProc/pdfs/Hick%201952.pdf" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <p class="science-source">Hick's Law</p>
+            <p class="science-stat">3x</p>
+            <p class="science-desc">Decision time increases non-linearly with the number of choices. Three tasks is not arbitrary — it's the point where the list stops fighting you.</p>
+          </a>
         </div>
         <div class="science-item reveal">
-          <p class="science-source">Implementation Intentions</p>
-          <p class="science-stat">2.5x</p>
-          <p class="science-desc">People are 2.5x more likely to finish a task if they state when and where.</p>
+          <a href="https://sparq.stanford.edu/sites/g/files/sbiybj19021/files/media/file/gollwitzer_brandstatter_1997_-_implementation_intentions_effective_goal_pursuit.pdf" target="_blank" rel="noopener noreferrer" class="psych-card-link">
+            <p class="science-source">Implementation Intentions</p>
+            <p class="science-stat">2x</p>
+            <p class="science-desc">People are roughly twice as likely to complete a task when they state when and where they'll do it. JUST. prompts this every morning.</p>
+          </a>
         </div>
       </div>
     </div>
